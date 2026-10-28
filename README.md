@@ -4,15 +4,15 @@ DrabornEagle ekosisteminin üretkenlik ve yaratıcı medya uygulamaları. Geliş
 
 | Klasör | Uygulama | Platform | Aç |
 | --- | --- | --- | --- |
-| [nashi-app](nashi-app/) | **Coconut-app** | Web, macOS, Windows | [Web](https://www.draborneagle.com/Coconut-app/) |
-| [banana-studio](banana-studio/) | **Banana-edits** | Web, macOS, Windows | [Web](https://www.draborneagle.com/Banana-edits/) |
-| [clipboardline](clipboardline/) | **clipboard-app** | macOS, Windows | [Kaynaklar](clipboardline/) |
+| [Coconut-app](Coconut-app/) | **Coconut-app** | Web, macOS, Windows | [Web](https://www.draborneagle.com/DraBornStudio/Coconut-app/) |
+| [Banana-edits](Banana-edits/) | **Banana-edits** | Web, macOS, Windows | [Web](https://www.draborneagle.com/DraBornStudio/Banana-edits/) |
+| [clipboard-app](clipboard-app/) | **clipboard-app** | macOS, Windows | [Tanıtım ve kaynaklar](https://www.draborneagle.com/DraBornStudio/clipboard-app/) |
 
-![Coconut-app dosya atölyesi](nashi-app/docs/assets/coconut-web.jpg)
+![Coconut-app dosya atölyesi](Coconut-app/docs/assets/coconut-web.jpg)
 
 ## Web ve kaynak eşitleme
 
-`nashi-app/web/` Coconut web kaynağıdır. `banana-studio/` Banana-edits geliştirme kaynağıdır. `scripts/sync-web.py /path/to/DrabornEagle_Web` komutu statik dağıtımı ve kaynak kopyalarını günceller; Banana-edits için önce `npm run build` çalıştır. Web dağıtımı DrabornEagle_Web üzerinden sürdürülür.
+`Coconut-app/web/` Coconut-app web kaynağıdır. `Banana-edits/` Banana-edits geliştirme kaynağıdır. `scripts/sync-web.py /path/to/DrabornEagle_Web` komutu statik dağıtımı ve kaynak kopyalarını hedef repodaki `DraBornStudio/` klasöründe günceller; Banana-edits için önce `npm run build` çalıştır. [DraBornStudio uygulamaları](https://www.draborneagle.com/DraBornStudio/) web reposundan yayımlanır.
 
 Her uygulamanın README dosyası kendi kurulumunu, yeteneklerini ve sınırlarını açıklar. Galeriler cihazdaki tarayıcıya aittir; bulut ve AI özellikleri ayrıca sunucu/sağlayıcı kurulumu ister. Masaüstü kaynakları tam aktarılmıştır; bu repo henüz yeni marka altında imzalı masaüstü binary dağıtmaz.
 

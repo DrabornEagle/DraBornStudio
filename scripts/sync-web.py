@@ -27,23 +27,24 @@ def main():
     website = args.website.resolve()
     if not (website / '.git').exists():
         parser.error('Target must be a checked-out DrabornEagle_Web repository.')
-    build = ROOT / 'banana-studio/dist'
+    build = ROOT / 'Banana-edits/dist'
     if not (build / 'index.html').is_file():
-        parser.error('Run npm run build in banana-studio first.')
-    copy_tree(ROOT / 'nashi-app/web', website / 'Coconut-app')
-    copy_tree(ROOT / 'nashi-app', website / 'Coconut-app/source', extra_skip={'web'})
+        parser.error('Run npm run build in Banana-edits first.')
+    studio = website / 'DraBornStudio'
+    copy_tree(ROOT / 'Coconut-app/web', studio / 'Coconut-app')
+    copy_tree(ROOT / 'Coconut-app', studio / 'Coconut-app/source', extra_skip={'web'})
     for readme in ('README.md', 'README.tr.md'):
-        snapshot = website / 'Coconut-app/source' / readme
+        snapshot = studio / 'Coconut-app/source' / readme
         if snapshot.exists():
             snapshot.write_text(snapshot.read_text().replace('](web/WEB_STATUS.md)', '](../WEB_STATUS.md)'))
-    copy_tree(ROOT / 'banana-studio', website / 'Banana-edits/source')
-    output_assets = website / 'Banana-edits/assets'
+    copy_tree(ROOT / 'Banana-edits', studio / 'Banana-edits/source')
+    output_assets = studio / 'Banana-edits/assets'
     if output_assets.is_dir():
         for old in output_assets.iterdir():
             if old.is_file() and old.suffix in {'.js', '.css', '.map'}:
                 old.unlink()
-    copy_tree(build, website / 'Banana-edits')
-    print('Updated Coconut-app and Banana-edits runtime files and source snapshots.')
+    copy_tree(build, studio / 'Banana-edits')
+    print('Updated DraBornStudio/Coconut-app and DraBornStudio/Banana-edits with source snapshots.')
 
 if __name__ == '__main__':
     main()
