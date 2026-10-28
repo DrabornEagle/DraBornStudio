@@ -1,0 +1,37 @@
+name: macOS source
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test-and-community-build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Shared version and parity guard tests
+        run: |
+          python3 scripts/check-release-version.py --require-windows
+          python3 scripts/test-cross-platform-parity.py
+      - name: XCTest and actual Mac shared behavior contract
+        run: swift test
+        env:
+          CLIPBOARDLINE_PARITY_REPORT: validation/parity/macos.json
+      - name: Check localization
+        run: swift scripts/check-strings.swift
+      - name: Build isolated, keyless developer application
+        run: bash scripts/build-community.sh
+      - name: Verify developer signature
+        run: codesign --verify --deep --strict "build/ClipBoardLine Dev.app"
+      - name: Preserve exact-source Mac parity observations
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: clipboardline-macos-parity-${{ github.sha }}
+          path: validation/parity/macos.json
+          if-no-files-found: error
+          retention-days: 14

@@ -1,0 +1,2 @@
+# Hash the exact same behavioral contract bytes on every operating system.
+contracts/*.json text eol=lf

@@ -1,0 +1,498 @@
+/* Upstream translations retained; untranslated fork additions fall back to English. */
+"%d app copies will move to recoverable Trash. %d original files stay in place; only their history entries are removed." = "%d 个应用副本将移至可恢复的废纸篓。%d 个原始文件保留在原处，仅移除其历史记录。";
+"%d items" = "%d items";
+"%d items copied" = "%d items copied";
+"%d selected" = "已选择 %d 项";
+"A free filename could not be found" = "A free filename could not be found";
+"About" = "About";
+"Add Folder…" = "添加文件夹…";
+"Add tag…" = "Add tag…";
+"Add to folder" = "Add to folder";
+"Added" = "Added";
+"All" = "All";
+"Also watch folders" = "同时监视文件夹";
+"Any time" = "Any time";
+"Appearance" = "Appearance";
+"Application" = "Application";
+"Apply domain" = "Apply domain";
+"Both shelves" = "两个挂架";
+"Bring the line down" = "放下晾衣绳";
+"Cancel" = "取消";
+"Capture copied links" = "Capture copied links";
+"Change Shortcut" = "更改快捷键";
+"Change Shortcut…" = "更改快捷键…";
+"Changes could not be saved; keep this draft open" = "Changes could not be saved; keep this draft open";
+"Changes saved" = "Changes saved";
+"Check upstream releases…" = "Check upstream releases…";
+"Choose a valid destination or a unique name (1–64 characters)" = "Choose a valid destination or a unique name (1–64 characters)";
+"Clear filters" = "Clear filters";
+"Clipboard" = "Clipboard";
+"Close" = "Close";
+"Close preview" = "关闭预览";
+"Colors" = "Colors";
+"Contacts the linked website or YouTube in the background. Private markers, local addresses and links with known secret parameters are skipped." = "Contacts the linked website or YouTube in the background. Private markers, local addresses and links with known secret parameters are skipped.";
+"Content type" = "Content type";
+"Copied" = "已复制";
+"Copied web addresses appear here when link capture is enabled" = "Copied web addresses appear here when link capture is enabled";
+"Copies are saved locally. Text and link capture is silent. A single web address goes to Links; paragraphs stay as text." = "Copies are saved locally. Text and link capture is silent. A single web address goes to Links; paragraphs stay as text.";
+"Copy" = "复制";
+"Copy latest image" = "复制最新图像";
+"Copy-latest shortcut" = "复制最新图像的快捷键";
+"Could not change the login setting" = "无法更改登录项设置";
+"Could not copy selected items" = "无法复制所选项目";
+"Could not export copies" = "无法导出副本";
+"Could not save a favorite copy" = "Could not save a pinned copy";
+"Could not save text history" = "无法保存文本历史";
+"Discard" = "丢弃";
+"Dismiss" = "关闭提示";
+"Domain, e.g. youtube.com" = "Domain, e.g. youtube.com";
+"Edit text" = "Edit text";
+"Editing · changes are saved automatically" = "Editing · changes are saved automatically";
+"Escape cancels. Delete removes the shortcut." = "按 Esc 取消，按删除键移除快捷键。";
+"Export copies" = "导出副本";
+"Export copies…" = "导出副本…";
+"Exported %d · failed %d" = "已导出 %d · 失败 %d";
+"Favorite an item, or add a folder or tag to keep it here." = "Pin an item, or add a folder or tag to keep it here.";
+"Favorites" = "已固定";
+"Favorites, folders and tags keep items permanently. Other copies follow your history setting." = "Pinned items, folders and tags stay permanently. Other copies follow their history limits.";
+"Fetch link titles and thumbnails" = "Fetch link titles and thumbnails";
+"File could not be read or safely saved" = "File could not be read or safely saved";
+"Filtered view" = "Filtered view";
+"Filters" = "Filters";
+"Folder" = "Folder";
+"Folders" = "Folders";
+"General" = "General";
+"Handle screenshots" = "接管截图";
+"Hang copied images" = "挂上复制的图片";
+"Hang copied text" = "挂起复制的文本";
+"Hide line" = "隐藏晾衣绳";
+"History" = "History";
+"Image" = "Image";
+"Image preview" = "图像预览";
+"Image, text and link shelves, with a private local library." = "Image, text and link shelves, with a private local library.";
+"Images" = "图像";
+"Its contents stay in your library." = "Its contents stay in your library.";
+"Keep for %d days" = "保留 %d 天";
+"Keyboard shortcuts" = "键盘快捷键";
+"Large" = "大";
+"Last 30 days" = "Last 30 days";
+"Last 7 days" = "Last 7 days";
+"Last copied" = "Last copied";
+"Let Tendedero handle your screenshots?" = "让 Tendedero 接管你的截图？";
+"Library" = "Library";
+"Library could not be opened. Existing history is kept; capture is paused." = "Library could not be opened. Existing history is kept; capture is paused.";
+"Library could not be saved or opened" = "Library could not be saved or opened";
+"Library…" = "Library…";
+"Link" = "Link";
+"Link copied" = "Link copied";
+"Link preview" = "Link preview";
+"Link preview could not be saved; the link is kept" = "Link preview could not be saved; the link is kept";
+"Link previews" = "Link previews";
+"Links" = "Links";
+"Loading" = "Loading";
+"Loading…" = "Loading…";
+"Markup" = "标记";
+"Medium" = "中";
+"Move %d items to recoverable Trash?" = "Move %d items to recoverable Trash?";
+"Move Tendedero to the Applications folder and try again." = "请先把 Tendedero 移到「应用程序」文件夹，再试一次。";
+"Move app copies to Trash" = "将应用副本移到废纸篓";
+"Move selected texts to recoverable Trash?" = "将所选文本移到可恢复的废纸篓？";
+"Move this text to recoverable Trash?" = "将此文本移至可恢复的废纸篓？";
+"Move to Trash" = "移到废纸篓";
+"Move to Trash…" = "移至废纸篓…";
+"Move to folder" = "Move to folder";
+"My library" = "My library";
+"Neutral glass" = "Neutral glass";
+"New folder" = "New folder";
+"New images saved to this folder will hang on the line." = "保存到此文件夹的新图片会挂到晾衣绳上。";
+"New note" = "New note";
+"New subfolder" = "New subfolder";
+"Newest first" = "Newest first";
+"Next item" = "Next item";
+"No matching items" = "No matching items";
+"None" = "无";
+"Not now" = "以后再说";
+"Note" = "Note";
+"Nothing here yet" = "Nothing here yet";
+"Off" = "关闭";
+"Oldest first" = "Oldest first";
+"On the line" = "On the line";
+"Open" = "打开";
+"Open at login" = "登录时打开";
+"Open data folder" = "Open data folder";
+"Open file" = "Open file";
+"Open folder" = "Open folder";
+"Open in browser" = "Open in browser";
+"Open library" = "Open library";
+"Open screenshots folder" = "打开截图文件夹";
+"Over full screen apps" = "在全屏 App 上";
+"Pin favorite" = "固定";
+"Press a key with Control or Command" = "按下 Control 或 Command 加一个键";
+"Press the new shortcut" = "请按下新的快捷键";
+"Preview" = "预览";
+"Preview unavailable; your link is saved" = "Preview unavailable; your link is saved";
+"Previous item" = "Previous item";
+"Quick Look" = "快速查看";
+"Quit %@" = "Quit %@";
+"Recent copies" = "Recent copies";
+"Record shortcut…" = "录制快捷键…";
+"Refresh link preview" = "Refresh link preview";
+"Remove folder" = "Remove folder";
+"Remove history entries" = "移除历史记录";
+"Remove selected images?" = "移除所选图像？";
+"Remove tag" = "Remove tag";
+"Remove this folder?" = "Remove this folder?";
+"Remove this tag?" = "Remove this tag?";
+"Rename folder" = "Rename folder";
+"Rename tag" = "Rename tag";
+"Reset zoom" = "重置缩放";
+"Restore" = "Restore";
+"Save" = "Save";
+"Save shortcut" = "保存快捷键";
+"Save to Desktop" = "存储到桌面";
+"Save to library" = "Save to library";
+"Screenshots" = "Screenshots";
+"Screenshots hang instantly and skip the Desktop. Your macOS screenshot settings are restored when the app quits." = "Screenshots hang instantly and skip the Desktop. Your macOS screenshot settings are restored when the app quits.";
+"Screenshots will hang on the line the instant you take them, without the floating thumbnail, and will not pile up on your Desktop. Drag one to a folder to keep it, or discard it with the cross. You can turn this off in Settings, and your settings come back when Tendedero quits." = "Screenshots will hang on the line the instant you take them, without the floating thumbnail, and will not pile up on your Desktop. Drag one to a folder to keep it, or discard it with the cross. You can turn this off in Settings, and your settings come back when Tendedero quits.";
+"Search this view" = "Search this view";
+"Select an item to view its details" = "Select an item to view its details";
+"Selected files could not be read; nothing was copied" = "Selected files could not be read; nothing was copied";
+"Set copy-latest shortcut" = "设置复制最新图像的快捷键";
+"Settings" = "Settings";
+"Settings…" = "Settings…";
+"Shelf settings" = "挂架设置";
+"Shortcut" = "快捷键";
+"Shortcut unavailable; the previous shortcut is kept" = "快捷键不可用，保留原快捷键";
+"Show details" = "Show details";
+"Show in Finder" = "在访达中显示";
+"Show line" = "显示晾衣绳";
+"Show or hide the line" = "Show or hide the line";
+"Size" = "大小";
+"Small" = "小";
+"Soft colors" = "Soft colors";
+"Some app copies could not be moved to Trash" = "部分应用副本无法移至废纸篓";
+"Some text copies could not be moved to Trash" = "部分文本副本无法移至废纸篓";
+"Sort" = "Sort";
+"Sounds" = "声音";
+"Sources" = "Sources";
+"Space" = "空格";
+"Stop Watching" = "停止监视";
+"Switch shelf" = "切换挂架";
+"Tab switches the active shelf" = "Tab 切换活动挂架";
+"Tag" = "Tag";
+"Tags" = "Tags";
+"Tags (match all)" = "Tags (match all)";
+"Take a screenshot and it will hang here" = "截个图，它就会挂在这里";
+"Take down" = "取下";
+"Take down everything to the left" = "取下左侧全部";
+"Take down everything to the right" = "取下右侧全部";
+"Text" = "Text";
+"Text archive could not be opened; the existing file is kept" = "无法打开文本归档，现有文件将保留";
+"Text archive is full; new text was not saved" = "文本归档已满，新文本未保存";
+"Text copied" = "Text copied";
+"Text preview" = "文本预览";
+"Texts" = "文本";
+"Texts appear here after you enable Hang copied text" = "启用“挂起复制的文本”后，新文本将显示在此处";
+"This selection is too large to copy; select fewer items" = "This selection is too large to copy; select fewer items";
+"Title" = "Title";
+"Toggle full screen" = "Toggle full screen";
+"Trash" = "Trash";
+"Try another filter or view your recent copies." = "Try another filter or view your recent copies.";
+"Turn on" = "开启";
+"Unorganized" = "Unorganized";
+"Unpin" = "取消固定";
+"Unsaved copies are kept for %d days" = "Unsaved copies are kept for %d days";
+"Unsaved copies expire to recoverable Trash. Saved items and original files are kept." = "Unsaved copies expire to recoverable Trash. Saved items and original files are kept.";
+"Untitled note" = "Untitled note";
+"Use Control or Command with a key" = "使用 Control 或 Command 加一个键";
+"Use ⌃⌥L" = "Use ⌃⌥L";
+"Version" = "Version";
+"View" = "View";
+"View recent copies" = "View recent copies";
+"Watch" = "监视";
+"Watch up to three folders for new images. Removing a folder leaves its files untouched." = "Watch up to three folders for new images. Removing a folder leaves its files untouched.";
+"When something new hangs" = "有新内容挂上时";
+"When the pointer rests in the menu bar" = "指针停在菜单栏时";
+"You can restore them from Library → Trash. Original files stay in place." = "You can restore them from Library → Trash. Original files stay in place.";
+
+// Standard text editing
+"Edit" = "编辑";
+"Undo" = "撤销";
+"Redo" = "重做";
+"Cut" = "剪切";
+"Paste" = "粘贴";
+"Select all" = "全选";
+
+"Remove from folder" = "从文件夹中移除";
+
+"All types" = "All types";
+"Click the text to edit" = "Click the text to edit";
+"Done" = "Done";
+"Extend selection down" = "Extend selection down";
+"Extend selection up" = "Extend selection up";
+"Finish editing" = "Finish editing";
+"Link thumbnail" = "Link thumbnail";
+"Move down" = "Move down";
+"Move up" = "Move up";
+"Press a key, then click Save shortcut" = "Press a key, then click Save shortcut";
+"Reset all browsing shortcuts" = "Reset all browsing shortcuts";
+"Reset to default" = "Reset to default";
+"Select next item" = "Select next item";
+"Select previous item" = "Select previous item";
+"Set shortcut" = "Set shortcut";
+"Show pinned items" = "Show pinned items";
+"Single keys work while browsing the line, Library or a preview. Typing and standard editing shortcuts stay with the editor." = "Single keys work while browsing the line, Library or a preview. Typing and standard editing shortcuts stay with the editor.";
+"This shortcut is already used for %@" = "This shortcut is already used for %@";
+"This shortcut opens Library from other apps. The browsing shortcut above works on the line." = "This shortcut opens Library from other apps. The browsing shortcut above works on the line.";
+"Visible shelves" = "Visible shelves";
+
+"Browsing shortcuts" = "Browsing shortcuts";
+"Navigation and selection" = "Navigation and selection";
+"Library actions" = "Library actions";
+
+/* Language, status and local image search. */
+"Language" = "Language";
+"System default" = "System default";
+"Reopen to apply language" = "Reopen to apply language";
+"Open edits are saved before the app reopens." = "Open edits are saved before the app reopens.";
+"The app could not reopen. Quit and open it to apply the language." = "The app could not reopen. Quit and open it to apply the language.";
+"The line is empty" = "The line is empty";
+"%d images · %d texts · %d links on the line" = "%d images · %d texts · %d links on the line";
+"Reading images… %d of %d" = "Reading images… %d of %d";
+"Search in" = "Search in";
+"Text and visual content" = "Text and visual content";
+"Text only (including OCR)" = "Text only (including OCR)";
+"Visual content only" = "Visual content only";
+"Image text is read locally. Describe images in English for best visual matches." = "Image text is read locally. Describe images in English for best visual matches.";
+
+"Best match" = "Best match";
+
+"Grid" = "网格";
+
+"List" = "列表";
+
+"More" = "更多";
+
+"Title, Z–A" = "标题，Z–A";
+
+"Toggle sidebar" = "切换边栏";
+
+"Hide details" = "隐藏详细信息";
+
+"Undo take down" = "撤销取下";
+"Toggle link shelf" = "切换链接架";
+"Toggle text shelf" = "切换文本架";
+"Toggle image shelf" = "切换图片架";
+"Pin to folder…" = "固定到文件夹…";
+"Pin %d items to a folder" = "将 %d 个项目固定到文件夹";
+"Pin without folder" = "不选择文件夹直接固定";
+
+/* Search across the visible shelves. */
+"Clear search" = "清除搜索";
+"Search text and OCR" = "搜索文本和 OCR";
+
+"Browse results" = "浏览结果";
+
+"Search shelves" = "搜索挂架";
+"Search visible shelves…" = "搜索已显示的挂架…";
+
+/* Jump to either end of the active shelf. */
+"First item" = "第一项";
+"Last item" = "最后一项";
+
+/* Keyboard workflow */
+"Paste into previous app" = "粘贴到上一个应用";
+"Copy text from image" = "复制图像中的文字";
+"Select item %d" = "选择第 %d 项";
+"Search folders…" = "搜索文件夹…";
+"Search tags…" = "搜索标签…";
+"Add tag to %d items" = "为 %d 个项目添加标签";
+"Create tag “%@”" = "创建标签“%@”";
+"No matching folders" = "没有匹配的文件夹";
+"No matching tags" = "没有匹配的标签";
+"Search shelves from other apps" = "从其他应用搜索挂架";
+"This shortcut opens the shelves with search ready." = "此快捷键会打开挂架并准备好搜索。";
+"Reading image text…" = "正在读取图像文字…";
+"Image text copied" = "已复制图像文字";
+"No text found in image" = "图像中未找到文字";
+"Image text unavailable" = "图像文字不可用";
+"Could not copy image text" = "无法复制图像文字";
+"Accessibility permission is needed to paste into another app." = "需要“辅助功能”权限才能粘贴到其他应用。";
+"Open Accessibility Settings" = "打开辅助功能设置";
+"Select a text field in another app, then reopen the shelves." = "请在其他应用中选择文本框，然后重新打开挂架。";
+"The target text field changed. Reopen the shelves and try again." = "目标文本框已更改。请重新打开挂架并重试。";
+"Could not paste into the target app." = "无法粘贴到目标应用。";
+"Pasted" = "已粘贴";
+
+// Manual in-app updates.
+"App updates" = "App updates";
+"Check for an update when you are ready." = "Check for an update when you are ready.";
+"Check for updates…" = "Check for updates…";
+"Checking for updates…" = "Checking for updates…";
+"Disconnect GitHub" = "Disconnect GitHub";
+"Downloading update…" = "Downloading update…";
+"Enter a valid GitHub access token." = "Enter a valid GitHub access token.";
+"For a private repository, create a fine-grained token for this repository with Contents: Read-only. The token is stored in this Mac’s Keychain." = "For a private repository, create a fine-grained token for this repository with Contents: Read-only. The token is stored in this Mac’s Keychain.";
+"GitHub access" = "GitHub access";
+"GitHub access token" = "GitHub access token";
+"GitHub could not access the private repository. Add a token with Contents: Read-only access to this repository." = "GitHub could not access the private repository. Add a token with Contents: Read-only access to this repository.";
+"GitHub could not complete the update request. Try again later." = "GitHub could not complete the update request. Try again later.";
+"GitHub token removed from this Mac." = "GitHub token removed from this Mac.";
+"GitHub token saved in Keychain." = "GitHub token saved in Keychain.";
+"Install and reopen" = "Install and reopen";
+"Quit the app to finish installing the update." = "Quit the app to finish installing the update.";
+"Release notes" = "Release notes";
+"Save token" = "Save token";
+"Save your open edits before installing the update." = "Save your open edits before installing the update.";
+"The GitHub token could not be accessed in Keychain." = "The GitHub token could not be accessed in Keychain.";
+"The update download has an unexpected size." = "The update download has an unexpected size.";
+"The update was not installed." = "The update was not installed.";
+"Token saved" = "Token saved";
+"Update check could not be completed." = "Update check could not be completed.";
+"Updates are available in the installed review app." = "Updates are available in the installed review app.";
+"Updates are downloaded only when you choose Install. Your history and settings stay on this Mac." = "Updates are downloaded only when you choose Install. Your history and settings stay on this Mac.";
+"Verifying update…" = "Verifying update…";
+"Version %@ is ready to install." = "Version %@ is ready to install.";
+"You are up to date." = "You are up to date.";
+
+/* Image markup additions. */
+"Annotation color" = "批注颜色";
+"Annotation text" = "批注文字";
+"Arrow" = "箭头";
+"Clear annotations" = "清除批注";
+"Delete annotation" = "删除批注";
+"Ellipse" = "椭圆";
+"Fill shape" = "填充形状";
+"Heavy" = "特粗";
+"Image markup" = "图像标记";
+"Line" = "线条";
+"Marker" = "荧光笔";
+"Markup status" = "标记状态";
+"Pen" = "画笔";
+"Rectangle" = "矩形";
+"Select annotation" = "选择批注";
+"Stroke width" = "线条粗细";
+"Text annotation" = "添加文字";
+"Thick" = "粗";
+"Thin" = "细";
+
+"Markup image" = "标记图像";
+
+"Image changes could not be saved. Your edits are still here." = "无法保存图像更改。您的编辑仍保留在此处。";
+
+"Image changes saved" = "图像更改已保存";
+
+"Unsaved image changes" = "未保存的图像更改";
+
+"Very large" = "特大";
+
+"Annotation text size" = "批注文字大小";
+"Authorize saved token…" = "授权已保存的令牌…";
+"macOS may ask once for access to a previously saved token. App updates keep this authorization." = "macOS 可能需要一次授权才能访问已保存的令牌。应用更新会保留此授权。";
+
+/* Automatic update checks. */
+"Automatically check for updates" = "自动检查更新";
+"Checks at launch, every 12 hours and when you open About. Installation starts only when you choose." = "启动时、每隔12小时及打开“关于”时检查更新。只有在你选择后才开始安装。";
+"Update available" = "有可用更新";
+"clipboard-app %@ is ready to install." = "clipboard-app %@已可安装。";
+"Install update…" = "安装更新…";
+"New versions also appear in the menu bar. macOS may ask to allow notifications." = "新版本也会显示在菜单栏中。macOS可能会请求通知权限。";
+
+"Name and pin…" = "命名并置顶…";
+"Add a name for search…" = "添加用于搜索的名称…";
+"Pin with name" = "命名并置顶";
+"Enter a name (1–160 characters)" = "请输入名称（1–160个字符）";
+"Item %d of %d" = "第 %d 项，共 %d 项";
+"Save and next" = "保存并继续";
+"This item is no longer available. Press Esc to leave." = "此项目已不可用。按 Esc 退出。";
+"Annotation style" = "批注样式";
+"More annotation actions" = "更多批注操作";
+"Annotation tool" = "批注工具";
+
+"Previous shelf page" = "上一页挂架";
+
+"Next shelf page" = "下一页挂架";
+
+/* Searchable action bar. */
+"Actions" = "操作";
+"Available on the shelves" = "可在置物架中使用";
+"Available on the shelves or in Library" = "可在置物架或资料库中使用";
+"Edit item details" = "编辑项目详情";
+"Finish editing first" = "请先完成编辑";
+"Library unavailable" = "资料库不可用";
+"Library views" = "资料库视图";
+"No annotations to clear" = "没有可清除的标注";
+"No images on the line" = "置物架中没有图像";
+"No items in this view" = "此视图中没有项目";
+"No items to the left" = "左侧没有项目";
+"No items to the right" = "右侧没有项目";
+"No matching actions" = "没有匹配的操作";
+"No update available" = "没有可用更新";
+"Nothing to redo" = "没有可重做的操作";
+"Nothing to undo" = "没有可撤销的操作";
+"Open a shelf or Library first" = "请先打开置物架或资料库";
+"Organization" = "整理";
+"Run action" = "执行操作";
+"Search" = "搜索";
+"Search actions…" = "搜索操作…";
+"Search contents" = "搜索内容";
+"Search library" = "搜索资料库";
+"Search visible shelves: text, links and image OCR" = "搜索已显示的置物架：文本、链接及图像 OCR";
+"Select a folder first" = "请先选择文件夹";
+"Select a link first" = "请先选择链接";
+"Select a tag first" = "请先选择标签";
+"Select a text item first" = "请先选择文本项目";
+"Select a top-level folder first" = "请先选择顶层文件夹";
+"Select a video first" = "请先选择视频";
+"Select an annotation first" = "请先选择标注";
+"Select an image in the screenshots inbox first" = "请先在截图收件箱中选择图像";
+"Select an item first" = "请先选择项目";
+"Select an item in Trash first" = "请先选择废纸篓中的项目";
+"Select items in a different folder first" = "请先选择其他文件夹中的项目";
+"Select one image first" = "请先选择一张图像";
+"Select one item first" = "请先选择一个项目";
+"Selected item" = "所选项目";
+"Shelves" = "置物架";
+"Start editing text first" = "请先开始编辑文本";
+"Start image markup first" = "请先开始图像标记";
+"Trim video" = "修剪视频";
+"Update checks unavailable" = "无法检查更新";
+
+// Image cropping
+"Crop image" = "裁剪图像";
+"Apply crop" = "应用裁剪";
+"Reset crop" = "重置裁剪";
+"Cancel crop" = "取消裁剪";
+"Drag to select the crop area. Enter applies; Esc cancels." = "拖动以选择裁剪区域。按 Enter 应用，按 Esc 取消。";
+
+// macOS 27 names the former Accessibility permission differently.
+"Allow this app in Privacy & Security → Device Control and Data Access to paste into another app." = "要粘贴到其他 App，请在「隐私与安全」→「Device Control and Data Access」中允许此 App。";
+"Open Device Control and Data Access" = "打开 Device Control and Data Access";
+"Last checked" = "上次检查";
+
+"Updates" = "更新";
+
+"Update…" = "更新…";
+
+"Checks at launch and every hour. You choose when to download and install." = "启动时和每小时检查一次。由你选择何时下载和安装。";
+
+"Signed updates · No account or token needed" = "已签名更新 · 无需账户或令牌";
+
+"Copies to clear" = "Copies to clear";
+
+"%d unsaved copies" = "%d unsaved copies";
+
+"Clear unsaved copies…" = "Clear unsaved copies…";
+
+"Clear unsaved copies?" = "Clear unsaved copies?";
+
+"%d unsaved copies will move to recoverable Library Trash. Pinned items, saved items, folders, tags and original files are kept." = "%d unsaved copies will move to recoverable Library Trash. Pinned items, saved items, folders, tags and original files are kept.";
+
+
+"A shortcut could not be restored after recording. Choose another combination in Settings." = "录制后无法恢复某个快捷键。请在设置中选择其他组合键。";
+
+"Focus next pane" = "聚焦下一个面板";
+
+"Focus previous pane" = "聚焦上一个面板";
+
+"Undo Move to Trash" = "撤销移到废纸篓";

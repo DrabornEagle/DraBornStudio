@@ -1,0 +1,498 @@
+/* Upstream translations retained; untranslated fork additions fall back to English. */
+"%d app copies will move to recoverable Trash. %d original files stay in place; only their history entries are removed." = "%d uygulama kopyası geri alınabilir Çöp Kutusu’na taşınacak. %d orijinal dosya yerinde kalacak; yalnız geçmiş kayıtları kaldırılacak.";
+"%d items" = "%d içerik";
+"%d items copied" = "%d içerik kopyalandı";
+"%d selected" = "%d seçili";
+"A free filename could not be found" = "Kullanılmayan bir dosya adı bulunamadı";
+"About" = "Hakkında";
+"Add Folder…" = "Klasör ekle…";
+"Add tag…" = "Etiket ekle…";
+"Add to folder" = "Klasöre ekle";
+"Added" = "Eklenme tarihi";
+"All" = "Tümü";
+"Also watch folders" = "Klasörleri de izle";
+"Any time" = "Tüm zamanlar";
+"Appearance" = "Görünüm";
+"Application" = "Uygulama";
+"Apply domain" = "Alan adını uygula";
+"Both shelves" = "İki askı birlikte";
+"Bring the line down" = "İpi indir";
+"Cancel" = "İptal";
+"Capture copied links" = "Kopyalanan linkleri kaydet";
+"Change Shortcut" = "Kısayolu değiştir";
+"Change Shortcut…" = "Kısayolu değiştir…";
+"Changes could not be saved; keep this draft open" = "Değişiklikler kaydedilemedi; taslağı açık tutun";
+"Changes saved" = "Değişiklikler kaydedildi";
+"Check upstream releases…" = "Orijinal sürüm notlarına bak…";
+"Choose a valid destination or a unique name (1–64 characters)" = "Geçerli bir konum veya benzersiz bir ad seçin (1–64 karakter)";
+"Clear filters" = "Filtreleri temizle";
+"Clipboard" = "Pano";
+"Close" = "Kapat";
+"Close preview" = "Önizlemeyi kapat";
+"Colors" = "Renkler";
+"Contacts the linked website or YouTube in the background. Private markers, local addresses and links with known secret parameters are skipped." = "Arka planda ilgili siteye veya YouTube’a bağlanır. Özel işaretli içerikler, yerel adresler ve bilinen gizli parametreleri taşıyan linkler atlanır.";
+"Content type" = "İçerik türü";
+"Copied" = "Kopyalandı";
+"Copied web addresses appear here when link capture is enabled" = "Link yakalama açıkken kopyalanan web adresleri burada görünür";
+"Copies are saved locally. Text and link capture is silent. A single web address goes to Links; paragraphs stay as text." = "Kopyalar bu Mac’te saklanır. Metin ve link yakalama askıyı açmaz. Tek web adresi Linkler’e gider; paragraflar metin olarak kalır.";
+"Copy" = "Kopyala";
+"Copy latest image" = "Son görseli kopyala";
+"Copy-latest shortcut" = "Son görseli kopyalama kısayolu";
+"Could not change the login setting" = "Giriş ayarı değiştirilemedi";
+"Could not copy selected items" = "Seçili öğeler kopyalanamadı";
+"Could not export copies" = "Kopyalar dışa aktarılamadı";
+"Could not save a favorite copy" = "Sabitleme kopyası kaydedilemedi";
+"Could not save text history" = "Metin geçmişi kaydedilemedi";
+"Discard" = "Sil";
+"Dismiss" = "Kapat";
+"Domain, e.g. youtube.com" = "Alan adı, ör. youtube.com";
+"Edit text" = "Metni düzenle";
+"Editing · changes are saved automatically" = "Düzenleniyor · değişiklikler otomatik kaydedilir";
+"Escape cancels. Delete removes the shortcut." = "Escape iptal eder. Sil kısayolu kaldırır.";
+"Export copies" = "Kopyaları dışa aktar";
+"Export copies…" = "Kopyaları dışa aktar…";
+"Exported %d · failed %d" = "%d dışa aktarıldı · %d başarısız";
+"Favorite an item, or add a folder or tag to keep it here." = "Burada tutmak için bir öğeyi sabitle, klasöre ekle veya etiketle.";
+"Favorites" = "Sabitlenenler";
+"Favorites, folders and tags keep items permanently. Other copies follow your history setting." = "Sabitlenen, klasöre eklenen veya etiketlenen içerikler kalıcı kalır. Diğer kopyalar kendi saklama süresine tabidir.";
+"Fetch link titles and thumbnails" = "Link başlıklarını ve küçük görsellerini al";
+"File could not be read or safely saved" = "Dosya okunamadı veya güvenli biçimde kaydedilemedi";
+"Filtered view" = "Filtrelenmiş görünüm";
+"Filters" = "Filtreler";
+"Folder" = "Klasör";
+"Folders" = "Klasörler";
+"General" = "Genel";
+"Handle screenshots" = "Ekran görüntülerini yönet";
+"Hang copied images" = "Kopyalanan görselleri as";
+"Hang copied text" = "Kopyalanan metinleri as";
+"Hide line" = "İpi gizle";
+"History" = "Geçmiş";
+"Image" = "Görsel";
+"Image preview" = "Görsel önizleme";
+"Image, text and link shelves, with a private local library." = "Görsel, metin ve link askıları; bu Mac’te saklanan özel kütüphane.";
+"Images" = "Görseller";
+"Its contents stay in your library." = "İçerikleri kütüphanenizde kalır.";
+"Keep for %d days" = "%d gün tut";
+"Keyboard shortcuts" = "Klavye kısayolları";
+"Large" = "Büyük";
+"Last 30 days" = "Son 30 gün";
+"Last 7 days" = "Son 7 gün";
+"Last copied" = "Son kopyalanan";
+"Let Tendedero handle your screenshots?" = "Ekran görüntülerini Tendedero yönetsin mi?";
+"Library" = "Kütüphane";
+"Library could not be opened. Existing history is kept; capture is paused." = "Kütüphane açılamadı. Mevcut geçmiş korundu; yakalama duraklatıldı.";
+"Library could not be saved or opened" = "Kütüphane kaydedilemedi veya açılamadı";
+"Library…" = "Kütüphane…";
+"Link" = "Link";
+"Link copied" = "Link kopyalandı";
+"Link preview" = "Link önizlemesi";
+"Link preview could not be saved; the link is kept" = "Link önizlemesi kaydedilemedi; link korundu";
+"Link previews" = "Link önizlemeleri";
+"Links" = "Linkler";
+"Loading" = "Yükleniyor";
+"Loading…" = "Yükleniyor…";
+"Markup" = "İşaretle";
+"Medium" = "Orta";
+"Move %d items to recoverable Trash?" = "%d içerik geri alınabilir Çöp’e taşınsın mı?";
+"Move Tendedero to the Applications folder and try again." = "Tendedero'yu Uygulamalar klasörüne taşıyın ve tekrar deneyin.";
+"Move app copies to Trash" = "Uygulama kopyalarını Çöp Kutusu’na taşı";
+"Move selected texts to recoverable Trash?" = "Seçili metinler geri alınabilir Çöp Kutusu’na taşınsın mı?";
+"Move this text to recoverable Trash?" = "Bu metin geri alınabilir Çöp Kutusu’na taşınsın mı?";
+"Move to Trash" = "Çöp Kutusu'na taşı";
+"Move to Trash…" = "Çöp Kutusu’na taşı…";
+"Move to folder" = "Klasöre taşı";
+"My library" = "Kütüphanem";
+"Neutral glass" = "Nötr cam";
+"New folder" = "Yeni klasör";
+"New images saved to this folder will hang on the line." = "Bu klasöre kaydedilen yeni görseller ipe asılır.";
+"New note" = "Yeni not";
+"New subfolder" = "Yeni alt klasör";
+"Newest first" = "En yeni önce";
+"Next item" = "Sonraki öğe";
+"No matching items" = "Eşleşen içerik yok";
+"None" = "Yok";
+"Not now" = "Şimdi değil";
+"Note" = "Not";
+"Nothing here yet" = "Henüz içerik yok";
+"Off" = "Kapalı";
+"Oldest first" = "En eski önce";
+"On the line" = "Askıda";
+"Open" = "Aç";
+"Open at login" = "Başlangıçta aç";
+"Open data folder" = "Veri klasörünü aç";
+"Open file" = "Dosyayı aç";
+"Open folder" = "Klasörü aç";
+"Open in browser" = "Tarayıcıda aç";
+"Open library" = "Kütüphaneyi aç";
+"Open screenshots folder" = "Ekran görüntüleri klasörünü aç";
+"Over full screen apps" = "Tam ekran uygulamaların üzerinde";
+"Pin favorite" = "Sabitle";
+"Press a key with Control or Command" = "Control veya Command ile bir tuşa basın";
+"Press the new shortcut" = "Yeni kısayolu basın";
+"Preview" = "Önizleme";
+"Preview unavailable; your link is saved" = "Önizleme alınamadı; linkiniz kayıtlı";
+"Previous item" = "Önceki öğe";
+"Quick Look" = "Hızlı Bakış";
+"Quit %@" = "%@ uygulamasından çık";
+"Recent copies" = "Son kopyalar";
+"Record shortcut…" = "Kısayol kaydet…";
+"Refresh link preview" = "Link önizlemesini yenile";
+"Remove folder" = "Klasörü kaldır";
+"Remove history entries" = "Geçmişten kaldır";
+"Remove selected images?" = "Seçili görseller kaldırılsın mı?";
+"Remove tag" = "Etiketi kaldır";
+"Remove this folder?" = "Bu klasör kaldırılsın mı?";
+"Remove this tag?" = "Bu etiket kaldırılsın mı?";
+"Rename folder" = "Klasörü yeniden adlandır";
+"Rename tag" = "Etiketi yeniden adlandır";
+"Reset zoom" = "Yakınlaştırmayı sıfırla";
+"Restore" = "Geri yükle";
+"Save" = "Kaydet";
+"Save shortcut" = "Kısayolu kaydet";
+"Save to Desktop" = "Masaüstüne kaydet";
+"Save to library" = "Kütüphaneye kaydet";
+"Screenshots" = "Ekran görüntüleri";
+"Screenshots hang instantly and skip the Desktop. Your macOS screenshot settings are restored when the app quits." = "Ekran görüntüleri anında askıya gelir, masaüstüne birikmez. Uygulama kapandığında macOS ekran görüntüsü ayarlarınız geri yüklenir.";
+"Screenshots will hang on the line the instant you take them, without the floating thumbnail, and will not pile up on your Desktop. Drag one to a folder to keep it, or discard it with the cross. You can turn this off in Settings, and your settings come back when Tendedero quits." = "Ekran görüntüleri, yüzen küçük resim olmadan çekildiği anda askıya gelir ve masaüstünüzde birikmez. Saklamak için bir klasöre sürükleyin veya çarpı düğmesiyle kaldırın. Ayarlar’dan kapatabilirsiniz; Tendedero kapandığında önceki ekran görüntüsü ayarlarınız geri yüklenir.";
+"Search this view" = "Bu görünümde ara";
+"Select an item to view its details" = "Ayrıntıları görmek için bir içerik seçin";
+"Selected files could not be read; nothing was copied" = "Seçili dosyalar okunamadı; hiçbir şey kopyalanmadı";
+"Set copy-latest shortcut" = "Son görseli kopyalama kısayolunu ayarla";
+"Settings" = "Ayarlar";
+"Settings…" = "Ayarlar…";
+"Shelf settings" = "Askı ayarları";
+"Shortcut" = "Kısayol";
+"Shortcut unavailable; the previous shortcut is kept" = "Kısayol kullanılamıyor; önceki kısayol korundu";
+"Show details" = "Ayrıntıları göster";
+"Show in Finder" = "Finder'da göster";
+"Show line" = "İpi göster";
+"Show or hide the line" = "Askıyı göster veya gizle";
+"Size" = "Boyut";
+"Small" = "Küçük";
+"Soft colors" = "Yumuşak renkler";
+"Some app copies could not be moved to Trash" = "Bazı uygulama kopyaları Çöp Kutusu’na taşınamadı";
+"Some text copies could not be moved to Trash" = "Bazı metin kopyaları Çöp Kutusu’na taşınamadı";
+"Sort" = "Sırala";
+"Sounds" = "Sesler";
+"Sources" = "Kaynaklar";
+"Space" = "Boşluk";
+"Stop Watching" = "İzlemeyi durdur";
+"Switch shelf" = "Askıyı değiştir";
+"Tab switches the active shelf" = "Tab etkin askıyı değiştirir";
+"Tag" = "Etiket";
+"Tags" = "Etiketler";
+"Tags (match all)" = "Etiketler (tümü eşleşsin)";
+"Take a screenshot and it will hang here" = "Bir ekran görüntüsü al, buraya asılacak";
+"Take down" = "İndir";
+"Take down everything to the left" = "Soldakilerin hepsini indir";
+"Take down everything to the right" = "Sağdakilerin hepsini indir";
+"Text" = "Metin";
+"Text archive could not be opened; the existing file is kept" = "Metin arşivi açılamadı; mevcut dosya korundu";
+"Text archive is full; new text was not saved" = "Metin arşivi dolu; yeni metin kaydedilmedi";
+"Text copied" = "Metin kopyalandı";
+"Text preview" = "Metin önizleme";
+"Texts" = "Metinler";
+"Texts appear here after you enable Hang copied text" = "Kopyalanan metinleri as seçeneğini açınca metinler burada görünür";
+"This selection is too large to copy; select fewer items" = "Bu seçim kopyalamak için çok büyük; daha az içerik seçin";
+"Title" = "Başlık";
+"Toggle full screen" = "Tam ekranı aç/kapat";
+"Trash" = "Çöp";
+"Try another filter or view your recent copies." = "Başka filtre deneyin veya son kopyalarınıza bakın.";
+"Turn on" = "Etkinleştir";
+"Unorganized" = "Düzenlenmemiş";
+"Unpin" = "Sabitlemeyi kaldır";
+"Unsaved copies are kept for %d days" = "Kaydedilmemiş kopyalar %d gün saklanır";
+"Unsaved copies expire to recoverable Trash. Saved items and original files are kept." = "Kaydedilmemiş kopyalar süresi dolunca geri alınabilir Çöp’e gider. Kalıcı içerikler ve orijinal dosyalar korunur.";
+"Untitled note" = "Başlıksız not";
+"Use Control or Command with a key" = "Bir tuşla Control veya Command kullanın";
+"Use ⌃⌥L" = "⌃⌥L kullan";
+"Version" = "Sürüm";
+"View" = "Görünüm";
+"View recent copies" = "Son kopyaları göster";
+"Watch" = "İzle";
+"Watch up to three folders for new images. Removing a folder leaves its files untouched." = "Yeni görseller için en fazla üç klasör izleyin. İzlemeyi durdurmak dosyaları değiştirmez.";
+"When something new hangs" = "Yeni bir şey asıldığında";
+"When the pointer rests in the menu bar" = "İşaretçi menü çubuğunda durduğunda";
+"You can restore them from Library → Trash. Original files stay in place." = "Kütüphane → Çöp’ten geri yükleyebilirsiniz. Orijinal dosyalar yerinde kalır.";
+
+// Standard text editing
+"Edit" = "Düzenle";
+"Undo" = "Geri al";
+"Redo" = "Yinele";
+"Cut" = "Kes";
+"Paste" = "Yapıştır";
+"Select all" = "Tümünü seç";
+
+"Remove from folder" = "Klasörden çıkar";
+
+"All types" = "Tüm türler";
+"Click the text to edit" = "Düzenlemek için metne tıkla";
+"Done" = "Bitti";
+"Extend selection down" = "Seçimi aşağı genişlet";
+"Extend selection up" = "Seçimi yukarı genişlet";
+"Finish editing" = "Düzenlemeyi bitir";
+"Link thumbnail" = "Bağlantı küçük resmi";
+"Move down" = "Aşağı git";
+"Move up" = "Yukarı git";
+"Press a key, then click Save shortcut" = "Bir tuşa bas, ardından Kısayolu kaydet’e tıkla";
+"Reset all browsing shortcuts" = "Gezinme kısayollarını sıfırla";
+"Reset to default" = "Varsayılana dön";
+"Select next item" = "Sonraki öğeyi seç";
+"Select previous item" = "Önceki öğeyi seç";
+"Set shortcut" = "Kısayol belirle";
+"Show pinned items" = "Sabitlenenleri göster";
+"Single keys work while browsing the line, Library or a preview. Typing and standard editing shortcuts stay with the editor." = "Tek tuşlar askıda, kütüphanede veya önizlemede gezinirken çalışır. Yazarken normal metin düzenleme kısayolları geçerlidir.";
+"This shortcut is already used for %@" = "Bu kısayol %@ için zaten kullanılıyor";
+"This shortcut opens Library from other apps. The browsing shortcut above works on the line." = "Bu kısayol başka uygulamalardan kütüphaneyi açar. Yukarıdaki gezinme kısayolu askıda çalışır.";
+"Visible shelves" = "Görünür askılar";
+
+"Browsing shortcuts" = "Gezinme kısayolları";
+"Navigation and selection" = "Gezinme ve seçim";
+"Library actions" = "Kütüphane işlemleri";
+
+/* Language, status and local image search. */
+"Language" = "Dil";
+"System default" = "Sistem dili";
+"Reopen to apply language" = "Dili uygulamak için yeniden aç";
+"Open edits are saved before the app reopens." = "Uygulama yeniden açılmadan önce açık düzenlemeler kaydedilir.";
+"The app could not reopen. Quit and open it to apply the language." = "Uygulama yeniden açılamadı. Dili uygulamak için kapatıp tekrar açın.";
+"The line is empty" = "Askılar boş";
+"%d images · %d texts · %d links on the line" = "Askılarda %d görsel · %d metin · %d link";
+"Reading images… %d of %d" = "Görseller okunuyor… %d / %d";
+"Search in" = "Arama kapsamı";
+"Text and visual content" = "Metin ve görsel içerik";
+"Text only (including OCR)" = "Yalnızca metin (OCR dahil)";
+"Visual content only" = "Yalnızca görsel içerik";
+"Image text is read locally. Describe images in English for best visual matches." = "Görsellerdeki yazılar Mac’te okunur. Görsel eşleşmeler için İngilizce tanımlar daha iyi sonuç verir.";
+
+"Best match" = "En iyi eşleşme";
+
+"Grid" = "Izgara";
+
+"List" = "Liste";
+
+"More" = "Diğer";
+
+"Title, Z–A" = "Başlık, Z–A";
+
+"Toggle sidebar" = "Kenar çubuğunu göster/gizle";
+
+"Hide details" = "Detayları gizle";
+
+"Undo take down" = "Kaldırmayı geri al";
+"Toggle link shelf" = "Link askısını aç/kapat";
+"Toggle text shelf" = "Metin askısını aç/kapat";
+"Toggle image shelf" = "Görsel askısını aç/kapat";
+"Pin to folder…" = "Klasöre sabitle…";
+"Pin %d items to a folder" = "%d öğeyi klasöre sabitle";
+"Pin without folder" = "Klasör seçmeden sabitle";
+
+/* Search across the visible shelves. */
+"Clear search" = "Aramayı temizle";
+"Search text and OCR" = "Metin ve OCR içinde ara";
+
+"Browse results" = "Sonuçlara geç";
+
+"Search shelves" = "Askılarda ara";
+"Search visible shelves…" = "Açık askılarda ara…";
+
+/* Jump to either end of the active shelf. */
+"First item" = "İlk öğe";
+"Last item" = "Son öğe";
+
+/* Keyboard workflow */
+"Paste into previous app" = "Önceki uygulamaya yapıştır";
+"Copy text from image" = "Görseldeki metni kopyala";
+"Select item %d" = "%d. öğeyi seç";
+"Search folders…" = "Klasör ara…";
+"Search tags…" = "Etiket ara…";
+"Add tag to %d items" = "%d öğeye etiket ekle";
+"Create tag “%@”" = "“%@” etiketini oluştur";
+"No matching folders" = "Eşleşen klasör yok";
+"No matching tags" = "Eşleşen etiket yok";
+"Search shelves from other apps" = "Diğer uygulamalardan askılarda ara";
+"This shortcut opens the shelves with search ready." = "Bu kısayol askıları arama hazır olacak şekilde açar.";
+"Reading image text…" = "Görseldeki metin okunuyor…";
+"Image text copied" = "Görseldeki metin kopyalandı";
+"No text found in image" = "Görselde metin bulunamadı";
+"Image text unavailable" = "Görseldeki metne ulaşılamıyor";
+"Could not copy image text" = "Görseldeki metin kopyalanamadı";
+"Accessibility permission is needed to paste into another app." = "Başka bir uygulamaya yapıştırmak için Erişilebilirlik izni gerekiyor.";
+"Open Accessibility Settings" = "Erişilebilirlik ayarlarını aç";
+"Select a text field in another app, then reopen the shelves." = "Başka bir uygulamada metin alanını seçip askıları yeniden aç.";
+"The target text field changed. Reopen the shelves and try again." = "Hedef metin alanı değişti. Askıları yeniden açıp tekrar dene.";
+"Could not paste into the target app." = "Hedef uygulamaya yapıştırılamadı.";
+"Pasted" = "Yapıştırıldı";
+
+// Manual in-app updates.
+"App updates" = "Uygulama güncellemeleri";
+"Check for an update when you are ready." = "Hazır olduğunda güncellemeleri kontrol edebilirsin.";
+"Check for updates…" = "Güncellemeleri kontrol et…";
+"Checking for updates…" = "Güncellemeler kontrol ediliyor…";
+"Disconnect GitHub" = "GitHub bağlantısını kes";
+"Downloading update…" = "Güncelleme indiriliyor…";
+"Enter a valid GitHub access token." = "Geçerli bir GitHub erişim anahtarı gir.";
+"For a private repository, create a fine-grained token for this repository with Contents: Read-only. The token is stored in this Mac’s Keychain." = "Özel repo için yalnızca bu repoya Contents: Read-only izni olan bir fine-grained erişim anahtarı oluştur. Anahtar bu Mac’in Anahtar Zinciri’nde saklanır.";
+"GitHub access" = "GitHub erişimi";
+"GitHub access token" = "GitHub erişim anahtarı";
+"GitHub could not access the private repository. Add a token with Contents: Read-only access to this repository." = "GitHub özel repoya erişemedi. Yalnızca bu repoya Contents: Read-only izni olan bir erişim anahtarı ekle.";
+"GitHub could not complete the update request. Try again later." = "GitHub güncelleme isteğini tamamlayamadı. Daha sonra tekrar dene.";
+"GitHub token removed from this Mac." = "GitHub erişim anahtarı bu Mac’ten kaldırıldı.";
+"GitHub token saved in Keychain." = "GitHub erişim anahtarı Anahtar Zinciri’ne kaydedildi.";
+"Install and reopen" = "Yükle ve yeniden aç";
+"Quit the app to finish installing the update." = "Güncellemeyi tamamlamak için uygulamadan çık.";
+"Release notes" = "Sürüm notları";
+"Save token" = "Anahtarı kaydet";
+"Save your open edits before installing the update." = "Güncellemeyi yüklemeden önce açık düzenlemelerini kaydet.";
+"The GitHub token could not be accessed in Keychain." = "Anahtar Zinciri’ndeki GitHub erişim anahtarına ulaşılamadı.";
+"The update download has an unexpected size." = "İndirilen güncellemenin boyutu beklenenle eşleşmiyor.";
+"The update was not installed." = "Güncelleme yüklenmedi.";
+"Token saved" = "Anahtar kaydedildi";
+"Update check could not be completed." = "Güncelleme kontrolü tamamlanamadı.";
+"Updates are available in the installed review app." = "Güncellemeler kurulu Review uygulamasından kullanılabilir.";
+"Updates are downloaded only when you choose Install. Your history and settings stay on this Mac." = "Güncellemeler yalnızca Yükle dediğinde indirilir. Geçmişin ve ayarların bu Mac’te korunur.";
+"Verifying update…" = "Güncelleme doğrulanıyor…";
+"Version %@ is ready to install." = "%@ sürümü yüklemeye hazır.";
+"You are up to date." = "Güncel sürümü kullanıyorsun.";
+
+/* Image markup additions. */
+"Annotation color" = "İşaret rengi";
+"Annotation text" = "İşaret metni";
+"Arrow" = "Ok";
+"Clear annotations" = "İşaretleri temizle";
+"Delete annotation" = "Seçili işareti sil";
+"Ellipse" = "Elips";
+"Fill shape" = "Şekli doldur";
+"Heavy" = "Çok kalın";
+"Image markup" = "Görseli işaretle";
+"Line" = "Çizgi";
+"Marker" = "Fosforlu kalem";
+"Markup status" = "İşaretleme durumu";
+"Pen" = "Kalem";
+"Rectangle" = "Dikdörtgen";
+"Select annotation" = "İşaret seç";
+"Stroke width" = "Çizgi kalınlığı";
+"Text annotation" = "Metin ekle";
+"Thick" = "Kalın";
+"Thin" = "İnce";
+
+"Markup image" = "Görseli işaretle";
+
+"Image changes could not be saved. Your edits are still here." = "Görsel değişiklikleri kaydedilemedi. Düzenlemeleriniz burada korunuyor.";
+
+"Image changes saved" = "Görsel değişiklikleri kaydedildi";
+
+"Unsaved image changes" = "Kaydedilmemiş görsel değişiklikleri";
+
+"Very large" = "Çok büyük";
+
+"Annotation text size" = "İşaret metni boyutu";
+"Authorize saved token…" = "Kayıtlı tokenı yetkilendir…";
+"macOS may ask once for access to a previously saved token. App updates keep this authorization." = "macOS, önceden kaydedilmiş tokena erişmek için bir kez onay isteyebilir. Uygulama güncellemeleri bu yetkiyi korur.";
+
+/* Automatic update checks. */
+"Automatically check for updates" = "Güncellemeleri otomatik kontrol et";
+"Checks at launch, every 12 hours and when you open About. Installation starts only when you choose." = "Açılışta, 12 saatte bir ve Hakkında ekranını açtığında kontrol eder. Yükleme yalnızca sen seçtiğinde başlar.";
+"Update available" = "Güncelleme var";
+"clipboard-app %@ is ready to install." = "clipboard-app %@ yüklemeye hazır.";
+"Install update…" = "Güncellemeyi yükle…";
+"New versions also appear in the menu bar. macOS may ask to allow notifications." = "Yeni sürümler menü çubuğunda da görünür. macOS bildirim izni isteyebilir.";
+
+"Name and pin…" = "İsim ver ve sabitle…";
+"Add a name for search…" = "Arama için bir isim ekle…";
+"Pin with name" = "İsimle sabitle";
+"Enter a name (1–160 characters)" = "Bir isim girin (1–160 karakter)";
+"Item %d of %d" = "Öğe %d / %d";
+"Save and next" = "Kaydet ve sonraki";
+"This item is no longer available. Press Esc to leave." = "Bu öğe artık kullanılamıyor. Çıkmak için Esc tuşuna basın.";
+"Annotation style" = "İşaretleme stili";
+"More annotation actions" = "Diğer işaretleme işlemleri";
+"Annotation tool" = "İşaretleme aracı";
+
+"Previous shelf page" = "Önceki askı sayfası";
+
+"Next shelf page" = "Sonraki askı sayfası";
+
+/* Searchable action bar. */
+"Actions" = "Eylemler";
+"Available on the shelves" = "Askılarda kullanılabilir";
+"Available on the shelves or in Library" = "Askılarda veya Kütüphane’de kullanılabilir";
+"Edit item details" = "Öğe ayrıntılarını düzenle";
+"Finish editing first" = "Önce düzenlemeyi tamamla";
+"Library unavailable" = "Kütüphane kullanılamıyor";
+"Library views" = "Kütüphane görünümleri";
+"No annotations to clear" = "Temizlenecek işaret yok";
+"No images on the line" = "Askıda görsel yok";
+"No items in this view" = "Bu görünümde öğe yok";
+"No items to the left" = "Solda öğe yok";
+"No items to the right" = "Sağda öğe yok";
+"No matching actions" = "Eşleşen eylem yok";
+"No update available" = "Yeni güncelleme yok";
+"Nothing to redo" = "Yinelenecek işlem yok";
+"Nothing to undo" = "Geri alınacak işlem yok";
+"Open a shelf or Library first" = "Önce bir askı veya Kütüphane’yi aç";
+"Organization" = "Düzenleme";
+"Run action" = "Eylemi çalıştır";
+"Search" = "Arama";
+"Search actions…" = "Eylem ara…";
+"Search contents" = "İçerikte ara";
+"Search library" = "Kütüphanede ara";
+"Search visible shelves: text, links and image OCR" = "Açık askılarda ara: metin, bağlantı ve görsel OCR";
+"Select a folder first" = "Önce bir klasör seç";
+"Select a link first" = "Önce bir bağlantı seç";
+"Select a tag first" = "Önce bir etiket seç";
+"Select a text item first" = "Önce bir metin öğesi seç";
+"Select a top-level folder first" = "Önce bir ana klasör seç";
+"Select a video first" = "Önce bir video seç";
+"Select an annotation first" = "Önce bir işaret seç";
+"Select an image in the screenshots inbox first" = "Önce ekran görüntüsü gelen kutusundan bir görsel seç";
+"Select an item first" = "Önce bir öğe seç";
+"Select an item in Trash first" = "Önce Çöp’ten bir öğe seç";
+"Select items in a different folder first" = "Önce farklı bir klasörden öğe seç";
+"Select one image first" = "Önce tek bir görsel seç";
+"Select one item first" = "Önce tek bir öğe seç";
+"Selected item" = "Seçili öğe";
+"Shelves" = "Askılar";
+"Start editing text first" = "Önce metni düzenlemeye başla";
+"Start image markup first" = "Önce görseli işaretlemeye başla";
+"Trim video" = "Videoyu kırp";
+"Update checks unavailable" = "Güncelleme kontrolü kullanılamıyor";
+
+// Image cropping
+"Crop image" = "Görseli kırp";
+"Apply crop" = "Kırpmayı uygula";
+"Reset crop" = "Kırpmayı sıfırla";
+"Cancel crop" = "Kırpmayı iptal et";
+"Drag to select the crop area. Enter applies; Esc cancels." = "Kırpılacak alanı seçmek için sürükle. Enter uygular; Esc iptal eder.";
+
+// macOS 27 names the former Accessibility permission differently.
+"Allow this app in Privacy & Security → Device Control and Data Access to paste into another app." = "Başka bir uygulamaya yapıştırmak için Gizlilik ve Güvenlik → Device Control and Data Access bölümünde bu uygulamaya izin verin.";
+"Open Device Control and Data Access" = "Device Control and Data Access bölümünü aç";
+"Last checked" = "Son kontrol";
+
+"Updates" = "Güncellemeler";
+
+"Update…" = "Güncelle…";
+
+"Checks at launch and every hour. You choose when to download and install." = "Açılışta ve her saat kontrol eder. Ne zaman indirip yükleneceğini sen seçersin.";
+
+"Signed updates · No account or token needed" = "İmzalı güncellemeler · Hesap veya token gerekmez";
+
+"Copies to clear" = "Temizlenecek kopyalar";
+
+"%d unsaved copies" = "%d kaydedilmemiş kopya";
+
+"Clear unsaved copies…" = "Kaydedilmemiş kopyaları temizle…";
+
+"Clear unsaved copies?" = "Kaydedilmemiş kopyalar temizlensin mi?";
+
+"%d unsaved copies will move to recoverable Library Trash. Pinned items, saved items, folders, tags and original files are kept." = "%d kaydedilmemiş kopya, Kütüphane’deki geri alınabilir Çöp Kutusu’na taşınacak. Sabitlenen ve kaydedilen öğeler, klasörler, etiketler ve orijinal dosyalar korunur.";
+
+
+"A shortcut could not be restored after recording. Choose another combination in Settings." = "Kayıttan sonra bir kısayol yeniden etkinleştirilemedi. Ayarlar’dan başka bir tuş birleşimi seç.";
+
+"Focus next pane" = "Sonraki bölmeye odaklan";
+
+"Focus previous pane" = "Önceki bölmeye odaklan";
+
+"Undo Move to Trash" = "Çöp’e taşımayı geri al";

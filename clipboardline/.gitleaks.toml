@@ -1,0 +1,30 @@
+title = "ClipBoardLine source publication checks"
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Ignored build caches; audit-public.py separately forbids tracking these paths"
+paths = ['''^(\.git|\.build|build|dist|node_modules|local|test-results|playwright-report)/''']
+
+# Exact public verification key and pinned upstream source revisions. These
+# cannot sign an update or authenticate a client. No credential-shaped wildcard
+# or whole test/source directory is excluded.
+[[allowlists]]
+description = "Published Ed25519 verification key, not a signing secret"
+regexTarget = "secret"
+regexes = ['''^s9DO901wav4VK/hfnLROxJYk4\+oNFYvxdOK974E3PgI=$''']
+
+[[allowlists]]
+description = "Pinned public Apple tokenizer commit"
+regexTarget = "secret"
+regexes = ['''^48faa0fea4b08d74188b3841771aca6ff2c92852$''']
+
+[[allowlists]]
+description = "Swift key type declaration without a value"
+regexTarget = "secret"
+regexes = ['''^Curve25519\.Signing\.PrivateKey$''']
+
+[[allowlists]]
+description = "Public frozen wire-protocol source checksum"
+regexTarget = "secret"
+regexes = ['''^bd3edd938cd56285dd09b223d70a5c9c61b5c6ea11b17cacd1da7b29da1dd911$''']

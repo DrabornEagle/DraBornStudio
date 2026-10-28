@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="190" viewBox="0 0 1000 190" role="img" aria-labelledby="title desc">
+  <title id="title">Banana-edits</title>
+  <desc id="desc">A lime banana mark beside the Banana-edits wordmark on a charcoal background.</desc>
+  <rect width="1000" height="190" rx="32" fill="#0d1117"/>
+  <rect x="48" y="42" width="106" height="106" rx="30" fill="#b5eb2c"/>
+  <path d="M75 83c4 29 29 40 53 17-9 37-45 43-59 10-3-8-2-19 1-27z" fill="#171c12"/>
+  <path d="m126 95 6-10 5 3-6 11zM68 80l6-2 3 7-6 3z" fill="#171c12"/>
+  <path d="M76 100c11 15 28 17 42 8" fill="none" stroke="#b5eb2c" stroke-width="3" stroke-linecap="round"/>
+  <text x="188" y="116" fill="#f5f7fa" font-family="Arial,Helvetica,sans-serif" font-size="64" font-weight="700" letter-spacing="-2.5">Banana-edits</text>
+  <path d="M789 69h116M789 94h86M789 119h103" fill="none" stroke="#262e38" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="912" cy="94" r="5" fill="#b5eb2c"/>
+</svg>

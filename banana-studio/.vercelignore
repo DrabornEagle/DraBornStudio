@@ -1,0 +1,23 @@
+# Vercel CLI uploads the working tree and does not read .gitignore.
+# Keep local secrets and private working files out of deployment sources;
+# functions read server credentials from Vercel environment variables.
+.env
+.env.*
+!.env.example
+outputs/
+.venv/
+__pycache__/
+.cursor/
+*.pem
+*.key
+*.p12
+*.pfx
+
+desktop/
+.build/
+.local-data/
+.local-runtime/
+release-artifacts/
+*.p8
+*.sqlite*
+*.db

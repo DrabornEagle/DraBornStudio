@@ -1,0 +1,10 @@
+{
+  "upstream": "https://github.com/orkunisitmak/nashi-app",
+  "commit": "e2f1a2ed0b5b1efaa363bc6419ac63b930cd3b78",
+  "product": "Coconut-app",
+  "maintainer": "DrabornEagle",
+  "license": "MIT",
+  "imported": "2026-10-28",
+  "repository": "https://github.com/DrabornEagle/DraBornStudio",
+  "sourceDirectory": "nashi-app"
+}

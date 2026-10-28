@@ -1,0 +1,19 @@
+{
+  "name": "Coconut-app \u00b7 DrabornEagle",
+  "short_name": "Coconut",
+  "description": "Dosya d\u00f6n\u00fc\u015ft\u00fcrme ve d\u00fczenleme at\u00f6lyesi",
+  "id": "/Coconut-app/",
+  "start_url": "/Coconut-app/",
+  "scope": "/Coconut-app/",
+  "display": "standalone",
+  "background_color": "#0d1522",
+  "theme_color": "#0d1522",
+  "icons": [
+    {
+      "src": "./assets/coconut.png",
+      "sizes": "1280x1280",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,498 @@
+/* Upstream translations retained; untranslated fork additions fall back to English. */
+"%d app copies will move to recoverable Trash. %d original files stay in place; only their history entries are removed." = "%d app copies will move to recoverable Trash. %d original files stay in place; only their history entries are removed.";
+"%d items" = "%d items";
+"%d items copied" = "%d items copied";
+"%d selected" = "%d selected";
+"A free filename could not be found" = "A free filename could not be found";
+"About" = "About";
+"Add Folder…" = "폴더 추가…";
+"Add tag…" = "Add tag…";
+"Add to folder" = "Add to folder";
+"Added" = "Added";
+"All" = "All";
+"Also watch folders" = "다른 폴더도 지켜보기";
+"Any time" = "Any time";
+"Appearance" = "Appearance";
+"Application" = "Application";
+"Apply domain" = "Apply domain";
+"Both shelves" = "Both shelves";
+"Bring the line down" = "빨랫줄 내리기";
+"Cancel" = "Cancel";
+"Capture copied links" = "Capture copied links";
+"Change Shortcut" = "단축키 변경";
+"Change Shortcut…" = "단축키 변경…";
+"Changes could not be saved; keep this draft open" = "Changes could not be saved; keep this draft open";
+"Changes saved" = "Changes saved";
+"Check upstream releases…" = "Check upstream releases…";
+"Choose a valid destination or a unique name (1–64 characters)" = "Choose a valid destination or a unique name (1–64 characters)";
+"Clear filters" = "Clear filters";
+"Clipboard" = "Clipboard";
+"Close" = "Close";
+"Close preview" = "Close preview";
+"Colors" = "Colors";
+"Contacts the linked website or YouTube in the background. Private markers, local addresses and links with known secret parameters are skipped." = "Contacts the linked website or YouTube in the background. Private markers, local addresses and links with known secret parameters are skipped.";
+"Content type" = "Content type";
+"Copied" = "복사됨";
+"Copied web addresses appear here when link capture is enabled" = "Copied web addresses appear here when link capture is enabled";
+"Copies are saved locally. Text and link capture is silent. A single web address goes to Links; paragraphs stay as text." = "Copies are saved locally. Text and link capture is silent. A single web address goes to Links; paragraphs stay as text.";
+"Copy" = "복사하기";
+"Copy latest image" = "Copy latest image";
+"Copy-latest shortcut" = "Copy-latest shortcut";
+"Could not change the login setting" = "로그인 설정을 변경할 수 없음";
+"Could not copy selected items" = "Could not copy selected items";
+"Could not export copies" = "Could not export copies";
+"Could not save a favorite copy" = "Could not save a pinned copy";
+"Could not save text history" = "Could not save text history";
+"Discard" = "버리기";
+"Dismiss" = "Dismiss";
+"Domain, e.g. youtube.com" = "Domain, e.g. youtube.com";
+"Edit text" = "Edit text";
+"Editing · changes are saved automatically" = "Editing · changes are saved automatically";
+"Escape cancels. Delete removes the shortcut." = "Esc 키를 누르면 취소되고, Delete 키를 누르면 단축키가 지워져요.";
+"Export copies" = "Export copies";
+"Export copies…" = "Export copies…";
+"Exported %d · failed %d" = "Exported %d · failed %d";
+"Favorite an item, or add a folder or tag to keep it here." = "Pin an item, or add a folder or tag to keep it here.";
+"Favorites" = "고정된 항목";
+"Favorites, folders and tags keep items permanently. Other copies follow your history setting." = "Pinned items, folders and tags stay permanently. Other copies follow their history limits.";
+"Fetch link titles and thumbnails" = "Fetch link titles and thumbnails";
+"File could not be read or safely saved" = "File could not be read or safely saved";
+"Filtered view" = "Filtered view";
+"Filters" = "Filters";
+"Folder" = "Folder";
+"Folders" = "Folders";
+"General" = "General";
+"Handle screenshots" = "스크린샷 관리";
+"Hang copied images" = "복사한 이미지 걸기";
+"Hang copied text" = "Hang copied text";
+"Hide line" = "빨랫줄 가리기";
+"History" = "History";
+"Image" = "Image";
+"Image preview" = "Image preview";
+"Image, text and link shelves, with a private local library." = "Image, text and link shelves, with a private local library.";
+"Images" = "Images";
+"Its contents stay in your library." = "Its contents stay in your library.";
+"Keep for %d days" = "Keep for %d days";
+"Keyboard shortcuts" = "Keyboard shortcuts";
+"Large" = "크게";
+"Last 30 days" = "Last 30 days";
+"Last 7 days" = "Last 7 days";
+"Last copied" = "Last copied";
+"Let Tendedero handle your screenshots?" = "Tendedero가 스크린샷을 관리하도록 할까요?";
+"Library" = "Library";
+"Library could not be opened. Existing history is kept; capture is paused." = "Library could not be opened. Existing history is kept; capture is paused.";
+"Library could not be saved or opened" = "Library could not be saved or opened";
+"Library…" = "Library…";
+"Link" = "Link";
+"Link copied" = "Link copied";
+"Link preview" = "Link preview";
+"Link preview could not be saved; the link is kept" = "Link preview could not be saved; the link is kept";
+"Link previews" = "Link previews";
+"Links" = "Links";
+"Loading" = "Loading";
+"Loading…" = "Loading…";
+"Markup" = "마크업";
+"Medium" = "중간";
+"Move %d items to recoverable Trash?" = "Move %d items to recoverable Trash?";
+"Move Tendedero to the Applications folder and try again." = "Tendedero를 응용 프로그램 폴더로 옮긴 다음 다시 시도하세요.";
+"Move app copies to Trash" = "Move app copies to Trash";
+"Move selected texts to recoverable Trash?" = "Move selected texts to recoverable Trash?";
+"Move this text to recoverable Trash?" = "Move this text to recoverable Trash?";
+"Move to Trash" = "휴지통으로 이동";
+"Move to Trash…" = "Move to Trash…";
+"Move to folder" = "Move to folder";
+"My library" = "My library";
+"Neutral glass" = "Neutral glass";
+"New folder" = "New folder";
+"New images saved to this folder will hang on the line." = "이 폴더에 새로 저장되는 이미지가 빨랫줄에 걸려요.";
+"New note" = "New note";
+"New subfolder" = "New subfolder";
+"Newest first" = "Newest first";
+"Next item" = "Next item";
+"No matching items" = "No matching items";
+"None" = "없음";
+"Not now" = "나중에";
+"Note" = "Note";
+"Nothing here yet" = "Nothing here yet";
+"Off" = "Off";
+"Oldest first" = "Oldest first";
+"On the line" = "On the line";
+"Open" = "열기";
+"Open at login" = "로그인 시 열기";
+"Open data folder" = "Open data folder";
+"Open file" = "Open file";
+"Open folder" = "Open folder";
+"Open in browser" = "Open in browser";
+"Open library" = "Open library";
+"Open screenshots folder" = "스크린샷 폴더 열기";
+"Over full screen apps" = "전체 화면 앱 위에서도";
+"Pin favorite" = "고정";
+"Press a key with Control or Command" = "Press a key with Control or Command";
+"Press the new shortcut" = "새 단축키를 누르세요";
+"Preview" = "Preview";
+"Preview unavailable; your link is saved" = "Preview unavailable; your link is saved";
+"Previous item" = "Previous item";
+"Quick Look" = "훑어보기";
+"Quit %@" = "Quit %@";
+"Recent copies" = "Recent copies";
+"Record shortcut…" = "Record shortcut…";
+"Refresh link preview" = "Refresh link preview";
+"Remove folder" = "Remove folder";
+"Remove history entries" = "Remove history entries";
+"Remove selected images?" = "Remove selected images?";
+"Remove tag" = "Remove tag";
+"Remove this folder?" = "Remove this folder?";
+"Remove this tag?" = "Remove this tag?";
+"Rename folder" = "Rename folder";
+"Rename tag" = "Rename tag";
+"Reset zoom" = "Reset zoom";
+"Restore" = "Restore";
+"Save" = "Save";
+"Save shortcut" = "Save shortcut";
+"Save to Desktop" = "데스크탑에 저장";
+"Save to library" = "Save to library";
+"Screenshots" = "Screenshots";
+"Screenshots hang instantly and skip the Desktop. Your macOS screenshot settings are restored when the app quits." = "Screenshots hang instantly and skip the Desktop. Your macOS screenshot settings are restored when the app quits.";
+"Screenshots will hang on the line the instant you take them, without the floating thumbnail, and will not pile up on your Desktop. Drag one to a folder to keep it, or discard it with the cross. You can turn this off in Settings, and your settings come back when Tendedero quits." = "Screenshots will hang on the line the instant you take them, without the floating thumbnail, and will not pile up on your Desktop. Drag one to a folder to keep it, or discard it with the cross. You can turn this off in Settings, and your settings come back when Tendedero quits.";
+"Search this view" = "Search this view";
+"Select an item to view its details" = "Select an item to view its details";
+"Selected files could not be read; nothing was copied" = "Selected files could not be read; nothing was copied";
+"Set copy-latest shortcut" = "Set copy-latest shortcut";
+"Settings" = "Settings";
+"Settings…" = "Settings…";
+"Shelf settings" = "Shelf settings";
+"Shortcut" = "단축키";
+"Shortcut unavailable; the previous shortcut is kept" = "Shortcut unavailable; the previous shortcut is kept";
+"Show details" = "Show details";
+"Show in Finder" = "Finder에서 보기";
+"Show line" = "빨랫줄 보기";
+"Show or hide the line" = "Show or hide the line";
+"Size" = "크기";
+"Small" = "작게";
+"Soft colors" = "Soft colors";
+"Some app copies could not be moved to Trash" = "Some app copies could not be moved to Trash";
+"Some text copies could not be moved to Trash" = "Some text copies could not be moved to Trash";
+"Sort" = "Sort";
+"Sounds" = "사운드";
+"Sources" = "Sources";
+"Space" = "스페이스";
+"Stop Watching" = "지켜보기 중단";
+"Switch shelf" = "Switch shelf";
+"Tab switches the active shelf" = "Tab switches the active shelf";
+"Tag" = "Tag";
+"Tags" = "Tags";
+"Tags (match all)" = "Tags (match all)";
+"Take a screenshot and it will hang here" = "스크린샷을 찍으면 여기에 걸려요";
+"Take down" = "걷어내기";
+"Take down everything to the left" = "왼쪽 모두 걷어내기";
+"Take down everything to the right" = "오른쪽 모두 걷어내기";
+"Text" = "Text";
+"Text archive could not be opened; the existing file is kept" = "Text archive could not be opened; the existing file is kept";
+"Text archive is full; new text was not saved" = "Text archive is full; new text was not saved";
+"Text copied" = "Text copied";
+"Text preview" = "Text preview";
+"Texts" = "Texts";
+"Texts appear here after you enable Hang copied text" = "Texts appear here after you enable Hang copied text";
+"This selection is too large to copy; select fewer items" = "This selection is too large to copy; select fewer items";
+"Title" = "Title";
+"Toggle full screen" = "Toggle full screen";
+"Trash" = "Trash";
+"Try another filter or view your recent copies." = "Try another filter or view your recent copies.";
+"Turn on" = "켜기";
+"Unorganized" = "Unorganized";
+"Unpin" = "고정 해제";
+"Unsaved copies are kept for %d days" = "Unsaved copies are kept for %d days";
+"Unsaved copies expire to recoverable Trash. Saved items and original files are kept." = "Unsaved copies expire to recoverable Trash. Saved items and original files are kept.";
+"Untitled note" = "Untitled note";
+"Use Control or Command with a key" = "Use Control or Command with a key";
+"Use ⌃⌥L" = "Use ⌃⌥L";
+"Version" = "Version";
+"View" = "View";
+"View recent copies" = "View recent copies";
+"Watch" = "지켜보기";
+"Watch up to three folders for new images. Removing a folder leaves its files untouched." = "Watch up to three folders for new images. Removing a folder leaves its files untouched.";
+"When something new hangs" = "새 항목이 걸릴 때";
+"When the pointer rests in the menu bar" = "포인터가 메뉴 막대에 머무를 때";
+"You can restore them from Library → Trash. Original files stay in place." = "You can restore them from Library → Trash. Original files stay in place.";
+
+// Standard text editing
+"Edit" = "편집";
+"Undo" = "실행 취소";
+"Redo" = "다시 실행";
+"Cut" = "잘라내기";
+"Paste" = "붙여넣기";
+"Select all" = "모두 선택";
+
+"Remove from folder" = "폴더에서 제거";
+
+"All types" = "All types";
+"Click the text to edit" = "Click the text to edit";
+"Done" = "Done";
+"Extend selection down" = "Extend selection down";
+"Extend selection up" = "Extend selection up";
+"Finish editing" = "Finish editing";
+"Link thumbnail" = "Link thumbnail";
+"Move down" = "Move down";
+"Move up" = "Move up";
+"Press a key, then click Save shortcut" = "Press a key, then click Save shortcut";
+"Reset all browsing shortcuts" = "Reset all browsing shortcuts";
+"Reset to default" = "Reset to default";
+"Select next item" = "Select next item";
+"Select previous item" = "Select previous item";
+"Set shortcut" = "Set shortcut";
+"Show pinned items" = "Show pinned items";
+"Single keys work while browsing the line, Library or a preview. Typing and standard editing shortcuts stay with the editor." = "Single keys work while browsing the line, Library or a preview. Typing and standard editing shortcuts stay with the editor.";
+"This shortcut is already used for %@" = "This shortcut is already used for %@";
+"This shortcut opens Library from other apps. The browsing shortcut above works on the line." = "This shortcut opens Library from other apps. The browsing shortcut above works on the line.";
+"Visible shelves" = "Visible shelves";
+
+"Browsing shortcuts" = "Browsing shortcuts";
+"Navigation and selection" = "Navigation and selection";
+"Library actions" = "Library actions";
+
+/* Language, status and local image search. */
+"Language" = "Language";
+"System default" = "System default";
+"Reopen to apply language" = "Reopen to apply language";
+"Open edits are saved before the app reopens." = "Open edits are saved before the app reopens.";
+"The app could not reopen. Quit and open it to apply the language." = "The app could not reopen. Quit and open it to apply the language.";
+"The line is empty" = "The line is empty";
+"%d images · %d texts · %d links on the line" = "%d images · %d texts · %d links on the line";
+"Reading images… %d of %d" = "Reading images… %d of %d";
+"Search in" = "Search in";
+"Text and visual content" = "Text and visual content";
+"Text only (including OCR)" = "Text only (including OCR)";
+"Visual content only" = "Visual content only";
+"Image text is read locally. Describe images in English for best visual matches." = "Image text is read locally. Describe images in English for best visual matches.";
+
+"Best match" = "Best match";
+
+"Grid" = "격자";
+
+"List" = "목록";
+
+"More" = "더 보기";
+
+"Title, Z–A" = "제목, Z–A";
+
+"Toggle sidebar" = "사이드바 표시 전환";
+
+"Hide details" = "세부사항 가리기";
+
+"Undo take down" = "내리기 실행 취소";
+"Toggle link shelf" = "링크 선반 전환";
+"Toggle text shelf" = "텍스트 선반 전환";
+"Toggle image shelf" = "이미지 선반 전환";
+"Pin to folder…" = "폴더에 고정…";
+"Pin %d items to a folder" = "항목 %d개를 폴더에 고정";
+"Pin without folder" = "폴더 없이 고정";
+
+/* Search across the visible shelves. */
+"Clear search" = "검색 지우기";
+"Search text and OCR" = "텍스트 및 OCR 검색";
+
+"Browse results" = "결과 탐색";
+
+"Search shelves" = "선반 검색";
+"Search visible shelves…" = "표시된 선반 검색…";
+
+/* Jump to either end of the active shelf. */
+"First item" = "첫 번째 항목";
+"Last item" = "마지막 항목";
+
+/* Keyboard workflow */
+"Paste into previous app" = "이전 앱에 붙여넣기";
+"Copy text from image" = "이미지의 텍스트 복사";
+"Select item %d" = "%d번 항목 선택";
+"Search folders…" = "폴더 검색…";
+"Search tags…" = "태그 검색…";
+"Add tag to %d items" = "%d개 항목에 태그 추가";
+"Create tag “%@”" = "“%@” 태그 만들기";
+"No matching folders" = "일치하는 폴더가 없습니다";
+"No matching tags" = "일치하는 태그가 없습니다";
+"Search shelves from other apps" = "다른 앱에서 선반 검색";
+"This shortcut opens the shelves with search ready." = "이 단축키는 바로 검색할 수 있도록 선반을 엽니다.";
+"Reading image text…" = "이미지의 텍스트를 읽는 중…";
+"Image text copied" = "이미지의 텍스트를 복사했습니다";
+"No text found in image" = "이미지에서 텍스트를 찾지 못했습니다";
+"Image text unavailable" = "이미지의 텍스트를 사용할 수 없습니다";
+"Could not copy image text" = "이미지의 텍스트를 복사하지 못했습니다";
+"Accessibility permission is needed to paste into another app." = "다른 앱에 붙여넣으려면 손쉬운 사용 권한이 필요합니다.";
+"Open Accessibility Settings" = "손쉬운 사용 설정 열기";
+"Select a text field in another app, then reopen the shelves." = "다른 앱에서 텍스트 입력란을 선택한 다음 선반을 다시 여세요.";
+"The target text field changed. Reopen the shelves and try again." = "대상 텍스트 입력란이 변경되었습니다. 선반을 다시 열고 다시 시도하세요.";
+"Could not paste into the target app." = "대상 앱에 붙여넣지 못했습니다.";
+"Pasted" = "붙여넣었습니다";
+
+// Manual in-app updates.
+"App updates" = "App updates";
+"Check for an update when you are ready." = "Check for an update when you are ready.";
+"Check for updates…" = "Check for updates…";
+"Checking for updates…" = "Checking for updates…";
+"Disconnect GitHub" = "Disconnect GitHub";
+"Downloading update…" = "Downloading update…";
+"Enter a valid GitHub access token." = "Enter a valid GitHub access token.";
+"For a private repository, create a fine-grained token for this repository with Contents: Read-only. The token is stored in this Mac’s Keychain." = "For a private repository, create a fine-grained token for this repository with Contents: Read-only. The token is stored in this Mac’s Keychain.";
+"GitHub access" = "GitHub access";
+"GitHub access token" = "GitHub access token";
+"GitHub could not access the private repository. Add a token with Contents: Read-only access to this repository." = "GitHub could not access the private repository. Add a token with Contents: Read-only access to this repository.";
+"GitHub could not complete the update request. Try again later." = "GitHub could not complete the update request. Try again later.";
+"GitHub token removed from this Mac." = "GitHub token removed from this Mac.";
+"GitHub token saved in Keychain." = "GitHub token saved in Keychain.";
+"Install and reopen" = "Install and reopen";
+"Quit the app to finish installing the update." = "Quit the app to finish installing the update.";
+"Release notes" = "Release notes";
+"Save token" = "Save token";
+"Save your open edits before installing the update." = "Save your open edits before installing the update.";
+"The GitHub token could not be accessed in Keychain." = "The GitHub token could not be accessed in Keychain.";
+"The update download has an unexpected size." = "The update download has an unexpected size.";
+"The update was not installed." = "The update was not installed.";
+"Token saved" = "Token saved";
+"Update check could not be completed." = "Update check could not be completed.";
+"Updates are available in the installed review app." = "Updates are available in the installed review app.";
+"Updates are downloaded only when you choose Install. Your history and settings stay on this Mac." = "Updates are downloaded only when you choose Install. Your history and settings stay on this Mac.";
+"Verifying update…" = "Verifying update…";
+"Version %@ is ready to install." = "Version %@ is ready to install.";
+"You are up to date." = "You are up to date.";
+
+/* Image markup additions. */
+"Annotation color" = "주석 색상";
+"Annotation text" = "주석 텍스트";
+"Arrow" = "화살표";
+"Clear annotations" = "주석 지우기";
+"Delete annotation" = "주석 삭제";
+"Ellipse" = "타원";
+"Fill shape" = "도형 채우기";
+"Heavy" = "매우 두껍게";
+"Image markup" = "이미지 마크업";
+"Line" = "선";
+"Marker" = "마커";
+"Markup status" = "마크업 상태";
+"Pen" = "펜";
+"Rectangle" = "직사각형";
+"Select annotation" = "주석 선택";
+"Stroke width" = "선 두께";
+"Text annotation" = "텍스트 추가";
+"Thick" = "두껍게";
+"Thin" = "얇게";
+
+"Markup image" = "이미지 마크업";
+
+"Image changes could not be saved. Your edits are still here." = "이미지 변경 사항을 저장하지 못했습니다. 편집 내용은 여기에 유지됩니다.";
+
+"Image changes saved" = "이미지 변경 사항 저장됨";
+
+"Unsaved image changes" = "저장되지 않은 이미지 변경 사항";
+
+"Very large" = "매우 크게";
+
+"Annotation text size" = "주석 텍스트 크기";
+"Authorize saved token…" = "저장된 토큰 승인…";
+"macOS may ask once for access to a previously saved token. App updates keep this authorization." = "macOS가 저장된 토큰에 접근할 때 한 번 승인을 요청할 수 있습니다. 앱 업데이트 후에도 승인이 유지됩니다.";
+
+/* Automatic update checks. */
+"Automatically check for updates" = "업데이트 자동 확인";
+"Checks at launch, every 12 hours and when you open About. Installation starts only when you choose." = "시작할 때, 12시간마다, 정보 화면을 열 때 업데이트를 확인합니다. 설치는 사용자가 선택할 때만 시작됩니다.";
+"Update available" = "업데이트 사용 가능";
+"clipboard-app %@ is ready to install." = "clipboard-app %@을(를) 설치할 수 있습니다.";
+"Install update…" = "업데이트 설치…";
+"New versions also appear in the menu bar. macOS may ask to allow notifications." = "새 버전은 메뉴 막대에도 표시됩니다. macOS가 알림 허용을 요청할 수 있습니다.";
+
+"Name and pin…" = "이름을 지정하고 고정…";
+"Add a name for search…" = "검색할 이름 추가…";
+"Pin with name" = "이름을 지정하여 고정";
+"Enter a name (1–160 characters)" = "이름을 입력하세요(1~160자)";
+"Item %d of %d" = "항목 %d / %d";
+"Save and next" = "저장 후 다음";
+"This item is no longer available. Press Esc to leave." = "이 항목은 더 이상 사용할 수 없습니다. Esc 키를 눌러 나가세요.";
+"Annotation style" = "주석 스타일";
+"More annotation actions" = "추가 주석 작업";
+"Annotation tool" = "주석 도구";
+
+"Previous shelf page" = "이전 선반 페이지";
+
+"Next shelf page" = "다음 선반 페이지";
+
+/* Searchable action bar. */
+"Actions" = "동작";
+"Available on the shelves" = "선반에서 사용할 수 있음";
+"Available on the shelves or in Library" = "선반 또는 라이브러리에서 사용할 수 있음";
+"Edit item details" = "항목 세부사항 편집";
+"Finish editing first" = "먼저 편집을 완료하세요";
+"Library unavailable" = "라이브러리를 사용할 수 없음";
+"Library views" = "라이브러리 보기";
+"No annotations to clear" = "지울 주석이 없음";
+"No images on the line" = "선반에 이미지가 없음";
+"No items in this view" = "이 보기에 항목이 없음";
+"No items to the left" = "왼쪽에 항목이 없음";
+"No items to the right" = "오른쪽에 항목이 없음";
+"No matching actions" = "일치하는 동작이 없음";
+"No update available" = "사용 가능한 업데이트가 없음";
+"Nothing to redo" = "다시 실행할 작업이 없음";
+"Nothing to undo" = "실행 취소할 작업이 없음";
+"Open a shelf or Library first" = "먼저 선반 또는 라이브러리를 여세요";
+"Organization" = "정리";
+"Run action" = "동작 실행";
+"Search" = "검색";
+"Search actions…" = "동작 검색…";
+"Search contents" = "콘텐츠 검색";
+"Search library" = "라이브러리 검색";
+"Search visible shelves: text, links and image OCR" = "표시된 선반 검색: 텍스트, 링크 및 이미지 OCR";
+"Select a folder first" = "먼저 폴더를 선택하세요";
+"Select a link first" = "먼저 링크를 선택하세요";
+"Select a tag first" = "먼저 태그를 선택하세요";
+"Select a text item first" = "먼저 텍스트 항목을 선택하세요";
+"Select a top-level folder first" = "먼저 최상위 폴더를 선택하세요";
+"Select a video first" = "먼저 동영상을 선택하세요";
+"Select an annotation first" = "먼저 주석을 선택하세요";
+"Select an image in the screenshots inbox first" = "먼저 스크린샷 받은 편지함에서 이미지를 선택하세요";
+"Select an item first" = "먼저 항목을 선택하세요";
+"Select an item in Trash first" = "먼저 휴지통에서 항목을 선택하세요";
+"Select items in a different folder first" = "먼저 다른 폴더에서 항목을 선택하세요";
+"Select one image first" = "먼저 이미지 하나를 선택하세요";
+"Select one item first" = "먼저 항목 하나를 선택하세요";
+"Selected item" = "선택한 항목";
+"Shelves" = "선반";
+"Start editing text first" = "먼저 텍스트 편집을 시작하세요";
+"Start image markup first" = "먼저 이미지 마크업을 시작하세요";
+"Trim video" = "동영상 다듬기";
+"Update checks unavailable" = "업데이트를 확인할 수 없음";
+
+// Image cropping
+"Crop image" = "이미지 자르기";
+"Apply crop" = "자르기 적용";
+"Reset crop" = "자르기 초기화";
+"Cancel crop" = "자르기 취소";
+"Drag to select the crop area. Enter applies; Esc cancels." = "드래그하여 자를 영역을 선택하세요. Enter로 적용하고 Esc로 취소합니다.";
+
+// macOS 27 names the former Accessibility permission differently.
+"Allow this app in Privacy & Security → Device Control and Data Access to paste into another app." = "다른 앱에 붙여넣으려면 개인정보 보호 및 보안 → Device Control and Data Access에서 이 앱을 허용하세요.";
+"Open Device Control and Data Access" = "Device Control and Data Access 열기";
+"Last checked" = "마지막 확인";
+
+"Updates" = "Updates";
+
+"Update…" = "Update…";
+
+"Checks at launch and every hour. You choose when to download and install." = "Checks at launch and every hour. You choose when to download and install.";
+
+"Signed updates · No account or token needed" = "Signed updates · No account or token needed";
+
+"Copies to clear" = "Copies to clear";
+
+"%d unsaved copies" = "%d unsaved copies";
+
+"Clear unsaved copies…" = "Clear unsaved copies…";
+
+"Clear unsaved copies?" = "Clear unsaved copies?";
+
+"%d unsaved copies will move to recoverable Library Trash. Pinned items, saved items, folders, tags and original files are kept." = "%d unsaved copies will move to recoverable Library Trash. Pinned items, saved items, folders, tags and original files are kept.";
+
+
+"A shortcut could not be restored after recording. Choose another combination in Settings." = "기록 후 단축키를 복원하지 못했습니다. 설정에서 다른 키 조합을 선택하세요.";
+
+"Focus next pane" = "다음 패널로 포커스 이동";
+
+"Focus previous pane" = "이전 패널로 포커스 이동";
+
+"Undo Move to Trash" = "휴지통으로 이동 실행 취소";

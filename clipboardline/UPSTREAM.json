@@ -1,0 +1,10 @@
+{
+  "upstream": "https://github.com/orkunisitmak/clipboardline",
+  "commit": "26dbfa488609c713e14f6ef9884a092825a4d5f3",
+  "product": "clipboard-app",
+  "maintainer": "DrabornEagle",
+  "license": "MIT",
+  "imported": "2026-10-28",
+  "repository": "https://github.com/DrabornEagle/DraBornStudio",
+  "sourceDirectory": "clipboardline"
+}

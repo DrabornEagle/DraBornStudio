@@ -8,6 +8,8 @@ DrabornEagle ekosisteminin üretkenlik ve yaratıcı medya uygulamaları. Geliş
 | [banana-studio](banana-studio/) | **Banana-edits** | Web, macOS, Windows | [Web](https://www.draborneagle.com/Banana-edits/) |
 | [clipboardline](clipboardline/) | **clipboard-app** | macOS, Windows | [Kaynaklar](clipboardline/) |
 
+![Coconut-app dosya atölyesi](nashi-app/docs/assets/coconut-web.jpg)
+
 ## Web ve kaynak eşitleme
 
 `nashi-app/web/` Coconut web kaynağıdır. `banana-studio/` Banana-edits geliştirme kaynağıdır. `scripts/sync-web.py /path/to/DrabornEagle_Web` komutu statik dağıtımı ve kaynak kopyalarını günceller; Banana-edits için önce `npm run build` çalıştır. Web dağıtımı DrabornEagle_Web üzerinden sürdürülür.

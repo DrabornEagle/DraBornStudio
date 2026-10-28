@@ -1,0 +1,30 @@
+[
+  {
+    "name": "@supabase/functions-js",
+    "version": "2.90.1",
+    "source": "https://github.com/supabase/supabase-js/blob/cf0cc8a0895b0a45579d32832fc08e5a84934db3/LICENSE",
+    "blob": "ddeba6a00ae5ec536d5429e040bc73ef2c6a07d6",
+    "file": "@supabase-functions-js-2.90.1-LICENSE.txt"
+  },
+  {
+    "name": "@supabase/realtime-js",
+    "version": "2.90.1",
+    "source": "https://github.com/supabase/supabase-js/blob/cf0cc8a0895b0a45579d32832fc08e5a84934db3/LICENSE",
+    "blob": "ddeba6a00ae5ec536d5429e040bc73ef2c6a07d6",
+    "file": "@supabase-realtime-js-2.90.1-LICENSE.txt"
+  },
+  {
+    "name": "@supabase/storage-js",
+    "version": "2.90.1",
+    "source": "https://github.com/supabase/supabase-js/blob/cf0cc8a0895b0a45579d32832fc08e5a84934db3/LICENSE",
+    "blob": "ddeba6a00ae5ec536d5429e040bc73ef2c6a07d6",
+    "file": "@supabase-storage-js-2.90.1-LICENSE.txt"
+  },
+  {
+    "name": "robot3",
+    "version": "0.4.1",
+    "file": "robot3-0.4.1-LICENSE.txt",
+    "source": "https://github.com/matthewp/robot/blob/987fc5af90686aaffd52f49d6f8b493a7a057d19/LICENSE",
+    "blob": "be7726b083bf6fa41cc05c4fa57b9d1b4ea3a0e1"
+  }
+]

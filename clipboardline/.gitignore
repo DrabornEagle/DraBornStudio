@@ -1,0 +1,28 @@
+.DS_Store
+.build/
+.swiftpm/
+build/
+dist/
+node_modules/
+local/
+.cache/
+__pycache__/
+*.pyc
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+*.keychain*
+*.sqlite*
+*.db
+*.log
+test-results/
+playwright-report/
+
+# Generated acceptance evidence is local, never public source.
+validation/
+
+# Pinned, reproducible offline search assets are prepared at build time.
+windows/assets/CLIP/

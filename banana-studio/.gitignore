@@ -1,0 +1,60 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+.env
+.env.local
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.vercel
+.venv/
+__pycache__/
+outputs/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Local app data, build products and release credentials
+.local-runtime/
+.local-data/
+.build/
+DerivedData/
+release-artifacts/
+*.dmg
+*.zip
+*.sqlite*
+*.db
+*.xcarchive/
+desktop/windows/bin/
+desktop/windows/obj/
+supabase/.temp/
+
+# Apple distribution credentials
+*.p8
+*.csr
+*.cer
+*.crt
+*.provisionprofile
+
+# Local build dependency link and temporary audit data
+node_modules/

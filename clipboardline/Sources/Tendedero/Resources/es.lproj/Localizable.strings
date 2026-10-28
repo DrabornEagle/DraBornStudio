@@ -1,0 +1,498 @@
+/* Upstream translations retained; untranslated fork additions fall back to English. */
+"%d app copies will move to recoverable Trash. %d original files stay in place; only their history entries are removed." = "%d copias de la app irán a la Papelera recuperable. %d archivos originales permanecen en su lugar; solo se quitarán sus entradas del historial.";
+"%d items" = "%d items";
+"%d items copied" = "%d items copied";
+"%d selected" = "%d seleccionadas";
+"A free filename could not be found" = "A free filename could not be found";
+"About" = "About";
+"Add Folder…" = "Añadir carpeta…";
+"Add tag…" = "Add tag…";
+"Add to folder" = "Add to folder";
+"Added" = "Added";
+"All" = "All";
+"Also watch folders" = "Vigilar también carpetas";
+"Any time" = "Any time";
+"Appearance" = "Appearance";
+"Application" = "Application";
+"Apply domain" = "Apply domain";
+"Both shelves" = "Ambos estantes";
+"Bring the line down" = "Bajar la cuerda";
+"Cancel" = "Cancelar";
+"Capture copied links" = "Capture copied links";
+"Change Shortcut" = "Cambiar atajo";
+"Change Shortcut…" = "Cambiar atajo…";
+"Changes could not be saved; keep this draft open" = "Changes could not be saved; keep this draft open";
+"Changes saved" = "Changes saved";
+"Check upstream releases…" = "Check upstream releases…";
+"Choose a valid destination or a unique name (1–64 characters)" = "Choose a valid destination or a unique name (1–64 characters)";
+"Clear filters" = "Clear filters";
+"Clipboard" = "Clipboard";
+"Close" = "Close";
+"Close preview" = "Cerrar vista previa";
+"Colors" = "Colors";
+"Contacts the linked website or YouTube in the background. Private markers, local addresses and links with known secret parameters are skipped." = "Contacts the linked website or YouTube in the background. Private markers, local addresses and links with known secret parameters are skipped.";
+"Content type" = "Content type";
+"Copied" = "Copiado";
+"Copied web addresses appear here when link capture is enabled" = "Copied web addresses appear here when link capture is enabled";
+"Copies are saved locally. Text and link capture is silent. A single web address goes to Links; paragraphs stay as text." = "Copies are saved locally. Text and link capture is silent. A single web address goes to Links; paragraphs stay as text.";
+"Copy" = "Copiar";
+"Copy latest image" = "Copiar imagen más reciente";
+"Copy-latest shortcut" = "Atajo para copiar la más reciente";
+"Could not change the login setting" = "No se pudo cambiar el inicio de sesión";
+"Could not copy selected items" = "No se pudieron copiar los elementos seleccionados";
+"Could not export copies" = "No se pudieron exportar las copias";
+"Could not save a favorite copy" = "Could not save a pinned copy";
+"Could not save text history" = "No se pudo guardar el historial de texto";
+"Discard" = "Descartar";
+"Dismiss" = "Cerrar aviso";
+"Domain, e.g. youtube.com" = "Domain, e.g. youtube.com";
+"Edit text" = "Edit text";
+"Editing · changes are saved automatically" = "Editing · changes are saved automatically";
+"Escape cancels. Delete removes the shortcut." = "Escape cancela. Borrar quita el atajo.";
+"Export copies" = "Exportar copias";
+"Export copies…" = "Exportar copias…";
+"Exported %d · failed %d" = "Exportadas %d · fallidas %d";
+"Favorite an item, or add a folder or tag to keep it here." = "Pin an item, or add a folder or tag to keep it here.";
+"Favorites" = "Fijados";
+"Favorites, folders and tags keep items permanently. Other copies follow your history setting." = "Pinned items, folders and tags stay permanently. Other copies follow their history limits.";
+"Fetch link titles and thumbnails" = "Fetch link titles and thumbnails";
+"File could not be read or safely saved" = "File could not be read or safely saved";
+"Filtered view" = "Filtered view";
+"Filters" = "Filters";
+"Folder" = "Folder";
+"Folders" = "Folders";
+"General" = "General";
+"Handle screenshots" = "Encargarse de las capturas";
+"Hang copied images" = "Colgar imágenes copiadas";
+"Hang copied text" = "Colgar texto copiado";
+"Hide line" = "Ocultar tendedero";
+"History" = "History";
+"Image" = "Image";
+"Image preview" = "Vista previa de imagen";
+"Image, text and link shelves, with a private local library." = "Image, text and link shelves, with a private local library.";
+"Images" = "Imágenes";
+"Its contents stay in your library." = "Its contents stay in your library.";
+"Keep for %d days" = "Conservar durante %d días";
+"Keyboard shortcuts" = "Atajos de teclado";
+"Large" = "Grande";
+"Last 30 days" = "Last 30 days";
+"Last 7 days" = "Last 7 days";
+"Last copied" = "Last copied";
+"Let Tendedero handle your screenshots?" = "¿Quieres que Tendedero se encargue de tus capturas?";
+"Library" = "Library";
+"Library could not be opened. Existing history is kept; capture is paused." = "Library could not be opened. Existing history is kept; capture is paused.";
+"Library could not be saved or opened" = "Library could not be saved or opened";
+"Library…" = "Library…";
+"Link" = "Link";
+"Link copied" = "Link copied";
+"Link preview" = "Link preview";
+"Link preview could not be saved; the link is kept" = "Link preview could not be saved; the link is kept";
+"Link previews" = "Link previews";
+"Links" = "Links";
+"Loading" = "Loading";
+"Loading…" = "Loading…";
+"Markup" = "Marcación";
+"Medium" = "Mediano";
+"Move %d items to recoverable Trash?" = "Move %d items to recoverable Trash?";
+"Move Tendedero to the Applications folder and try again." = "Mueve Tendedero a la carpeta Aplicaciones y vuelve a intentarlo.";
+"Move app copies to Trash" = "Enviar copias de la app a la Papelera";
+"Move selected texts to recoverable Trash?" = "¿Mover los textos seleccionados a la papelera recuperable?";
+"Move this text to recoverable Trash?" = "¿Enviar este texto a la Papelera recuperable?";
+"Move to Trash" = "Mover a la Papelera";
+"Move to Trash…" = "Enviar a la Papelera…";
+"Move to folder" = "Move to folder";
+"My library" = "My library";
+"Neutral glass" = "Neutral glass";
+"New folder" = "New folder";
+"New images saved to this folder will hang on the line." = "Las imágenes nuevas que se guarden en esta carpeta se colgarán en la cuerda.";
+"New note" = "New note";
+"New subfolder" = "New subfolder";
+"Newest first" = "Newest first";
+"Next item" = "Next item";
+"No matching items" = "No matching items";
+"None" = "Ninguno";
+"Not now" = "Ahora no";
+"Note" = "Note";
+"Nothing here yet" = "Nothing here yet";
+"Off" = "Desactivado";
+"Oldest first" = "Oldest first";
+"On the line" = "On the line";
+"Open" = "Abrir";
+"Open at login" = "Abrir al iniciar sesión";
+"Open data folder" = "Open data folder";
+"Open file" = "Open file";
+"Open folder" = "Open folder";
+"Open in browser" = "Open in browser";
+"Open library" = "Open library";
+"Open screenshots folder" = "Abrir carpeta de capturas";
+"Over full screen apps" = "Sobre apps a pantalla completa";
+"Pin favorite" = "Fijar";
+"Press a key with Control or Command" = "Pulsa una tecla con Control o Command";
+"Press the new shortcut" = "Pulsa el nuevo atajo";
+"Preview" = "Vista previa";
+"Preview unavailable; your link is saved" = "Preview unavailable; your link is saved";
+"Previous item" = "Previous item";
+"Quick Look" = "Vista Rápida";
+"Quit %@" = "Quit %@";
+"Recent copies" = "Recent copies";
+"Record shortcut…" = "Grabar atajo…";
+"Refresh link preview" = "Refresh link preview";
+"Remove folder" = "Remove folder";
+"Remove history entries" = "Quitar entradas del historial";
+"Remove selected images?" = "¿Quitar las imágenes seleccionadas?";
+"Remove tag" = "Remove tag";
+"Remove this folder?" = "Remove this folder?";
+"Remove this tag?" = "Remove this tag?";
+"Rename folder" = "Rename folder";
+"Rename tag" = "Rename tag";
+"Reset zoom" = "Restablecer zoom";
+"Restore" = "Restore";
+"Save" = "Save";
+"Save shortcut" = "Guardar atajo";
+"Save to Desktop" = "Guardar en el Escritorio";
+"Save to library" = "Save to library";
+"Screenshots" = "Screenshots";
+"Screenshots hang instantly and skip the Desktop. Your macOS screenshot settings are restored when the app quits." = "Screenshots hang instantly and skip the Desktop. Your macOS screenshot settings are restored when the app quits.";
+"Screenshots will hang on the line the instant you take them, without the floating thumbnail, and will not pile up on your Desktop. Drag one to a folder to keep it, or discard it with the cross. You can turn this off in Settings, and your settings come back when Tendedero quits." = "Screenshots will hang on the line the instant you take them, without the floating thumbnail, and will not pile up on your Desktop. Drag one to a folder to keep it, or discard it with the cross. You can turn this off in Settings, and your settings come back when Tendedero quits.";
+"Search this view" = "Search this view";
+"Select an item to view its details" = "Select an item to view its details";
+"Selected files could not be read; nothing was copied" = "Selected files could not be read; nothing was copied";
+"Set copy-latest shortcut" = "Configurar atajo de copia reciente";
+"Settings" = "Settings";
+"Settings…" = "Settings…";
+"Shelf settings" = "Ajustes del estante";
+"Shortcut" = "Atajo";
+"Shortcut unavailable; the previous shortcut is kept" = "Atajo no disponible; se conserva el anterior";
+"Show details" = "Show details";
+"Show in Finder" = "Mostrar en Finder";
+"Show line" = "Mostrar tendedero";
+"Show or hide the line" = "Show or hide the line";
+"Size" = "Tamaño";
+"Small" = "Pequeño";
+"Soft colors" = "Soft colors";
+"Some app copies could not be moved to Trash" = "Algunas copias de la app no pudieron enviarse a la Papelera";
+"Some text copies could not be moved to Trash" = "Algunas copias de texto no pudieron enviarse a la Papelera";
+"Sort" = "Sort";
+"Sounds" = "Sonidos";
+"Sources" = "Sources";
+"Space" = "Espacio";
+"Stop Watching" = "Dejar de vigilar";
+"Switch shelf" = "Cambiar estante";
+"Tab switches the active shelf" = "Tab cambia el estante activo";
+"Tag" = "Tag";
+"Tags" = "Tags";
+"Tags (match all)" = "Tags (match all)";
+"Take a screenshot and it will hang here" = "Haz una captura y se quedará colgada aquí";
+"Take down" = "Descolgar";
+"Take down everything to the left" = "Descolgar todo lo de la izquierda";
+"Take down everything to the right" = "Descolgar todo lo de la derecha";
+"Text" = "Text";
+"Text archive could not be opened; the existing file is kept" = "No se pudo abrir el archivo de texto; se conserva el archivo existente";
+"Text archive is full; new text was not saved" = "El archivo de texto está lleno; no se guardó el nuevo texto";
+"Text copied" = "Text copied";
+"Text preview" = "Vista previa de texto";
+"Texts" = "Textos";
+"Texts appear here after you enable Hang copied text" = "Los textos aparecerán aquí al activar Colgar texto copiado";
+"This selection is too large to copy; select fewer items" = "This selection is too large to copy; select fewer items";
+"Title" = "Title";
+"Toggle full screen" = "Toggle full screen";
+"Trash" = "Trash";
+"Try another filter or view your recent copies." = "Try another filter or view your recent copies.";
+"Turn on" = "Activar";
+"Unorganized" = "Unorganized";
+"Unpin" = "Desfijar";
+"Unsaved copies are kept for %d days" = "Unsaved copies are kept for %d days";
+"Unsaved copies expire to recoverable Trash. Saved items and original files are kept." = "Unsaved copies expire to recoverable Trash. Saved items and original files are kept.";
+"Untitled note" = "Untitled note";
+"Use Control or Command with a key" = "Usa Control o Command con una tecla";
+"Use ⌃⌥L" = "Use ⌃⌥L";
+"Version" = "Version";
+"View" = "View";
+"View recent copies" = "View recent copies";
+"Watch" = "Vigilar";
+"Watch up to three folders for new images. Removing a folder leaves its files untouched." = "Watch up to three folders for new images. Removing a folder leaves its files untouched.";
+"When something new hangs" = "Cuando se cuelga algo nuevo";
+"When the pointer rests in the menu bar" = "Al dejar el puntero en la barra de menús";
+"You can restore them from Library → Trash. Original files stay in place." = "You can restore them from Library → Trash. Original files stay in place.";
+
+// Standard text editing
+"Edit" = "Editar";
+"Undo" = "Deshacer";
+"Redo" = "Rehacer";
+"Cut" = "Cortar";
+"Paste" = "Pegar";
+"Select all" = "Seleccionar todo";
+
+"Remove from folder" = "Quitar de la carpeta";
+
+"All types" = "All types";
+"Click the text to edit" = "Click the text to edit";
+"Done" = "Done";
+"Extend selection down" = "Extend selection down";
+"Extend selection up" = "Extend selection up";
+"Finish editing" = "Finish editing";
+"Link thumbnail" = "Link thumbnail";
+"Move down" = "Move down";
+"Move up" = "Move up";
+"Press a key, then click Save shortcut" = "Press a key, then click Save shortcut";
+"Reset all browsing shortcuts" = "Reset all browsing shortcuts";
+"Reset to default" = "Reset to default";
+"Select next item" = "Select next item";
+"Select previous item" = "Select previous item";
+"Set shortcut" = "Set shortcut";
+"Show pinned items" = "Show pinned items";
+"Single keys work while browsing the line, Library or a preview. Typing and standard editing shortcuts stay with the editor." = "Single keys work while browsing the line, Library or a preview. Typing and standard editing shortcuts stay with the editor.";
+"This shortcut is already used for %@" = "This shortcut is already used for %@";
+"This shortcut opens Library from other apps. The browsing shortcut above works on the line." = "This shortcut opens Library from other apps. The browsing shortcut above works on the line.";
+"Visible shelves" = "Visible shelves";
+
+"Browsing shortcuts" = "Browsing shortcuts";
+"Navigation and selection" = "Navigation and selection";
+"Library actions" = "Library actions";
+
+/* Language, status and local image search. */
+"Language" = "Language";
+"System default" = "System default";
+"Reopen to apply language" = "Reopen to apply language";
+"Open edits are saved before the app reopens." = "Open edits are saved before the app reopens.";
+"The app could not reopen. Quit and open it to apply the language." = "The app could not reopen. Quit and open it to apply the language.";
+"The line is empty" = "The line is empty";
+"%d images · %d texts · %d links on the line" = "%d images · %d texts · %d links on the line";
+"Reading images… %d of %d" = "Reading images… %d of %d";
+"Search in" = "Search in";
+"Text and visual content" = "Text and visual content";
+"Text only (including OCR)" = "Text only (including OCR)";
+"Visual content only" = "Visual content only";
+"Image text is read locally. Describe images in English for best visual matches." = "Image text is read locally. Describe images in English for best visual matches.";
+
+"Best match" = "Best match";
+
+"Grid" = "Cuadrícula";
+
+"List" = "Lista";
+
+"More" = "Más";
+
+"Title, Z–A" = "Título, Z–A";
+
+"Toggle sidebar" = "Mostrar u ocultar la barra lateral";
+
+"Hide details" = "Ocultar detalles";
+
+"Undo take down" = "Deshacer retirada";
+"Toggle link shelf" = "Mostrar/ocultar enlaces";
+"Toggle text shelf" = "Mostrar/ocultar textos";
+"Toggle image shelf" = "Mostrar/ocultar imágenes";
+"Pin to folder…" = "Fijar en carpeta…";
+"Pin %d items to a folder" = "Fijar %d elementos en una carpeta";
+"Pin without folder" = "Fijar sin carpeta";
+
+/* Search across the visible shelves. */
+"Clear search" = "Borrar búsqueda";
+"Search text and OCR" = "Buscar texto y OCR";
+
+"Browse results" = "Explorar resultados";
+
+"Search shelves" = "Buscar en las líneas";
+"Search visible shelves…" = "Buscar en las líneas visibles…";
+
+/* Jump to either end of the active shelf. */
+"First item" = "Primer elemento";
+"Last item" = "Último elemento";
+
+/* Keyboard workflow */
+"Paste into previous app" = "Pegar en la aplicación anterior";
+"Copy text from image" = "Copiar texto de la imagen";
+"Select item %d" = "Seleccionar elemento %d";
+"Search folders…" = "Buscar carpetas…";
+"Search tags…" = "Buscar etiquetas…";
+"Add tag to %d items" = "Añadir etiqueta a %d elementos";
+"Create tag “%@”" = "Crear etiqueta «%@»";
+"No matching folders" = "No hay carpetas coincidentes";
+"No matching tags" = "No hay etiquetas coincidentes";
+"Search shelves from other apps" = "Buscar en las líneas desde otras aplicaciones";
+"This shortcut opens the shelves with search ready." = "Este atajo abre las líneas con la búsqueda lista.";
+"Reading image text…" = "Leyendo texto de la imagen…";
+"Image text copied" = "Texto de la imagen copiado";
+"No text found in image" = "No se encontró texto en la imagen";
+"Image text unavailable" = "Texto de la imagen no disponible";
+"Could not copy image text" = "No se pudo copiar el texto de la imagen";
+"Accessibility permission is needed to paste into another app." = "Se necesita permiso de Accesibilidad para pegar en otra aplicación.";
+"Open Accessibility Settings" = "Abrir ajustes de Accesibilidad";
+"Select a text field in another app, then reopen the shelves." = "Selecciona un campo de texto en otra aplicación y vuelve a abrir las líneas.";
+"The target text field changed. Reopen the shelves and try again." = "El campo de texto de destino cambió. Vuelve a abrir las líneas e inténtalo de nuevo.";
+"Could not paste into the target app." = "No se pudo pegar en la aplicación de destino.";
+"Pasted" = "Pegado";
+
+// Manual in-app updates.
+"App updates" = "App updates";
+"Check for an update when you are ready." = "Check for an update when you are ready.";
+"Check for updates…" = "Check for updates…";
+"Checking for updates…" = "Checking for updates…";
+"Disconnect GitHub" = "Disconnect GitHub";
+"Downloading update…" = "Downloading update…";
+"Enter a valid GitHub access token." = "Enter a valid GitHub access token.";
+"For a private repository, create a fine-grained token for this repository with Contents: Read-only. The token is stored in this Mac’s Keychain." = "For a private repository, create a fine-grained token for this repository with Contents: Read-only. The token is stored in this Mac’s Keychain.";
+"GitHub access" = "GitHub access";
+"GitHub access token" = "GitHub access token";
+"GitHub could not access the private repository. Add a token with Contents: Read-only access to this repository." = "GitHub could not access the private repository. Add a token with Contents: Read-only access to this repository.";
+"GitHub could not complete the update request. Try again later." = "GitHub could not complete the update request. Try again later.";
+"GitHub token removed from this Mac." = "GitHub token removed from this Mac.";
+"GitHub token saved in Keychain." = "GitHub token saved in Keychain.";
+"Install and reopen" = "Install and reopen";
+"Quit the app to finish installing the update." = "Quit the app to finish installing the update.";
+"Release notes" = "Release notes";
+"Save token" = "Save token";
+"Save your open edits before installing the update." = "Save your open edits before installing the update.";
+"The GitHub token could not be accessed in Keychain." = "The GitHub token could not be accessed in Keychain.";
+"The update download has an unexpected size." = "The update download has an unexpected size.";
+"The update was not installed." = "The update was not installed.";
+"Token saved" = "Token saved";
+"Update check could not be completed." = "Update check could not be completed.";
+"Updates are available in the installed review app." = "Updates are available in the installed review app.";
+"Updates are downloaded only when you choose Install. Your history and settings stay on this Mac." = "Updates are downloaded only when you choose Install. Your history and settings stay on this Mac.";
+"Verifying update…" = "Verifying update…";
+"Version %@ is ready to install." = "Version %@ is ready to install.";
+"You are up to date." = "You are up to date.";
+
+/* Image markup additions. */
+"Annotation color" = "Color de anotación";
+"Annotation text" = "Texto de anotación";
+"Arrow" = "Flecha";
+"Clear annotations" = "Borrar anotaciones";
+"Delete annotation" = "Eliminar anotación";
+"Ellipse" = "Elipse";
+"Fill shape" = "Rellenar forma";
+"Heavy" = "Muy grueso";
+"Image markup" = "Marcar imagen";
+"Line" = "Línea";
+"Marker" = "Marcador";
+"Markup status" = "Estado de anotación";
+"Pen" = "Pluma";
+"Rectangle" = "Rectángulo";
+"Select annotation" = "Seleccionar anotación";
+"Stroke width" = "Grosor del trazo";
+"Text annotation" = "Añadir texto";
+"Thick" = "Grueso";
+"Thin" = "Fino";
+
+"Markup image" = "Marcar imagen";
+
+"Image changes could not be saved. Your edits are still here." = "No se pudieron guardar los cambios. Tus ediciones siguen aquí.";
+
+"Image changes saved" = "Cambios de imagen guardados";
+
+"Unsaved image changes" = "Cambios de imagen sin guardar";
+
+"Very large" = "Muy grande";
+
+"Annotation text size" = "Tamaño del texto de anotación";
+"Authorize saved token…" = "Autorizar token guardado…";
+"macOS may ask once for access to a previously saved token. App updates keep this authorization." = "macOS puede pedir permiso una vez para acceder a un token guardado. Las actualizaciones conservan esta autorización.";
+
+/* Automatic update checks. */
+"Automatically check for updates" = "Buscar actualizaciones automáticamente";
+"Checks at launch, every 12 hours and when you open About. Installation starts only when you choose." = "Busca actualizaciones al iniciar, cada 12 horas y al abrir Acerca de. La instalación solo comienza cuando lo eliges.";
+"Update available" = "Actualización disponible";
+"clipboard-app %@ is ready to install." = "clipboard-app %@ está listo para instalar.";
+"Install update…" = "Instalar actualización…";
+"New versions also appear in the menu bar. macOS may ask to allow notifications." = "Las nuevas versiones también aparecen en la barra de menús. macOS puede pedir permiso para enviar notificaciones.";
+
+"Name and pin…" = "Nombrar y fijar…";
+"Add a name for search…" = "Añade un nombre para buscar…";
+"Pin with name" = "Fijar con nombre";
+"Enter a name (1–160 characters)" = "Introduce un nombre (1–160 caracteres)";
+"Item %d of %d" = "Elemento %d de %d";
+"Save and next" = "Guardar y siguiente";
+"This item is no longer available. Press Esc to leave." = "Este elemento ya no está disponible. Pulsa Esc para salir.";
+"Annotation style" = "Estilo de anotación";
+"More annotation actions" = "Más acciones de anotación";
+"Annotation tool" = "Herramienta de anotación";
+
+"Previous shelf page" = "Página anterior del tendedero";
+
+"Next shelf page" = "Página siguiente del tendedero";
+
+/* Searchable action bar. */
+"Actions" = "Acciones";
+"Available on the shelves" = "Disponible en los estantes";
+"Available on the shelves or in Library" = "Disponible en los estantes o en la biblioteca";
+"Edit item details" = "Editar detalles del elemento";
+"Finish editing first" = "Termina de editar primero";
+"Library unavailable" = "Biblioteca no disponible";
+"Library views" = "Vistas de la biblioteca";
+"No annotations to clear" = "No hay anotaciones que borrar";
+"No images on the line" = "No hay imágenes en el tendedero";
+"No items in this view" = "No hay elementos en esta vista";
+"No items to the left" = "No hay elementos a la izquierda";
+"No items to the right" = "No hay elementos a la derecha";
+"No matching actions" = "No hay acciones coincidentes";
+"No update available" = "No hay actualizaciones disponibles";
+"Nothing to redo" = "No hay nada que rehacer";
+"Nothing to undo" = "No hay nada que deshacer";
+"Open a shelf or Library first" = "Abre primero un estante o la biblioteca";
+"Organization" = "Organización";
+"Run action" = "Ejecutar acción";
+"Search" = "Búsqueda";
+"Search actions…" = "Buscar acciones…";
+"Search contents" = "Buscar contenido";
+"Search library" = "Buscar en la biblioteca";
+"Search visible shelves: text, links and image OCR" = "Buscar en los estantes visibles: texto, enlaces y OCR de imágenes";
+"Select a folder first" = "Selecciona primero una carpeta";
+"Select a link first" = "Selecciona primero un enlace";
+"Select a tag first" = "Selecciona primero una etiqueta";
+"Select a text item first" = "Selecciona primero un elemento de texto";
+"Select a top-level folder first" = "Selecciona primero una carpeta principal";
+"Select a video first" = "Selecciona primero un vídeo";
+"Select an annotation first" = "Selecciona primero una anotación";
+"Select an image in the screenshots inbox first" = "Selecciona primero una imagen en la bandeja de capturas";
+"Select an item first" = "Selecciona primero un elemento";
+"Select an item in Trash first" = "Selecciona primero un elemento de la papelera";
+"Select items in a different folder first" = "Selecciona primero elementos de otra carpeta";
+"Select one image first" = "Selecciona primero una sola imagen";
+"Select one item first" = "Selecciona primero un solo elemento";
+"Selected item" = "Elemento seleccionado";
+"Shelves" = "Estantes";
+"Start editing text first" = "Empieza a editar el texto primero";
+"Start image markup first" = "Empieza a marcar la imagen primero";
+"Trim video" = "Recortar vídeo";
+"Update checks unavailable" = "Comprobación de actualizaciones no disponible";
+
+// Image cropping
+"Crop image" = "Recortar imagen";
+"Apply crop" = "Aplicar recorte";
+"Reset crop" = "Restablecer recorte";
+"Cancel crop" = "Cancelar recorte";
+"Drag to select the crop area. Enter applies; Esc cancels." = "Arrastra para seleccionar el área de recorte. Intro aplica; Esc cancela.";
+
+// macOS 27 names the former Accessibility permission differently.
+"Allow this app in Privacy & Security → Device Control and Data Access to paste into another app." = "Para pegar en otra app, permite el acceso a esta app en Privacidad y seguridad → Device Control and Data Access.";
+"Open Device Control and Data Access" = "Abrir Device Control and Data Access";
+"Last checked" = "Última comprobación";
+
+"Updates" = "Actualizaciones";
+
+"Update…" = "Actualizar…";
+
+"Checks at launch and every hour. You choose when to download and install." = "Comprueba al iniciar y cada hora. Tú eliges cuándo descargar e instalar.";
+
+"Signed updates · No account or token needed" = "Actualizaciones firmadas · Sin cuenta ni token";
+
+"Copies to clear" = "Copies to clear";
+
+"%d unsaved copies" = "%d unsaved copies";
+
+"Clear unsaved copies…" = "Clear unsaved copies…";
+
+"Clear unsaved copies?" = "Clear unsaved copies?";
+
+"%d unsaved copies will move to recoverable Library Trash. Pinned items, saved items, folders, tags and original files are kept." = "%d unsaved copies will move to recoverable Library Trash. Pinned items, saved items, folders, tags and original files are kept.";
+
+
+"A shortcut could not be restored after recording. Choose another combination in Settings." = "No se pudo restaurar un atajo tras grabarlo. Elige otra combinación en Ajustes.";
+
+"Focus next pane" = "Enfocar el panel siguiente";
+
+"Focus previous pane" = "Enfocar el panel anterior";
+
+"Undo Move to Trash" = "Deshacer mover a la papelera";

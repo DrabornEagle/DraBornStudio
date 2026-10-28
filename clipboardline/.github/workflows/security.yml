@@ -1,0 +1,31 @@
+name: Source security
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  publication-guard:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Test publication guard
+        run: python3 scripts/test-audit-public.py
+      - name: Audit public source paths and high-confidence secret formats
+        run: python3 scripts/audit-public.py --report "$RUNNER_TEMP/source-audit.json"
+      - name: Scan working tree and all public Git history
+        run: python3 scripts/check-secrets.py --report-dir "$RUNNER_TEMP/security-scan"
+      - name: Preserve redacted evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: redacted-source-security-evidence
+          path: |
+            ${{ runner.temp }}/source-audit.json
+            ${{ runner.temp }}/security-scan/
+          retention-days: 14

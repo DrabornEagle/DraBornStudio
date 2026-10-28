@@ -1,0 +1,135 @@
+import AppKit
+#if !STANDALONE_TESTS
+import XCTest
+@testable import Tendedero
+#endif
+
+@MainActor final class ShelfPresentationTests: HistoryTestCase {
+    private func wait(_ predicate: () -> Bool) {
+        let deadline = Date().addingTimeInterval(3)
+        while !predicate(), Date() < deadline { RunLoop.current.run(until: Date().addingTimeInterval(0.005)) }
+        XCTAssertTrue(predicate(), "Native shelf presentation did not settle")
+    }
+
+    func testNativeVisibilityKeepsWindowContentAndHitCoordinatesFixed() throws {
+        _ = NSApplication.shared
+        let content = NSView(frame: NSRect(x: 0, y: 0, width: 900, height: 780))
+        let child = NSView(frame: NSRect(x: 30, y: 50, width: 100, height: 80))
+        content.addSubview(child)
+        let panel = LinePanel(content: content)
+        defer { panel.contentView = nil }
+        panel.setFrame(NSRect(x: -900, y: 250, width: 900, height: 780), display: false)
+        let originalFrame = panel.frame, originalBounds = content.bounds, originalContentFrame = content.frame
+        let point = child.convert(NSPoint(x: 40, y: 40), to: content)
+        let originalHit = content.hitTest(point)
+        XCTAssertFalse(panel.isVisible, "Preparation must happen before the caller orders the shelf front")
+        XCTAssertEqual(panel.shelfModelOffset, -(panel.contentHeight + 12), "The first committed frame starts above the display")
+        XCTAssertNotNil(panel.contentView?.layer)
+        XCTAssertTrue(panel.contentView?.layer?.masksToBounds == true)
+        for on in [false, true, false, true] {
+            panel.setShelfRevealed(on, animated: false)
+            XCTAssertEqual(panel.frame, originalFrame, "Visibility must not move into a display above the shelf")
+            XCTAssertEqual(content.bounds, originalBounds)
+            XCTAssertEqual(content.frame, originalContentFrame)
+            XCTAssertTrue(content.superview === panel.contentView, "The retained hosting view lives inside the fixed compositor")
+            XCTAssertTrue(content.hitTest(point) === originalHit)
+            XCTAssertEqual(panel.shelfModelOffset, on ? 0 : -(panel.contentHeight + 12))
+            XCTAssertEqual(panel.alphaValue, 1, "Reveal must move the layer tree rather than fade the window")
+            XCTAssertFalse(panel.isShelfTransitioning)
+        }
+        panel.setShelfRevealed(false, animated: false)
+        panel.contentHeight = 3 * Layout.panelHeight
+        XCTAssertEqual(panel.shelfModelOffset, -(3 * Layout.panelHeight + 12), "A hidden row-count change must remain completely above the display")
+        XCTAssertEqual(panel.frame, originalFrame)
+        XCTAssertEqual(content.bounds, originalBounds)
+        panel.setShelfRevealed(true, animated: false)
+        panel.contentHeight = Layout.panelHeight
+        XCTAssertEqual(panel.shelfModelOffset, 0, "Visible capacity changes must retain their resting position")
+    }
+
+    func testRapidVisibilityReversalCannotRunAnEarlierCloseCompletion() throws {
+        _ = NSApplication.shared
+        for reduceMotion in [false, true] {
+            let panel = LinePanel(content: NSView(), reduceMotion: { reduceMotion })
+            defer { panel.contentView = nil }
+            var closed = 0, opened = 0
+            var scrolls = 0, mouseCaptures = 0, keys = 0
+            panel.onScroll = { _, _, _ in scrolls += 1 }
+            panel.onBeforeMouseKeyFocus = { mouseCaptures += 1 }
+            let cgWheel = try XCTUnwrap(CGEvent(scrollWheelEvent2Source: nil, units: .line,
+                wheelCount: 1, wheel1: 3, wheel2: 0, wheel3: 0))
+            let wheel = try XCTUnwrap(NSEvent(cgEvent: cgWheel))
+            // Both requests happen in one event turn, as with a queued global
+            // shortcut. An earlier asynchronous completion must not hide the row.
+            panel.setShelfRevealed(false) { closed += 1 }
+            panel.setShelfRevealed(true) { opened += 1 }
+            XCTAssertEqual(panel.shelfModelOffset, 0)
+            XCTAssertEqual(panel.isShelfTransitioning, !reduceMotion)
+            if !reduceMotion {
+                XCTAssertTrue(panel.ignoresMouseEvents, "Model hit coordinates must not accept pointer actions while the cards move")
+                XCTAssertNotNil(panel.contentView?.layer?.animation(forKey: LinePanel.shelfAnimationKey))
+                let click = try XCTUnwrap(NSEvent.mouseEvent(with: .leftMouseDown, location: .zero,
+                    modifierFlags: [], timestamp: 0, windowNumber: 0, context: nil,
+                    eventNumber: 1, clickCount: 1, pressure: 1))
+                panel.sendEvent(click)
+                panel.sendEvent(wheel)
+                XCTAssertEqual(mouseCaptures, 0, "Queued pointer events must not capture a field at the untranslated model position")
+                XCTAssertEqual(scrolls, 0, "Queued scrolling must not navigate the untranslated shelf row")
+                panel.keyboardFocusAllowed = true
+                panel.onKey = { _ in keys += 1; return true }
+                let key = try XCTUnwrap(NSEvent.keyEvent(with: .keyDown, location: .zero,
+                    modifierFlags: [], timestamp: 0, windowNumber: 0, context: nil,
+                    characters: "p", charactersIgnoringModifiers: "p", isARepeat: false, keyCode: 35))
+                XCTAssertTrue(panel.routeKey(key, isFocused: true))
+                XCTAssertEqual(keys, 1, "Keyboard browsing remains immediate while the compositor animates")
+            }
+            wait { opened == 1 }
+            XCTAssertEqual(closed, 0)
+            XCTAssertEqual(panel.alphaValue, 1)
+            XCTAssertEqual(panel.shelfModelOffset, 0)
+            XCTAssertFalse(panel.isShelfTransitioning)
+            XCTAssertNil(panel.contentView?.layer?.animation(forKey: LinePanel.shelfAnimationKey))
+            panel.sendEvent(wheel)
+            XCTAssertEqual(scrolls, 1, "Normal row scrolling resumes after the compositor settles")
+            // Reverse a real open-to-close request before its completion can
+            // order the panel out. Detached layers do not promise a rendered
+            // presentation position, so visual continuity is a live-test gate.
+            panel.setShelfRevealed(false) { closed += 1 }
+            panel.setShelfRevealed(true) { opened += 1 }
+            wait { opened == 2 }
+            XCTAssertEqual(closed, 0)
+            XCTAssertEqual(panel.shelfModelOffset, 0)
+            panel.setShelfRevealed(false) { closed += 1 }
+            wait { closed == 1 }
+            XCTAssertEqual(panel.alphaValue, 1)
+            XCTAssertEqual(panel.shelfModelOffset, -(panel.contentHeight + 12))
+            XCTAssertFalse(panel.isShelfTransitioning)
+        }
+    }
+
+    func testReducedMotionIsImmediateAndPresentationDoesNotClaimKeyboardOwnership() throws {
+        _ = NSApplication.shared
+        let panel = LinePanel(content: NSView(), reduceMotion: { true })
+        defer { panel.contentView = nil }
+        var captures = 0
+        panel.onBeforeMouseKeyFocus = { captures += 1 }
+        panel.keyboardFocusAllowed = false
+        panel.setShelfRevealed(false)
+        XCTAssertEqual(panel.shelfModelOffset, -(panel.contentHeight + 12))
+        XCTAssertEqual(panel.alphaValue, 1)
+        XCTAssertFalse(panel.isShelfTransitioning)
+        panel.setShelfRevealed(true)
+        XCTAssertEqual(panel.shelfModelOffset, 0)
+        XCTAssertEqual(panel.alphaValue, 1)
+        XCTAssertFalse(panel.isShelfTransitioning)
+        XCTAssertNil(panel.contentView?.layer?.animation(forKey: LinePanel.shelfAnimationKey))
+        XCTAssertFalse(panel.isVisible)
+        XCTAssertFalse(panel.isKeyWindow)
+        XCTAssertFalse(panel.keyboardFocusAllowed)
+        XCTAssertEqual(captures, 0, "Exact paste-target capture stays at the caller's focus boundary")
+        panel.keyboardFocusAllowed = true
+        panel.setShelfRevealed(false)
+        XCTAssertTrue(panel.keyboardFocusAllowed, "The AppDelegate still owns focus release and return")
+        XCTAssertEqual(panel.shelfModelOffset, -(panel.contentHeight + 12))
+    }
+}

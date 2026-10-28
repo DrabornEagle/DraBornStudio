@@ -1,0 +1,47 @@
+import { editRegionPixels, getEditRegionLayers, type ImageEditRegion } from './imageEditRegion.js';
+
+/** Rasterize at pixel centers, then feather inward only. Scanline filling keeps
+ * freehand contours cheap; outside pixels always come directly from source. */
+export const compositeEditPixels = (source: Uint8Array | Uint8ClampedArray, output: Uint8Array | Uint8ClampedArray, width: number, height: number, region: ImageEditRegion): Uint8ClampedArray => {
+  if (source.length !== width * height * 4 || output.length !== source.length) throw new Error('Edit pixel dimensions do not match.');
+  const bounds = editRegionPixels(region, width, height);
+  const result = new Uint8ClampedArray(source);
+  const bw = bounds.width, bh = bounds.height;
+  const distances = new Uint8Array(bw * bh);
+  const feather = Math.min(8, Math.floor(Math.min(bw, bh) / 12));
+  const cap = feather + 1;
+  for (const layer of getEditRegionLayers(region)) {
+    const area = editRegionPixels(layer, width, height);
+    const points = layer.points?.map(p => ({ x: p.x * width, y: p.y * height }));
+    for (let y = area.top - bounds.top; y < area.top + area.height - bounds.top; y++) {
+      const py = bounds.top + y + .5;
+      const intersections: number[] = [];
+      if (points) {
+        for (let i = 0, j = points.length - 1; i < points.length; j = i++) {
+          const a = points[j], b = points[i];
+          if ((a.y > py) !== (b.y > py)) intersections.push(a.x + (py - a.y) * (b.x - a.x) / (b.y - a.y));
+        }
+        intersections.sort((a, b) => a - b);
+      } else intersections.push(area.left, area.left + area.width);
+      for (let i = 0; i + 1 < intersections.length; i += 2) {
+        const start = Math.max(0, Math.ceil(intersections[i] - bounds.left - .5));
+        const end = Math.min(bw, Math.ceil(intersections[i + 1] - bounds.left - .5));
+        distances.fill(cap, y * bw + start, y * bw + end);
+      }
+    }
+  }
+  // Two passes measure distance to unselected pixels, including canvas edges.
+  for (let y = 0; y < bh; y++) for (let x = 0; x < bw; x++) {
+    const i = y * bw + x;
+    if (distances[i]) distances[i] = Math.min(distances[i], x ? distances[i - 1] + 1 : 1, y ? distances[i - bw] + 1 : 1);
+  }
+  for (let y = bh - 1; y >= 0; y--) for (let x = bw - 1; x >= 0; x--) {
+    const i = y * bw + x;
+    if (!distances[i]) continue;
+    distances[i] = Math.min(distances[i], x < bw - 1 ? distances[i + 1] + 1 : 1, y < bh - 1 ? distances[i + bw] + 1 : 1);
+    const alpha = feather ? Math.min(1, distances[i] / cap) : 1;
+    const index = ((bounds.top + y) * width + bounds.left + x) * 4;
+    for (let channel = 0; channel < 4; channel++) result[index + channel] = Math.round(source[index + channel] * (1 - alpha) + output[index + channel] * alpha);
+  }
+  return result;
+};

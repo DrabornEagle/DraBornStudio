@@ -1,0 +1,10 @@
+{
+  "upstream": "https://github.com/orkunisitmak/banana-studio",
+  "commit": "c9fe7de8293dfb1d8521359452a61ded75351003",
+  "product": "Banana-edits",
+  "maintainer": "DrabornEagle",
+  "license": "MIT",
+  "imported": "2026-10-28",
+  "repository": "https://github.com/DrabornEagle/DraBornStudio",
+  "sourceDirectory": "banana-studio"
+}

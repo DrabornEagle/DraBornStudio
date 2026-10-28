@@ -1,0 +1,117 @@
+{
+  "name": "clipboard-app",
+  "version": "1.7.8",
+  "description": "DrabornEagle clipboard history and saved library",
+  "author": "ClipBoardLine contributors",
+  "license": "MIT",
+  "private": true,
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test --test-concurrency=1 tests/*.test.cjs",
+    "test:electron": "node tests/electron-smoke.cjs",
+    "dist": "electron-builder --win nsis --x64 --publish never"
+  },
+  "dependencies": {
+    "@tesseract.js-data/eng": "1.0.0",
+    "@tesseract.js-data/tur": "1.0.0",
+    "onnxruntime-web": "1.30.0",
+    "tesseract.js": "7.0.0"
+  },
+  "devDependencies": {
+    "electron": "44.9.0",
+    "electron-builder": "26.15.3",
+    "playwright": "1.64.1"
+  },
+  "overrides": {
+    "global-agent": "4.1.3"
+  },
+  "build": {
+    "appId": "com.clipboardline.desktop.windows",
+    "productName": "clipboard-app",
+    "asar": true,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.cjs",
+      "preload.cjs",
+      "lib/**/*.cjs",
+      "native/*.ps1",
+      "index.html",
+      "locales.js",
+      "renderer.js",
+      "styles.css",
+      "assets/**/*",
+      "search-model-config.json",
+      "package.json",
+      "!assets/CLIP/**"
+    ],
+    "extraResources": [
+      {
+        "from": "node_modules/@tesseract.js-data",
+        "to": "ocr-data",
+        "filter": [
+          "**/4.0.0_best_int/*.traineddata.gz"
+        ]
+      },
+      {
+        "from": "native",
+        "to": "native",
+        "filter": [
+          "*.ps1"
+        ]
+      },
+      {
+        "from": "../LICENSE",
+        "to": "LICENSE.txt"
+      },
+      {
+        "from": "../THIRD_PARTY_NOTICES.md",
+        "to": "THIRD_PARTY_NOTICES.md"
+      },
+      {
+        "from": "THIRD_PARTY_NOTICES.md",
+        "to": "WINDOWS_THIRD_PARTY_NOTICES.md"
+      },
+      {
+        "from": "assets/licenses",
+        "to": "licenses"
+      },
+      {
+        "from": "assets/CLIP",
+        "to": "CLIP",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "win": {
+      "icon": "assets/clipboardline.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "clipboard-app-Setup-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "installerIcon": "assets/clipboardline.ico",
+      "uninstallerIcon": "assets/clipboardline.ico",
+      "oneClick": true,
+      "perMachine": false,
+      "allowElevation": false,
+      "deleteAppDataOnUninstall": false,
+      "runAfterFinish": false
+    },
+    "asarUnpack": [
+      "lib/*.cjs",
+      "node_modules/onnxruntime-web/**",
+      "node_modules/onnxruntime-common/**"
+    ]
+  },
+  "clipboardLineBuild": 71
+}

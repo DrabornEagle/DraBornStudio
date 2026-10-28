@@ -1,0 +1,58 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+import { auditDistribution } from './audit-distribution.mjs';
+
+const root=path.resolve(import.meta.dirname,'..');
+if(process.platform!=='win32'||process.arch!=='x64')throw new Error('Package and test on Windows x64.');
+const version=JSON.parse(fs.readFileSync(path.join(root,'package.json'))).version;
+const runtime=path.join(root,'.build/node-runtime/node.exe');
+const lock=JSON.parse(fs.readFileSync(path.join(root,'desktop/node-runtime.json'))).releases['win32-x64'];
+const digest=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+if(digest(runtime)!==lock.binarySha256)throw new Error('The official Node runtime checksum does not match.');
+const app=path.join(root,'.build/staging-windows/Banana-edits');
+fs.rmSync(app,{recursive:true,force:true});fs.mkdirSync(app,{recursive:true});
+execFileSync('dotnet',['publish',path.join(root,'desktop/windows/BananaStudio.csproj'),'-c','Release','-r','win-x64','--self-contained','true','-p:Version='+version,'-p:DebugType=None','-p:DebugSymbols=false','-o',app],{stdio:'inherit'});
+fs.mkdirSync(path.join(app,'runtime'),{recursive:true});fs.copyFileSync(runtime,path.join(app,'runtime/node.exe'));
+const nodeLicense=path.join(root,'.build/node-runtime/LICENSE');
+if(digest(nodeLicense)!==lock.licenseSha256)throw new Error('The runtime license checksum does not match.');
+fs.copyFileSync(nodeLicense,path.join(app,'Node-LICENSE.txt'));
+const workspace=path.join(app,'workspace');fs.mkdirSync(workspace,{recursive:true});
+fs.copyFileSync(path.join(root,'.build/desktop/server.mjs'),path.join(workspace,'server.mjs'));
+fs.writeFileSync(path.join(workspace,'package.json'),JSON.stringify({name:'banana-studio-local-runtime',private:true,type:'module'}));
+fs.cpSync(path.join(root,'dist'),path.join(workspace,'web'),{recursive:true});
+
+// Copy only sharp's installed runtime closure. Do not ship the full development
+// node_modules directory, npm caches, user profiles or source/build paths.
+const copied=new Map();
+const resolvePackage=(name,from)=>{
+ for(let directory=from;;directory=path.dirname(directory)){
+  const candidate=path.join(directory,'node_modules',name);
+  if(fs.existsSync(path.join(candidate,'package.json')))return candidate;
+  if(directory===path.dirname(directory))return null;
+ }
+};
+const copyPackage=(name,from,optional=false)=>{
+ const source=resolvePackage(name,from);if(!source){if(optional)return;throw new Error('Missing runtime dependency: '+name);}
+ const pkg=JSON.parse(fs.readFileSync(path.join(source,'package.json')));
+ if(copied.has(name)){if(copied.get(name)!==pkg.version)throw new Error('Conflicting runtime dependency: '+name);return;}
+ copied.set(name,pkg.version);
+ fs.cpSync(source,path.join(workspace,'node_modules',name),{recursive:true,dereference:true,filter:file=>!['node_modules','.git'].includes(path.basename(file))});
+ for(const dependency of Object.keys(pkg.dependencies||{}))copyPackage(dependency,source);
+ for(const dependency of Object.keys(pkg.optionalDependencies||{}))copyPackage(dependency,source,true);
+};
+copyPackage('sharp',root);
+if(!copied.has('@img/sharp-win32-x64'))throw new Error('The Windows image codec is missing.');
+const webviewLicense=path.join(process.env.NUGET_PACKAGES||path.join(os.homedir(),'.nuget/packages'),'microsoft.web.webview2/1.0.4258.31/LICENSE.txt');
+if(!fs.existsSync(webviewLicense))throw new Error('The WebView2 license must accompany the distribution.');
+fs.copyFileSync(webviewLicense,path.join(app,'WebView2-LICENSE.txt'));
+fs.copyFileSync(path.join(path.dirname(webviewLicense),'NOTICE.txt'),path.join(app,'WebView2-NOTICE.txt'));
+fs.copyFileSync(path.join(root,'LICENSE'),path.join(app,'LICENSE.txt'));
+fs.copyFileSync(path.join(root,'docs/THIRD_PARTY_NOTICES.md'),path.join(app,'THIRD_PARTY_NOTICES.md'));
+// Microsoft's self-contained runtime retains its original license/notice files.
+const sourceCommit=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
+fs.writeFileSync(path.join(app,'release.json'),JSON.stringify({version,sourceCommit,platform:'windows-x64',distribution:'unsigned-community',runtimePackages:Object.fromEntries(copied)},null,2));
+const audit=auditDistribution(app);if(!audit.ok)throw new Error('Distribution audit rejected the Windows package: '+JSON.stringify(audit.findings));
+console.log(JSON.stringify({app,version,sourceCommit,files:audit.files}));

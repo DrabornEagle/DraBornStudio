@@ -1,0 +1,32 @@
+{
+  "upstreamRepository": "https://github.com/alejandrobujan/tendedero",
+  "upstreamTag": "v1.5.0",
+  "upstreamCommit": "cf87e6ebc275d4f2cc42900e55f88a52d3ce9e46",
+  "forkVersion": "1.7.8",
+  "buildNumber": "78",
+  "adaptedContributions": [
+    {
+      "pullRequest": 58,
+      "commit": "ac664033498cab67ea7610dabac34be915fa0fe8",
+      "parts": [
+        "copy-label sizing",
+        "Settings language selection"
+      ]
+    },
+    {
+      "pullRequest": 71,
+      "commit": "4edd9f49eb622f3bdcf50f35c4b3aaaadd0ff3ac",
+      "parts": [
+        "status count and empty state adapted to three shelves"
+      ]
+    },
+    {
+      "pullRequest": 3,
+      "commit": "e3558ea268436b642f46cb34021499fdd68a142b",
+      "parts": [
+        "MobileCLIP encoder and tokenizer",
+        "on-device OCR and visual search adapted to Library"
+      ]
+    }
+  ]
+}

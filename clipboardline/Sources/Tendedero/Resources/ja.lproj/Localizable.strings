@@ -1,0 +1,498 @@
+/* Upstream translations retained; untranslated fork additions fall back to English. */
+"%d app copies will move to recoverable Trash. %d original files stay in place; only their history entries are removed." = "%d app copies will move to recoverable Trash. %d original files stay in place; only their history entries are removed.";
+"%d items" = "%d items";
+"%d items copied" = "%d items copied";
+"%d selected" = "%d selected";
+"A free filename could not be found" = "A free filename could not be found";
+"About" = "About";
+"Add Folder…" = "フォルダを追加…";
+"Add tag…" = "Add tag…";
+"Add to folder" = "Add to folder";
+"Added" = "Added";
+"All" = "All";
+"Also watch folders" = "フォルダも監視";
+"Any time" = "Any time";
+"Appearance" = "Appearance";
+"Application" = "Application";
+"Apply domain" = "Apply domain";
+"Both shelves" = "Both shelves";
+"Bring the line down" = "ロープを降ろす";
+"Cancel" = "Cancel";
+"Capture copied links" = "Capture copied links";
+"Change Shortcut" = "ショートカットを変更";
+"Change Shortcut…" = "ショートカットを変更…";
+"Changes could not be saved; keep this draft open" = "Changes could not be saved; keep this draft open";
+"Changes saved" = "Changes saved";
+"Check upstream releases…" = "Check upstream releases…";
+"Choose a valid destination or a unique name (1–64 characters)" = "Choose a valid destination or a unique name (1–64 characters)";
+"Clear filters" = "Clear filters";
+"Clipboard" = "Clipboard";
+"Close" = "Close";
+"Close preview" = "Close preview";
+"Colors" = "Colors";
+"Contacts the linked website or YouTube in the background. Private markers, local addresses and links with known secret parameters are skipped." = "Contacts the linked website or YouTube in the background. Private markers, local addresses and links with known secret parameters are skipped.";
+"Content type" = "Content type";
+"Copied" = "コピーしました";
+"Copied web addresses appear here when link capture is enabled" = "Copied web addresses appear here when link capture is enabled";
+"Copies are saved locally. Text and link capture is silent. A single web address goes to Links; paragraphs stay as text." = "Copies are saved locally. Text and link capture is silent. A single web address goes to Links; paragraphs stay as text.";
+"Copy" = "コピー";
+"Copy latest image" = "Copy latest image";
+"Copy-latest shortcut" = "Copy-latest shortcut";
+"Could not change the login setting" = "ログイン時の設定を変更できませんでした";
+"Could not copy selected items" = "Could not copy selected items";
+"Could not export copies" = "Could not export copies";
+"Could not save a favorite copy" = "Could not save a pinned copy";
+"Could not save text history" = "Could not save text history";
+"Discard" = "破棄";
+"Dismiss" = "Dismiss";
+"Domain, e.g. youtube.com" = "Domain, e.g. youtube.com";
+"Edit text" = "Edit text";
+"Editing · changes are saved automatically" = "Editing · changes are saved automatically";
+"Escape cancels. Delete removes the shortcut." = "escでキャンセル、deleteでショートカットを削除します。";
+"Export copies" = "Export copies";
+"Export copies…" = "Export copies…";
+"Exported %d · failed %d" = "Exported %d · failed %d";
+"Favorite an item, or add a folder or tag to keep it here." = "Pin an item, or add a folder or tag to keep it here.";
+"Favorites" = "ピン留め";
+"Favorites, folders and tags keep items permanently. Other copies follow your history setting." = "Pinned items, folders and tags stay permanently. Other copies follow their history limits.";
+"Fetch link titles and thumbnails" = "Fetch link titles and thumbnails";
+"File could not be read or safely saved" = "File could not be read or safely saved";
+"Filtered view" = "Filtered view";
+"Filters" = "Filters";
+"Folder" = "Folder";
+"Folders" = "Folders";
+"General" = "General";
+"Handle screenshots" = "スクリーンショットを任せる";
+"Hang copied images" = "コピーした画像を吊るす";
+"Hang copied text" = "Hang copied text";
+"Hide line" = "ロープを非表示";
+"History" = "History";
+"Image" = "Image";
+"Image preview" = "Image preview";
+"Image, text and link shelves, with a private local library." = "Image, text and link shelves, with a private local library.";
+"Images" = "Images";
+"Its contents stay in your library." = "Its contents stay in your library.";
+"Keep for %d days" = "Keep for %d days";
+"Keyboard shortcuts" = "Keyboard shortcuts";
+"Large" = "大";
+"Last 30 days" = "Last 30 days";
+"Last 7 days" = "Last 7 days";
+"Last copied" = "Last copied";
+"Let Tendedero handle your screenshots?" = "スクリーンショットをTendederoに任せますか？";
+"Library" = "Library";
+"Library could not be opened. Existing history is kept; capture is paused." = "Library could not be opened. Existing history is kept; capture is paused.";
+"Library could not be saved or opened" = "Library could not be saved or opened";
+"Library…" = "Library…";
+"Link" = "Link";
+"Link copied" = "Link copied";
+"Link preview" = "Link preview";
+"Link preview could not be saved; the link is kept" = "Link preview could not be saved; the link is kept";
+"Link previews" = "Link previews";
+"Links" = "Links";
+"Loading" = "Loading";
+"Loading…" = "Loading…";
+"Markup" = "マークアップ";
+"Medium" = "中";
+"Move %d items to recoverable Trash?" = "Move %d items to recoverable Trash?";
+"Move Tendedero to the Applications folder and try again." = "Tendederoを「アプリケーション」フォルダに移動してから、もう一度お試しください。";
+"Move app copies to Trash" = "Move app copies to Trash";
+"Move selected texts to recoverable Trash?" = "Move selected texts to recoverable Trash?";
+"Move this text to recoverable Trash?" = "Move this text to recoverable Trash?";
+"Move to Trash" = "ゴミ箱に入れる";
+"Move to Trash…" = "Move to Trash…";
+"Move to folder" = "Move to folder";
+"My library" = "My library";
+"Neutral glass" = "Neutral glass";
+"New folder" = "New folder";
+"New images saved to this folder will hang on the line." = "このフォルダに保存された新しい画像がロープに吊るされます。";
+"New note" = "New note";
+"New subfolder" = "New subfolder";
+"Newest first" = "Newest first";
+"Next item" = "Next item";
+"No matching items" = "No matching items";
+"None" = "なし";
+"Not now" = "今はしない";
+"Note" = "Note";
+"Nothing here yet" = "Nothing here yet";
+"Off" = "Off";
+"Oldest first" = "Oldest first";
+"On the line" = "On the line";
+"Open" = "開く";
+"Open at login" = "ログイン時に開く";
+"Open data folder" = "Open data folder";
+"Open file" = "Open file";
+"Open folder" = "Open folder";
+"Open in browser" = "Open in browser";
+"Open library" = "Open library";
+"Open screenshots folder" = "スクリーンショットのフォルダを開く";
+"Over full screen apps" = "フルスクリーンのアプリの上にも";
+"Pin favorite" = "ピン留め";
+"Press a key with Control or Command" = "Press a key with Control or Command";
+"Press the new shortcut" = "新しいショートカットを押してください";
+"Preview" = "Preview";
+"Preview unavailable; your link is saved" = "Preview unavailable; your link is saved";
+"Previous item" = "Previous item";
+"Quick Look" = "クイックルック";
+"Quit %@" = "Quit %@";
+"Recent copies" = "Recent copies";
+"Record shortcut…" = "Record shortcut…";
+"Refresh link preview" = "Refresh link preview";
+"Remove folder" = "Remove folder";
+"Remove history entries" = "Remove history entries";
+"Remove selected images?" = "Remove selected images?";
+"Remove tag" = "Remove tag";
+"Remove this folder?" = "Remove this folder?";
+"Remove this tag?" = "Remove this tag?";
+"Rename folder" = "Rename folder";
+"Rename tag" = "Rename tag";
+"Reset zoom" = "Reset zoom";
+"Restore" = "Restore";
+"Save" = "Save";
+"Save shortcut" = "Save shortcut";
+"Save to Desktop" = "デスクトップに保存";
+"Save to library" = "Save to library";
+"Screenshots" = "Screenshots";
+"Screenshots hang instantly and skip the Desktop. Your macOS screenshot settings are restored when the app quits." = "Screenshots hang instantly and skip the Desktop. Your macOS screenshot settings are restored when the app quits.";
+"Screenshots will hang on the line the instant you take them, without the floating thumbnail, and will not pile up on your Desktop. Drag one to a folder to keep it, or discard it with the cross. You can turn this off in Settings, and your settings come back when Tendedero quits." = "Screenshots will hang on the line the instant you take them, without the floating thumbnail, and will not pile up on your Desktop. Drag one to a folder to keep it, or discard it with the cross. You can turn this off in Settings, and your settings come back when Tendedero quits.";
+"Search this view" = "Search this view";
+"Select an item to view its details" = "Select an item to view its details";
+"Selected files could not be read; nothing was copied" = "Selected files could not be read; nothing was copied";
+"Set copy-latest shortcut" = "Set copy-latest shortcut";
+"Settings" = "Settings";
+"Settings…" = "Settings…";
+"Shelf settings" = "Shelf settings";
+"Shortcut" = "ショートカット";
+"Shortcut unavailable; the previous shortcut is kept" = "Shortcut unavailable; the previous shortcut is kept";
+"Show details" = "Show details";
+"Show in Finder" = "Finderで表示";
+"Show line" = "ロープを表示";
+"Show or hide the line" = "Show or hide the line";
+"Size" = "サイズ";
+"Small" = "小";
+"Soft colors" = "Soft colors";
+"Some app copies could not be moved to Trash" = "Some app copies could not be moved to Trash";
+"Some text copies could not be moved to Trash" = "Some text copies could not be moved to Trash";
+"Sort" = "Sort";
+"Sounds" = "サウンド";
+"Sources" = "Sources";
+"Space" = "スペース";
+"Stop Watching" = "監視を停止";
+"Switch shelf" = "Switch shelf";
+"Tab switches the active shelf" = "Tab switches the active shelf";
+"Tag" = "Tag";
+"Tags" = "Tags";
+"Tags (match all)" = "Tags (match all)";
+"Take a screenshot and it will hang here" = "スクリーンショットを撮ると、ここに吊るされます";
+"Take down" = "外す";
+"Take down everything to the left" = "左側をすべて外す";
+"Take down everything to the right" = "右側をすべて外す";
+"Text" = "Text";
+"Text archive could not be opened; the existing file is kept" = "Text archive could not be opened; the existing file is kept";
+"Text archive is full; new text was not saved" = "Text archive is full; new text was not saved";
+"Text copied" = "Text copied";
+"Text preview" = "Text preview";
+"Texts" = "Texts";
+"Texts appear here after you enable Hang copied text" = "Texts appear here after you enable Hang copied text";
+"This selection is too large to copy; select fewer items" = "This selection is too large to copy; select fewer items";
+"Title" = "Title";
+"Toggle full screen" = "Toggle full screen";
+"Trash" = "Trash";
+"Try another filter or view your recent copies." = "Try another filter or view your recent copies.";
+"Turn on" = "オンにする";
+"Unorganized" = "Unorganized";
+"Unpin" = "ピン留めを解除";
+"Unsaved copies are kept for %d days" = "Unsaved copies are kept for %d days";
+"Unsaved copies expire to recoverable Trash. Saved items and original files are kept." = "Unsaved copies expire to recoverable Trash. Saved items and original files are kept.";
+"Untitled note" = "Untitled note";
+"Use Control or Command with a key" = "Use Control or Command with a key";
+"Use ⌃⌥L" = "Use ⌃⌥L";
+"Version" = "Version";
+"View" = "View";
+"View recent copies" = "View recent copies";
+"Watch" = "監視";
+"Watch up to three folders for new images. Removing a folder leaves its files untouched." = "Watch up to three folders for new images. Removing a folder leaves its files untouched.";
+"When something new hangs" = "新しいものが吊るされたとき";
+"When the pointer rests in the menu bar" = "ポインタがメニューバーにとどまったとき";
+"You can restore them from Library → Trash. Original files stay in place." = "You can restore them from Library → Trash. Original files stay in place.";
+
+// Standard text editing
+"Edit" = "編集";
+"Undo" = "取り消す";
+"Redo" = "やり直す";
+"Cut" = "カット";
+"Paste" = "ペースト";
+"Select all" = "すべてを選択";
+
+"Remove from folder" = "フォルダから外す";
+
+"All types" = "All types";
+"Click the text to edit" = "Click the text to edit";
+"Done" = "Done";
+"Extend selection down" = "Extend selection down";
+"Extend selection up" = "Extend selection up";
+"Finish editing" = "Finish editing";
+"Link thumbnail" = "Link thumbnail";
+"Move down" = "Move down";
+"Move up" = "Move up";
+"Press a key, then click Save shortcut" = "Press a key, then click Save shortcut";
+"Reset all browsing shortcuts" = "Reset all browsing shortcuts";
+"Reset to default" = "Reset to default";
+"Select next item" = "Select next item";
+"Select previous item" = "Select previous item";
+"Set shortcut" = "Set shortcut";
+"Show pinned items" = "Show pinned items";
+"Single keys work while browsing the line, Library or a preview. Typing and standard editing shortcuts stay with the editor." = "Single keys work while browsing the line, Library or a preview. Typing and standard editing shortcuts stay with the editor.";
+"This shortcut is already used for %@" = "This shortcut is already used for %@";
+"This shortcut opens Library from other apps. The browsing shortcut above works on the line." = "This shortcut opens Library from other apps. The browsing shortcut above works on the line.";
+"Visible shelves" = "Visible shelves";
+
+"Browsing shortcuts" = "Browsing shortcuts";
+"Navigation and selection" = "Navigation and selection";
+"Library actions" = "Library actions";
+
+/* Language, status and local image search. */
+"Language" = "Language";
+"System default" = "System default";
+"Reopen to apply language" = "Reopen to apply language";
+"Open edits are saved before the app reopens." = "Open edits are saved before the app reopens.";
+"The app could not reopen. Quit and open it to apply the language." = "The app could not reopen. Quit and open it to apply the language.";
+"The line is empty" = "The line is empty";
+"%d images · %d texts · %d links on the line" = "%d images · %d texts · %d links on the line";
+"Reading images… %d of %d" = "Reading images… %d of %d";
+"Search in" = "Search in";
+"Text and visual content" = "Text and visual content";
+"Text only (including OCR)" = "Text only (including OCR)";
+"Visual content only" = "Visual content only";
+"Image text is read locally. Describe images in English for best visual matches." = "Image text is read locally. Describe images in English for best visual matches.";
+
+"Best match" = "Best match";
+
+"Grid" = "グリッド";
+
+"List" = "リスト";
+
+"More" = "その他";
+
+"Title, Z–A" = "タイトル、Z–A";
+
+"Toggle sidebar" = "サイドバーの表示を切り替える";
+
+"Hide details" = "詳細を非表示";
+
+"Undo take down" = "取り外しを元に戻す";
+"Toggle link shelf" = "リンク棚を切り替え";
+"Toggle text shelf" = "テキスト棚を切り替え";
+"Toggle image shelf" = "画像棚を切り替え";
+"Pin to folder…" = "フォルダにピン留め…";
+"Pin %d items to a folder" = "%d件をフォルダにピン留め";
+"Pin without folder" = "フォルダなしでピン留め";
+
+/* Search across the visible shelves. */
+"Clear search" = "検索をクリア";
+"Search text and OCR" = "テキストとOCRを検索";
+
+"Browse results" = "結果に移動";
+
+"Search shelves" = "棚を検索";
+"Search visible shelves…" = "表示中の棚を検索…";
+
+/* Jump to either end of the active shelf. */
+"First item" = "最初の項目";
+"Last item" = "最後の項目";
+
+/* Keyboard workflow */
+"Paste into previous app" = "前のアプリにペースト";
+"Copy text from image" = "画像のテキストをコピー";
+"Select item %d" = "項目 %d を選択";
+"Search folders…" = "フォルダを検索…";
+"Search tags…" = "タグを検索…";
+"Add tag to %d items" = "%d 項目にタグを追加";
+"Create tag “%@”" = "タグ「%@」を作成";
+"No matching folders" = "一致するフォルダはありません";
+"No matching tags" = "一致するタグはありません";
+"Search shelves from other apps" = "ほかのアプリから棚を検索";
+"This shortcut opens the shelves with search ready." = "このショートカットは検索できる状態で棚を開きます。";
+"Reading image text…" = "画像のテキストを読み取り中…";
+"Image text copied" = "画像のテキストをコピーしました";
+"No text found in image" = "画像にテキストが見つかりません";
+"Image text unavailable" = "画像のテキストを利用できません";
+"Could not copy image text" = "画像のテキストをコピーできませんでした";
+"Accessibility permission is needed to paste into another app." = "ほかのアプリにペーストするにはアクセシビリティの許可が必要です。";
+"Open Accessibility Settings" = "アクセシビリティ設定を開く";
+"Select a text field in another app, then reopen the shelves." = "ほかのアプリでテキスト欄を選択してから、棚を開き直してください。";
+"The target text field changed. Reopen the shelves and try again." = "ペースト先のテキスト欄が変わりました。棚を開き直して、もう一度お試しください。";
+"Could not paste into the target app." = "ペースト先のアプリにペーストできませんでした。";
+"Pasted" = "ペーストしました";
+
+// Manual in-app updates.
+"App updates" = "App updates";
+"Check for an update when you are ready." = "Check for an update when you are ready.";
+"Check for updates…" = "Check for updates…";
+"Checking for updates…" = "Checking for updates…";
+"Disconnect GitHub" = "Disconnect GitHub";
+"Downloading update…" = "Downloading update…";
+"Enter a valid GitHub access token." = "Enter a valid GitHub access token.";
+"For a private repository, create a fine-grained token for this repository with Contents: Read-only. The token is stored in this Mac’s Keychain." = "For a private repository, create a fine-grained token for this repository with Contents: Read-only. The token is stored in this Mac’s Keychain.";
+"GitHub access" = "GitHub access";
+"GitHub access token" = "GitHub access token";
+"GitHub could not access the private repository. Add a token with Contents: Read-only access to this repository." = "GitHub could not access the private repository. Add a token with Contents: Read-only access to this repository.";
+"GitHub could not complete the update request. Try again later." = "GitHub could not complete the update request. Try again later.";
+"GitHub token removed from this Mac." = "GitHub token removed from this Mac.";
+"GitHub token saved in Keychain." = "GitHub token saved in Keychain.";
+"Install and reopen" = "Install and reopen";
+"Quit the app to finish installing the update." = "Quit the app to finish installing the update.";
+"Release notes" = "Release notes";
+"Save token" = "Save token";
+"Save your open edits before installing the update." = "Save your open edits before installing the update.";
+"The GitHub token could not be accessed in Keychain." = "The GitHub token could not be accessed in Keychain.";
+"The update download has an unexpected size." = "The update download has an unexpected size.";
+"The update was not installed." = "The update was not installed.";
+"Token saved" = "Token saved";
+"Update check could not be completed." = "Update check could not be completed.";
+"Updates are available in the installed review app." = "Updates are available in the installed review app.";
+"Updates are downloaded only when you choose Install. Your history and settings stay on this Mac." = "Updates are downloaded only when you choose Install. Your history and settings stay on this Mac.";
+"Verifying update…" = "Verifying update…";
+"Version %@ is ready to install." = "Version %@ is ready to install.";
+"You are up to date." = "You are up to date.";
+
+/* Image markup additions. */
+"Annotation color" = "注釈の色";
+"Annotation text" = "注釈テキスト";
+"Arrow" = "矢印";
+"Clear annotations" = "注釈を消去";
+"Delete annotation" = "注釈を削除";
+"Ellipse" = "楕円";
+"Fill shape" = "図形を塗りつぶす";
+"Heavy" = "極太";
+"Image markup" = "画像にマークアップ";
+"Line" = "線";
+"Marker" = "マーカー";
+"Markup status" = "マークアップの状態";
+"Pen" = "ペン";
+"Rectangle" = "長方形";
+"Select annotation" = "注釈を選択";
+"Stroke width" = "線の太さ";
+"Text annotation" = "テキストを追加";
+"Thick" = "太い";
+"Thin" = "細い";
+
+"Markup image" = "画像にマークアップ";
+
+"Image changes could not be saved. Your edits are still here." = "画像の変更を保存できませんでした。編集内容はここに保持されています。";
+
+"Image changes saved" = "画像の変更を保存しました";
+
+"Unsaved image changes" = "未保存の画像の変更";
+
+"Very large" = "特大";
+
+"Annotation text size" = "注釈テキストのサイズ";
+"Authorize saved token…" = "保存済みトークンを承認…";
+"macOS may ask once for access to a previously saved token. App updates keep this authorization." = "保存済みトークンへのアクセス時に、macOSが一度だけ承認を求める場合があります。アプリの更新後も承認は維持されます。";
+
+/* Automatic update checks. */
+"Automatically check for updates" = "アップデートを自動的に確認";
+"Checks at launch, every 12 hours and when you open About. Installation starts only when you choose." = "起動時、12時間ごと、「このアプリについて」を開いたときに確認します。インストールは選択したときにのみ開始します。";
+"Update available" = "アップデートがあります";
+"clipboard-app %@ is ready to install." = "clipboard-app %@をインストールできます。";
+"Install update…" = "アップデートをインストール…";
+"New versions also appear in the menu bar. macOS may ask to allow notifications." = "新しいバージョンはメニューバーにも表示されます。macOSが通知の許可を求める場合があります。";
+
+"Name and pin…" = "名前を付けてピン留め…";
+"Add a name for search…" = "検索用の名前を追加…";
+"Pin with name" = "名前を付けてピン留め";
+"Enter a name (1–160 characters)" = "名前を入力してください（1〜160文字）";
+"Item %d of %d" = "項目 %d / %d";
+"Save and next" = "保存して次へ";
+"This item is no longer available. Press Esc to leave." = "この項目は利用できなくなりました。Esc キーで閉じてください。";
+"Annotation style" = "注釈のスタイル";
+"More annotation actions" = "その他の注釈操作";
+"Annotation tool" = "注釈ツール";
+
+"Previous shelf page" = "前の棚ページ";
+
+"Next shelf page" = "次の棚ページ";
+
+/* Searchable action bar. */
+"Actions" = "アクション";
+"Available on the shelves" = "シェルフで使用できます";
+"Available on the shelves or in Library" = "シェルフまたはライブラリで使用できます";
+"Edit item details" = "項目の詳細を編集";
+"Finish editing first" = "先に編集を完了してください";
+"Library unavailable" = "ライブラリを利用できません";
+"Library views" = "ライブラリの表示";
+"No annotations to clear" = "消去する注釈がありません";
+"No images on the line" = "シェルフに画像がありません";
+"No items in this view" = "この表示に項目がありません";
+"No items to the left" = "左側に項目がありません";
+"No items to the right" = "右側に項目がありません";
+"No matching actions" = "一致するアクションがありません";
+"No update available" = "利用可能なアップデートはありません";
+"Nothing to redo" = "やり直す操作がありません";
+"Nothing to undo" = "取り消す操作がありません";
+"Open a shelf or Library first" = "先にシェルフまたはライブラリを開いてください";
+"Organization" = "整理";
+"Run action" = "アクションを実行";
+"Search" = "検索";
+"Search actions…" = "アクションを検索…";
+"Search contents" = "コンテンツを検索";
+"Search library" = "ライブラリを検索";
+"Search visible shelves: text, links and image OCR" = "表示中のシェルフを検索：テキスト、リンク、画像のOCR";
+"Select a folder first" = "先にフォルダを選択してください";
+"Select a link first" = "先にリンクを選択してください";
+"Select a tag first" = "先にタグを選択してください";
+"Select a text item first" = "先にテキスト項目を選択してください";
+"Select a top-level folder first" = "先に最上位のフォルダを選択してください";
+"Select a video first" = "先にビデオを選択してください";
+"Select an annotation first" = "先に注釈を選択してください";
+"Select an image in the screenshots inbox first" = "先にスクリーンショットの受信箱で画像を選択してください";
+"Select an item first" = "先に項目を選択してください";
+"Select an item in Trash first" = "先にゴミ箱の項目を選択してください";
+"Select items in a different folder first" = "先に別のフォルダの項目を選択してください";
+"Select one image first" = "先に画像を1つ選択してください";
+"Select one item first" = "先に項目を1つ選択してください";
+"Selected item" = "選択中の項目";
+"Shelves" = "シェルフ";
+"Start editing text first" = "先にテキストの編集を開始してください";
+"Start image markup first" = "先に画像のマークアップを開始してください";
+"Trim video" = "ビデオをトリミング";
+"Update checks unavailable" = "アップデートを確認できません";
+
+// Image cropping
+"Crop image" = "画像を切り抜く";
+"Apply crop" = "切り抜きを適用";
+"Reset crop" = "切り抜きをリセット";
+"Cancel crop" = "切り抜きをキャンセル";
+"Drag to select the crop area. Enter applies; Esc cancels." = "ドラッグして切り抜く範囲を選択します。Enterで適用、Escでキャンセルします。";
+
+// macOS 27 names the former Accessibility permission differently.
+"Allow this app in Privacy & Security → Device Control and Data Access to paste into another app." = "ほかのアプリにペーストするには、「プライバシーとセキュリティ」→「Device Control and Data Access」でこのアプリを許可してください。";
+"Open Device Control and Data Access" = "Device Control and Data Accessを開く";
+"Last checked" = "最終確認";
+
+"Updates" = "Updates";
+
+"Update…" = "Update…";
+
+"Checks at launch and every hour. You choose when to download and install." = "Checks at launch and every hour. You choose when to download and install.";
+
+"Signed updates · No account or token needed" = "Signed updates · No account or token needed";
+
+"Copies to clear" = "Copies to clear";
+
+"%d unsaved copies" = "%d unsaved copies";
+
+"Clear unsaved copies…" = "Clear unsaved copies…";
+
+"Clear unsaved copies?" = "Clear unsaved copies?";
+
+"%d unsaved copies will move to recoverable Library Trash. Pinned items, saved items, folders, tags and original files are kept." = "%d unsaved copies will move to recoverable Library Trash. Pinned items, saved items, folders, tags and original files are kept.";
+
+
+"A shortcut could not be restored after recording. Choose another combination in Settings." = "記録後にショートカットを復元できませんでした。設定で別のキーの組み合わせを選択してください。";
+
+"Focus next pane" = "次のペインにフォーカス";
+
+"Focus previous pane" = "前のペインにフォーカス";
+
+"Undo Move to Trash" = "ゴミ箱への移動を取り消す";
