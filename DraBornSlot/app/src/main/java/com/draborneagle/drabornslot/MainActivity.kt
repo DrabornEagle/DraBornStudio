@@ -23,7 +23,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-/** DraBornSlot 0.3 – single-device Android UI, clear service diagnostics. */
+/** DraBornSlot 0.4 – single-device slot sync and clearer controls. */
 @Suppress("DEPRECATION")
 class MainActivity : Activity() {
     private val bg = Color.rgb(8, 17, 31)
@@ -53,7 +53,7 @@ class MainActivity : Activity() {
     private var selectedDate = LocalDate.now()
     private val selectedSlots = linkedSetOf<String>()
     private var live = false
-    private var interval = 10
+    private var interval = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,7 +83,7 @@ class MainActivity : Activity() {
         val brand = horizontal().apply { gravity = Gravity.CENTER_VERTICAL }
         brand.addView(text("◉", 28, mint, true))
         brand.addView(text("  DraBornSlot", 25, white, true), LinearLayout.LayoutParams(0, -2, 1f))
-        brand.addView(pill("v0.3", mint, Color.rgb(12, 61, 58), 12))
+        brand.addView(pill("v0.4", mint, Color.rgb(12, 61, 58), 12))
         root.addView(brand)
         root.addView(text("SLOT KONTROL MERKEZİ", 11, muted, true).apply { letterSpacing = 0.18f }, pad(top = 3, bottom = 15))
 
@@ -116,7 +116,7 @@ class MainActivity : Activity() {
         }
         topRow.addView(selectAll)
         root.addView(topRow)
-        root.addView(text("Saatleri tek dokunuşla seç. 00:00 sonrası aralıklar da dahil.", 12, muted), pad(bottom = 11))
+        root.addView(text("Bir saati kaldırıp Kaydet ve Uygula dersen, yalnızca o saatin Trendyol GO üzerindeki kırmızı X düğmesi hedeflenir. Seçili hedef saatlere tekrar dokunulmaz.", 12, muted), pad(bottom = 11))
         slotSections = vertical()
         root.addView(slotSections, pad(bottom = 18))
         updateSlots()
@@ -138,17 +138,17 @@ class MainActivity : Activity() {
         controlCard.addView(swRow)
         controlCard.addView(divider(), LinearLayout.LayoutParams(-1, 1.dp()).apply { topMargin = 10.dp(); bottomMargin = 13.dp() })
         controlCard.addView(text("GÖRÜNÜR EKRAN TARAMASI", 11, sky, true))
-        controlCard.addView(text("Her 1 saniyede kontrol (Android sınırları içinde)", 12, white), pad(bottom = 12))
+        controlCard.addView(text("Görünen saatler yaklaşık her saniye kontrol edilir. Sayfa yenileme ayrı ayarlanır.", 12, white), pad(bottom = 12))
         intervalText = text("Sayfayı yenile: ${interval} sn", 13, white, true)
         controlCard.addView(intervalText)
         val seek = SeekBar(this).apply {
-            max = 11
-            progress = ((interval - 5) / 5).coerceIn(0, 11)
+            max = 59
+            progress = (interval - 1).coerceIn(0, 59)
             progressTintList = android.content.res.ColorStateList.valueOf(mint)
             thumbTintList = android.content.res.ColorStateList.valueOf(mint)
             setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                    interval = 5 + progress * 5
+                    interval = 1 + progress
                     intervalText.text = "Sayfayı yenile: ${interval} sn"
                 }
                 override fun onStartTrackingTouch(seekBar: SeekBar?) = Unit
@@ -156,8 +156,8 @@ class MainActivity : Activity() {
             })
         }
         controlCard.addView(seek)
-        controlCard.addView(text("5 sn (hızlı)                      60 sn (seyrek)", 10, muted))
-        controlCard.addView(text("Not: 1 saniyelik tarama, sunucudan her saniye yeni slot bilgisi alınacağı anlamına gelmez.", 11, muted), pad(top = 10))
+        controlCard.addView(text("1 sn (hızlı)                      60 sn (seyrek)", 10, muted))
+        controlCard.addView(text("1 sn yenileme yalnızca yenile düğmesi görünürken ve dokunma işlemi yokken denenir; kesin slot garantisi yoktur.", 11, muted), pad(top = 10))
         root.addView(controlCard, pad(bottom = 15))
         setModeButtons()
 
@@ -250,11 +250,25 @@ class MainActivity : Activity() {
     }
 
     private fun save() {
-        if (selectedSlots.isEmpty()) { toast("Önce en az bir saat seç"); return }
+        val before = SettingsStore.read(this)
+        if (selectedSlots.isEmpty() && before.slots.isEmpty() &&
+            SettingsStore.pendingRemovals(this, selectedDate.toString()).isEmpty()) {
+            toast("Önce en az bir saat seç")
+            return
+        }
+        val removed = if (before.date == selectedDate.toString()) {
+            before.slots.filterNot { it in selectedSlots }
+        } else emptyList()
         val config = SettingsStore.Config(activeSwitch.isChecked, !live, selectedDate.toString(), selectedSlots.toList(), interval)
         SettingsStore.save(this, config)
-        EventLog.write(this, "v0.3 ayarlar kaydedildi: ${config.date}, ${config.slots.size} slot, ${if (live) "CANLI" else "İZLEME"}; tarama 1 sn, yenileme ${interval} sn")
-        toast(if (live) "Canlı mod kaydedildi. Trendyol GO saat ekranını aç." else "İzleme tercihleri kaydedildi")
+        if (removed.isNotEmpty())
+            EventLog.write(this, "SİLME TALİMATI: ${removed.joinToString(", ")} için kaldırma isteği kaydedildi.")
+        EventLog.write(this, "v0.4 ayarlar kaydedildi: ${config.date}, ${config.slots.size} hedef, ${if (live) "CANLI" else "İZLEME"}; yenileme ${interval} sn")
+        toast(when {
+            removed.isNotEmpty() && live -> "${removed.size} kaldırma isteği kaydedildi. Trendyol GO'da doğru günü aç."
+            live -> "Canlı mod kaydedildi. Trendyol GO saat ekranını aç."
+            else -> "İzleme tercihleri kaydedildi."
+        })
         refreshStatus()
     }
 
