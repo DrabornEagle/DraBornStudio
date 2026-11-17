@@ -38,17 +38,35 @@ object SettingsStore {
             pref.getBoolean("dry_run", true),
             pref.getString("date", LocalDate.now().toString()) ?: LocalDate.now().toString(),
             slotLines(pref.getString("slots", "08:00-08:30\n08:30-09:00") ?: ""),
-            pref.getInt("refresh_seconds", 10).coerceIn(5, 60)
+            if (pref.getBoolean("refresh_v04_migrated", false)) pref.getInt("refresh_seconds", 1).coerceIn(1, 60) else 1
         )
     }
 
+    /** Explicit removal queue: only deselections saved for the same day. */
+    fun pendingRemovals(context: Context, date: String): List<String> =
+        slotLines(p(context).getString("pending-removals-$date", "") ?: "")
+
+    fun completeRemoval(context: Context, date: String, slot: String) {
+        val remaining = pendingRemovals(context, date).filterNot { it == slot }
+        p(context).edit().putString("pending-removals-$date", remaining.joinToString("\n")).apply()
+        unmarkUiConfirmed(context, date, slot)
+    }
+
     fun save(context: Context, config: Config) {
+        val previous = read(context)
+        val newlyRemoved = if (previous.date == config.date) {
+            previous.slots.filterNot { it in config.slots }
+        } else emptyList()
+        val queue = (pendingRemovals(context, config.date) + newlyRemoved)
+            .distinct().filterNot { it in config.slots }
         p(context).edit()
             .putBoolean("active", config.active)
             .putBoolean("dry_run", config.dryRun)
             .putString("date", config.date)
             .putString("slots", config.slots.joinToString("\n"))
-            .putInt("refresh_seconds", config.refreshSeconds.coerceIn(5, 60))
+            .putString("pending-removals-${config.date}", queue.joinToString("\n"))
+            .putInt("refresh_seconds", config.refreshSeconds.coerceIn(1, 60))
+            .putBoolean("refresh_v04_migrated", true)
             .apply()
     }
 
