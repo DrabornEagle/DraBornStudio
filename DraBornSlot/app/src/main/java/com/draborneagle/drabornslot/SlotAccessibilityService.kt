@@ -41,7 +41,6 @@ class SlotAccessibilityService : AccessibilityService() {
     private var scrollAttempts = 0
     private val lastMessages = mutableMapOf<String, Long>()
     private val lastAttempt = mutableMapOf<String, Long>()
-    private val stableGreen = mutableMapOf<String, Int>()
     private var lastSlotMutation = 0L
 
     private data class FoundRow(val slot: String, val bounds: Rect)
@@ -227,7 +226,6 @@ class SlotAccessibilityService : AccessibilityService() {
         for (row in targets) {
             val red = findRedRemoveButton(bitmap, row.bounds)
             if (row.slot in config.slots && red != null) {
-                stableGreen.remove("$date|${row.slot}")
                 if (!SettingsStore.isUiConfirmed(this, date, row.slot)) {
                     SettingsStore.markUiConfirmed(this, date, row.slot)
                     EventLog.write(this, "ARAYÜZDE SEÇİLDİ: ${row.slot} (kırmızı X görüldü; kesin rezervasyon onayı değildir).")
@@ -270,17 +268,13 @@ class SlotAccessibilityService : AccessibilityService() {
             val key = "$date|$slot"
             // A red X is a selected state, never a button to tap for this slot.
             if (findRedRemoveButton(bitmap, row.bounds) != null) {
-                stableGreen.remove(key)
                 continue
             }
+            // Durable lock: an already-selected desired slot must NEVER be
+            // tapped again automatically, even if a reload briefly looks green.
+            // The user can explicitly remove it from DraBornSlot to unlock.
+            if (SettingsStore.isUiConfirmed(this, date, slot)) continue
             val plus = findGreenPlus(bitmap, row.bounds) ?: continue
-            if (SettingsStore.isUiConfirmed(this, date, slot)) {
-                val seen = (stableGreen[key] ?: 0) + 1
-                stableGreen[key] = seen
-                if (seen < 2) continue
-                SettingsStore.unmarkUiConfirmed(this, date, slot)
-                EventLog.write(this, "BİLGİ: $slot art arda iki taramada yeşil + durumunda; yeniden seçim mümkün.")
-            }
             val attemptKey = "select-$key"
             if (now - (lastAttempt[attemptKey] ?: 0L) < 8_000L) continue
             if (config.dryRun) {
