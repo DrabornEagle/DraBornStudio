@@ -1,0 +1,50 @@
+name: DraBornSlot Android APK
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'DraBornSlot/source.tar.xz.b64'
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Extract DraBornSlot source
+        run: |
+          base64 --decode DraBornSlot/source.tar.xz.b64 > /tmp/drabornslot-source.tar.xz
+          tar -xJf /tmp/drabornslot-source.tar.xz -C DraBornSlot
+      - name: Publish extracted project files
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add DraBornSlot
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add DraBornSlot v0.1 Android project source'
+            git push origin HEAD:main
+          fi
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install Android SDK
+        uses: android-actions/setup-android@v3
+      - name: Set up Gradle 8.9
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Install Android 35 SDK
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Compile debug APK
+        run: gradle --no-daemon -p DraBornSlot :app:assembleDebug
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: DraBornSlot-v0.1-debug-APK
+          path: DraBornSlot/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
