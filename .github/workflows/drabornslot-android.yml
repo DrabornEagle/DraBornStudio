@@ -4,7 +4,9 @@ on:
   push:
     branches: [main]
     paths:
-      - 'DraBornSlot/source.part*'
+      - 'DraBornSlot/app/**'
+      - 'DraBornSlot/*.gradle.kts'
+      - 'DraBornSlot/gradle.properties'
       - '.github/workflows/drabornslot-android.yml'
 permissions:
   contents: write
@@ -14,20 +16,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Extract DraBornSlot source
-        run: |
-          cat DraBornSlot/source.part1 DraBornSlot/source.part2 DraBornSlot/source.part3 | base64 --decode > /tmp/drabornslot-source.tar.xz
-          tar -xJf /tmp/drabornslot-source.tar.xz -C DraBornSlot
-      - name: Publish extracted project files
-        continue-on-error: true
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add DraBornSlot
-          if ! git diff --cached --quiet; then
-            git commit -m 'Add DraBornSlot v0.1 Android project source'
-            git push origin HEAD:main
-          fi
       - name: Set up Java 17
         uses: actions/setup-java@v4
         with:
