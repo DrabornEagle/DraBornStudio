@@ -17,17 +17,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Import DraBornSlot v0.2 sources
+      - name: Import DraBornSlot v0.3 sources
         if: ${{ hashFiles('DraBornSlot/source-v0.2.b64') != '' }}
         run: |
-          base64 --decode DraBornSlot/source-v0.2.b64 > /tmp/drabornslot-v0.2.tar.xz
-          tar -xJf /tmp/drabornslot-v0.2.tar.xz -C DraBornSlot
+          base64 --decode DraBornSlot/source-v0.2.b64 > /tmp/drabornslot-v0.3.tar.xz
+          tar -xJf /tmp/drabornslot-v0.3.tar.xz -C DraBornSlot
           rm DraBornSlot/source-v0.2.b64
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A DraBornSlot
           if ! git diff --cached --quiet; then
-            git commit -m "feat: DraBornSlot v0.2 modern UI and live slot interactions"
+            git commit -m "feat: DraBornSlot v0.3 modern UI and live slot interactions"
             git push origin HEAD:main
           fi
       - name: Set up Java 17
@@ -57,9 +57,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           APK='DraBornSlot/app/build/outputs/apk/debug/app-debug.apk'
-          TAG='drabornslot-v0.2'
+          TAG='drabornslot-v0.3'
           if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release upload "$TAG" "$APK#DraBornSlot-v0.2-debug.apk" --clobber
+            gh release upload "$TAG" "$APK#DraBornSlot-v0.3-debug.apk" --clobber
           else
-            gh release create "$TAG" "$APK#DraBornSlot-v0.2-debug.apk" --title 'DraBornSlot v0.2' --notes 'Yeni koyu temalı saat seçim arayüzü ve kullanıcının açıkça etkinleştirdiği canlı UI otomasyonu. Gerçek cihazda uçtan uca rezervasyon testi henüz tamamlanmadı; kesin rezervasyon garantisi yoktur.'
+            gh release create "$TAG" "$APK#DraBornSlot-v0.3-debug.apk" --title 'DraBornSlot v0.3' --notes 'Tek telefonda 1 sn ekran kontrolü, deneme engeli düzeltmesi ve okunabilir işlem kartları. Gerçek rezervasyon kesinleşmesi cihazda doğrulanmalıdır.'
           fi
