@@ -1,16 +1,6 @@
-# DraBornSlot v0.3 — Tek telefonda slot ekranı ajanı
+# DraBornSlot v0.4
 
 Android Kotlin + AccessibilityService ile Trendyol GO uygulamasının **görünür** saat ekranını kullanıcının açık izniyle izlemek ve hedef saatler için yeşil `+` tuşlarına dokunmayı denemek üzere hazırlanmıştır.
-
-## Yeni
-- Ekran kontrolü yaklaşık **1 saniye aralıklarla**; Android'in ekran görüntüsü hız sınırlamalarına uyar. Bu **1 saniyede sunucudan slot çekileceği** anlamına gelmez.
-- Sayfayı yenileme aralığı **5–60 saniye** olarak ayrı kontrol edilir (varsayılan 10 saniye).
-- Artık **iki başarısız girişimden sonra kalıcı engelleme** yok; 15 saniyelik en az deneme aralığı var.
-- Seçili gün başlığı aşağı kaydırılıp görünmez olduğunda aynı uygulama oturumundaki doğrulanmış tarih korunur. Uygulama değişince tarih doğrulaması sıfırlanır.
-- Yeşil `+` ve kırmızı `X` görsel taraması **ilgili satırla sınırlandırıldı**.
-- Son 35 kayıt, renkli sınıflandırılmış işlem kartlarıyla gösterilir.
-- Erişilebilirlik hizmeti ana ekranında bir **kalp atışı** kontrolü yapılır. Android izin anahtarı açık fakat servis çalışmıyorsa bu ayrımı gösterir.
-- Günler: bugünden itibaren 7 gün; slotlar 08:00 ile 23:59 arasında ve sonraki 00:00–01:00 dilimi; 8 hedef slot.
 
 ## Kurulum
 1. APK'yi Android 11+ cihaza yükle. v0.2 ile aynı uygulama kimliği ve GitHub Actions debug imzası kullanılır; imza farklıysa mevcut uygulamayı kaldırmadan önce tercihlerini not al.
