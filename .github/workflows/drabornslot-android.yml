@@ -7,6 +7,7 @@ on:
       - 'DraBornSlot/app/**'
       - 'DraBornSlot/*.gradle.kts'
       - 'DraBornSlot/gradle.properties'
+      - 'DraBornSlot/source-v0.2.b64'
       - '.github/workflows/drabornslot-android.yml'
 permissions:
   contents: write
@@ -16,6 +17,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Import DraBornSlot v0.2 sources
+        if: ${{ hashFiles('DraBornSlot/source-v0.2.b64') != '' }}
+        run: |
+          base64 --decode DraBornSlot/source-v0.2.b64 > /tmp/drabornslot-v0.2.tar.xz
+          tar -xJf /tmp/drabornslot-v0.2.tar.xz -C DraBornSlot
+          rm DraBornSlot/source-v0.2.b64
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A DraBornSlot
+          if ! git diff --cached --quiet; then
+            git commit -m "feat: DraBornSlot v0.2 modern UI and live slot interactions"
+            git push origin HEAD:main
+          fi
       - name: Set up Java 17
         uses: actions/setup-java@v4
         with:
@@ -27,7 +41,6 @@ jobs:
           gradle-version: '8.9'
       - name: Install Android 35 SDK
         run: |
-          echo "ANDROID_HOME=$ANDROID_HOME"
           SDKMANAGER="$(find "$ANDROID_HOME/cmdline-tools" -type f -name sdkmanager -print -quit)"
           test -n "$SDKMANAGER"
           "$SDKMANAGER" 'platforms;android-35' 'build-tools;35.0.0'
@@ -36,7 +49,7 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: DraBornSlot-v0.1-debug-APK
+          name: DraBornSlot-v0.2-debug-APK
           path: DraBornSlot/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
       - name: Publish APK to GitHub Release
@@ -44,9 +57,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           APK='DraBornSlot/app/build/outputs/apk/debug/app-debug.apk'
-          TAG='drabornslot-v0.1'
+          TAG='drabornslot-v0.2'
           if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release upload "$TAG" "$APK#DraBornSlot-v0.1-debug.apk" --clobber
+            gh release upload "$TAG" "$APK#DraBornSlot-v0.2-debug.apk" --clobber
           else
-            gh release create "$TAG" "$APK#DraBornSlot-v0.1-debug.apk" --title 'DraBornSlot v0.1 (test APK)' --notes 'Android debug APK. Erişilebilirlik tabanlı deneysel slot otomasyonu; rezervasyon doğrulama ve 7/24 kusursuz çalışma garantisi yoktur.'
+            gh release create "$TAG" "$APK#DraBornSlot-v0.2-debug.apk" --title 'DraBornSlot v0.2' --notes 'Yeni koyu temalı saat seçim arayüzü ve kullanıcının açıkça etkinleştirdiği canlı UI otomasyonu. Gerçek cihazda uçtan uca rezervasyon testi henüz tamamlanmadı; kesin rezervasyon garantisi yoktur.'
           fi
