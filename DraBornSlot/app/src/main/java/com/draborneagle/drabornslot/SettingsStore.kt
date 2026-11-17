@@ -38,7 +38,7 @@ object SettingsStore {
             pref.getBoolean("dry_run", true),
             pref.getString("date", LocalDate.now().toString()) ?: LocalDate.now().toString(),
             slotLines(pref.getString("slots", "08:00-08:30\n08:30-09:00") ?: ""),
-            pref.getInt("refresh_seconds", 15).coerceIn(15, 300)
+            pref.getInt("refresh_seconds", 10).coerceIn(5, 60)
         )
     }
 
@@ -48,8 +48,18 @@ object SettingsStore {
             .putBoolean("dry_run", config.dryRun)
             .putString("date", config.date)
             .putString("slots", config.slots.joinToString("\n"))
-            .putInt("refresh_seconds", config.refreshSeconds.coerceIn(15, 300))
+            .putInt("refresh_seconds", config.refreshSeconds.coerceIn(5, 60))
             .apply()
+    }
+
+    fun heartbeat(context: Context, at: Long = System.currentTimeMillis()) {
+        p(context).edit().putLong("agent_heartbeat", at).apply()
+    }
+
+    fun lastHeartbeat(context: Context): Long = p(context).getLong("agent_heartbeat", 0L)
+
+    fun unmarkUiConfirmed(context: Context, date: String, slot: String) {
+        p(context).edit().remove("ui-confirmed-$date-$slot").apply()
     }
 
     fun attemptCount(context: Context, date: String, slot: String): Int =

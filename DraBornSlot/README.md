@@ -1,34 +1,28 @@
-# DraBornSlot v0.2 — Android Slot Kontrol Merkezi
+# DraBornSlot v0.3 — Tek telefonda slot ekranı ajanı
 
-DraBornSlot, kullanıcının bizzat seçip etkinleştirdiği saatleri **Trendyol GO'nun görünür uygulama ekranı** üzerinden kontrol eden Android erişilebilirlik otomasyonu. Resmî Trendyol GO API bağlantısı yoktur. Bu sürüm canlı tıklama yapabilen **deneysel** bir yapı sunar; gerçek hesapta uçtan uca rezervasyon onayı henüz doğrulanmamıştır.
+Android Kotlin + AccessibilityService ile Trendyol GO uygulamasının **görünür** saat ekranını kullanıcının açık izniyle izlemek ve hedef saatler için yeşil `+` tuşlarına dokunmayı denemek üzere hazırlanmıştır.
 
-## Yeni arayüz
-- Modern koyu lacivert / mint / mavi tasarım; panel, durum göstergesi ve daha okunur işlem geçmişi.
-- Önümüzdeki 7 gün için seçilebilir tarih kartları.
-- 30 dakikalık dokun-seç slotlar, 08:00–23:30 arası, **23:30–23:59** dahil ve uygulama ekranındaki gibi **00:00–00:30 / 00:30–01:00** gece yarısı aralıkları.
-- En fazla 8 slot; seçilenler yeşil renkte. Önceden kaydedilen tercihleri korur.
-- Güncelleme aralığı için 15–300 saniyelik kaydırıcı (1 saniye girilmesi artık mümkün değil).
-- İzleme modu / açık onay sonrası Canlı seçim modu.
-- Erişilebilirlik durumunu gösterir; uygulama olay kayıtlarını saklar.
+## Yeni
+- Ekran kontrolü yaklaşık **1 saniye aralıklarla**; Android'in ekran görüntüsü hız sınırlamalarına uyar. Bu **1 saniyede sunucudan slot çekileceği** anlamına gelmez.
+- Sayfayı yenileme aralığı **5–60 saniye** olarak ayrı kontrol edilir (varsayılan 10 saniye).
+- Artık **iki başarısız girişimden sonra kalıcı engelleme** yok; 15 saniyelik en az deneme aralığı var.
+- Seçili gün başlığı aşağı kaydırılıp görünmez olduğunda aynı uygulama oturumundaki doğrulanmış tarih korunur. Uygulama değişince tarih doğrulaması sıfırlanır.
+- Yeşil `+` ve kırmızı `X` görsel taraması **ilgili satırla sınırlandırıldı**.
+- Son 35 kayıt, renkli sınıflandırılmış işlem kartlarıyla gösterilir.
+- Erişilebilirlik hizmeti ana ekranında bir **kalp atışı** kontrolü yapılır. Android izin anahtarı açık fakat servis çalışmıyorsa bu ayrımı gösterir.
+- Günler: bugünden itibaren 7 gün; slotlar 08:00 ile 23:59 arasında ve sonraki 00:00–01:00 dilimi; 8 hedef slot.
 
-## Canlı mod ve sınırlamalar
+## Kurulum
+1. APK'yi Android 11+ cihaza yükle. v0.2 ile aynı uygulama kimliği ve GitHub Actions debug imzası kullanılır; imza farklıysa mevcut uygulamayı kaldırmadan önce tercihlerini not al.
+2. Android ayarlarından DraBornSlot erişilebilirlik iznini ver.
+3. Xiaomi/HyperOS cihazlarında uygulamaya arka plan çalıştırma izni ve uygun pil kısıtlaması istisnası tanımla.
+4. DraBornSlot'ta tarih, saatler ve canlı modu seçip **KAYDET VE UYGULA** düğmesine bas.
+5. **Aynı telefonda** Trendyol GO'yu aç; doğru tarihi ve tüm saatler ekranını göster. Ekranı açık ve kilitsiz tut.
+6. Kayıtları incelemek için DraBornSlot'a dön; ardından tekrar Trendyol GO'ya geç.
 
-1. DraBornSlot'u erişilebilirlik servisi üzerinden aç; oturum açılmış Trendyol GO'da *Tüm Saatler* ekranını aç.
-2. Gün ve saatleri seç. **Canlı seçim** bölümünü açıp onayla; ajan anahtarını etkinleştir ve **Kaydet ve Uygula**'ya bas.
-3. İkinci Android cihaz açık, şarjda, ekranı kilitsiz, Trendyol GO ön planda kalsın. **Ana telefonun kapalı olabilir**, ancak ajan cihazı kapalı olamaz.
-4. Canlı mod yalnızca görünür ve yeşil `+` olan hedef slotlara dokunur. Kırmızı `X` görünürse bunu arayüz düzeyinde seçildi olarak kaydeder; kesin rezervasyon onayı için Trendyol GO **Kayıtlı Saatler** sekmesini elle kontrol et.
-5. Ekran dışındaki tercihler için kontrollü dikey kaydırma yapmayı dener. Bu davranış tüm telefonlarda doğrulanmamıştır. Android arka plan, kilit, batarya ve üretici sınırlarına tabidir.
-
-**Önemli:** Otomasyon platformun hizmet koşulları ile uyumlu olmalıdır. CAPTCHA, 2FA, rate-limit ya da erişim engeli aşma, özel API'lere bağlanma, token/cookie alma yoktur. Ajanın telefon kapalıyken aynı telefonda çalışması mümkün değildir. Rezervasyon garantisi verilmez.
-
-## APK
-
-GitHub Actions üzerinden Gradle 8.9 + JDK 17 + Android SDK 35 ile debug APK derlenir. GitHub Release dosyası **DraBornSlot-v0.2-debug.apk** adıyla yayımlanır. Derleme tamamlandıktan sonra `https://github.com/DrabornEagle/DraBornStudio/releases/tag/drabornslot-v0.2` bağlantısından indirilebilir.
-
-## Teknik notlar
-
-- Paket adı: `com.draborneagle.drabornslot`
-- Min SDK: 30, target SDK: 35.
-- Kod: Kotlin, platform Android Views, AccessibilityService, Screenshot API, GestureDescription.
-- Ses, fotoğraf, hesap şifresi ya da gizli session verisi bir sunucuya gönderilmez.
-- Ekran görüntüsü örnekli algılayıcı, telefonların erişilebilirlik metin ağacına bağlıdır; görünmeyen slotlar için resmî API mevcut değildir.
+## Sınırlamalar
+- Telefon ekranı kilitliyken, cihaz kapalıyken veya uygulama başka bir ekrandayken görünür ekran otomasyonu işlemez.
+- 1 saniyelik lokal kontrol, ağdaki slot açılışını aynı saniyede yakalamayı **garanti etmez**.
+- Kırmızı `X` yalnızca arayüz işaretidir, rezervasyonun kesinleştiğini kanıtlamaz; **Kayıtlı Saatler** ile ayrıca doğrula.
+- Trendyol GO'nun kullanıcı sözleşmesine uygunluk değerlendirmesi kullanıcı sorumluluğundadır; özel API / kimlik doğrulama atlatma yok.
+- İşlem günlüğü hata, dokunma denemesi ve ekranda görülen seçimi ayırır; Android'de `Bu hizmet hatalı çalışıyor` uyarısı devam ederse **ADB logcat** ile istisna kaydı gerekir. Bu sürüm gerçek cihazda tam doğrulanmış değildir.

@@ -23,7 +23,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-/** DraBornSlot 0.2 – native Android, no external UI/runtime dependencies. */
+/** DraBornSlot 0.3 – single-device Android UI, clear service diagnostics. */
 @Suppress("DEPRECATION")
 class MainActivity : Activity() {
     private val bg = Color.rgb(8, 17, 31)
@@ -45,7 +45,7 @@ class MainActivity : Activity() {
     private lateinit var statusText: TextView
     private lateinit var countText: TextView
     private lateinit var startButton: TextView
-    private lateinit var logs: TextView
+    private lateinit var logItems: LinearLayout
     private lateinit var intervalText: TextView
     private lateinit var liveButton: TextView
     private lateinit var testButton: TextView
@@ -53,7 +53,7 @@ class MainActivity : Activity() {
     private var selectedDate = LocalDate.now()
     private val selectedSlots = linkedSetOf<String>()
     private var live = false
-    private var interval = 15
+    private var interval = 10
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,7 +83,7 @@ class MainActivity : Activity() {
         val brand = horizontal().apply { gravity = Gravity.CENTER_VERTICAL }
         brand.addView(text("◉", 28, mint, true))
         brand.addView(text("  DraBornSlot", 25, white, true), LinearLayout.LayoutParams(0, -2, 1f))
-        brand.addView(pill("v0.2", mint, Color.rgb(12, 61, 58), 12))
+        brand.addView(pill("v0.3", mint, Color.rgb(12, 61, 58), 12))
         root.addView(brand)
         root.addView(text("SLOT KONTROL MERKEZİ", 11, muted, true).apply { letterSpacing = 0.18f }, pad(top = 3, bottom = 15))
 
@@ -92,15 +92,16 @@ class MainActivity : Activity() {
             background = GradientDrawable(GradientDrawable.Orientation.TL_BR, intArrayOf(Color.rgb(19, 67, 80), Color.rgb(26, 44, 83))).apply { cornerRadius = 22.dp().toFloat() }
         }
         hero.addView(text("●  AKILLI TAKİP", 12, mint, true))
-        hero.addView(text("İstediğin saatleri sen belirle.", 21, white, true), pad(top = 7))
-        hero.addView(text("Ajan görünür saatleri tarar, uygun olanları seçmeye çalışır. Sonuçları aşağıdan izle.", 12, Color.rgb(204, 226, 239), false), pad(top = 5))
+        hero.addView(text("Tek telefondan slot takibi", 21, white, true), pad(top = 7))
+        hero.addView(text("Trendyol GO öndeyken ekran 1 saniyede bir kontrol edilir. Telefon kilitliyken işlem yapılamaz.", 12, Color.rgb(204, 226, 239), false), pad(top = 5))
         val heroStats = horizontal().apply { gravity = Gravity.CENTER_VERTICAL; setPadding(0, 15.dp(), 0, 0) }
         countText = text("", 16, white, true)
         heroStats.addView(countText, LinearLayout.LayoutParams(0, -2, 1f))
         statusText = text("", 11, sky, true)
         heroStats.addView(statusText)
         hero.addView(heroStats)
-        root.addView(hero, pad(bottom = 18))
+        root.addView(hero, pad(bottom = 10))
+        root.addView(pill("●  1 sn ekran kontrolü    ●  Tek Android cihaz", sky, Color.rgb(18, 35, 54), 11), pad(bottom = 18))
 
         root.addView(sectionHeader("01", "Çalışma günü", "Bugünden itibaren 7 gün"))
         dateStrip = horizontal().apply { gravity = Gravity.CENTER_VERTICAL }
@@ -129,31 +130,34 @@ class MainActivity : Activity() {
         modeRow.addView(testButton, LinearLayout.LayoutParams(0, 46.dp(), 1f).apply { rightMargin = 8.dp() })
         modeRow.addView(liveButton, LinearLayout.LayoutParams(0, 46.dp(), 1f))
         controlCard.addView(modeRow, pad(top = 8, bottom = 10))
-        controlCard.addView(text("Canlı seçim, Trendyol GO ekranında uygun yeşil + butonuna gerçekten dokunur. İşlem başarılı olsa bile rezervasyonun kesinleştiği ayrıca kontrol edilmelidir.", 12, muted), pad(bottom = 14))
+        controlCard.addView(text("Canlı mod seçiliyse Trendyol GO öndeyken yeşil + butonuna dokunulur. Kırmızı X yalnızca ekranda seçildiğini gösterir; kaydı ayrıca doğrula.", 12, muted), pad(bottom = 14))
         val swRow = horizontal().apply { gravity = Gravity.CENTER_VERTICAL }
         swRow.addView(text("Ajanı etkinleştir", 15, white, true), LinearLayout.LayoutParams(0, -2, 1f))
         activeSwitch = Switch(this).apply { isChecked = active; thumbTintList = android.content.res.ColorStateList.valueOf(mint) }
         swRow.addView(activeSwitch)
         controlCard.addView(swRow)
         controlCard.addView(divider(), LinearLayout.LayoutParams(-1, 1.dp()).apply { topMargin = 10.dp(); bottomMargin = 13.dp() })
-        intervalText = text("Yenileme aralığı: ${interval} sn", 13, white, true)
+        controlCard.addView(text("GÖRÜNÜR EKRAN TARAMASI", 11, sky, true))
+        controlCard.addView(text("Her 1 saniyede kontrol (Android sınırları içinde)", 12, white), pad(bottom = 12))
+        intervalText = text("Sayfayı yenile: ${interval} sn", 13, white, true)
         controlCard.addView(intervalText)
         val seek = SeekBar(this).apply {
-            max = 57
-            progress = ((interval - 15) / 5).coerceIn(0, 57)
+            max = 11
+            progress = ((interval - 5) / 5).coerceIn(0, 11)
             progressTintList = android.content.res.ColorStateList.valueOf(mint)
             thumbTintList = android.content.res.ColorStateList.valueOf(mint)
             setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                    interval = 15 + progress * 5
-                    intervalText.text = "Yenileme aralığı: ${interval} sn"
+                    interval = 5 + progress * 5
+                    intervalText.text = "Sayfayı yenile: ${interval} sn"
                 }
                 override fun onStartTrackingTouch(seekBar: SeekBar?) = Unit
                 override fun onStopTrackingTouch(seekBar: SeekBar?) = Unit
             })
         }
         controlCard.addView(seek)
-        controlCard.addView(text("15 sn (hızlı)                                     300 sn (seyrek)", 10, muted))
+        controlCard.addView(text("5 sn (hızlı)                      60 sn (seyrek)", 10, muted))
+        controlCard.addView(text("Not: 1 saniyelik tarama, sunucudan her saniye yeni slot bilgisi alınacağı anlamına gelmez.", 11, muted), pad(top = 10))
         root.addView(controlCard, pad(bottom = 15))
         setModeButtons()
 
@@ -167,15 +171,14 @@ class MainActivity : Activity() {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
         }, pad(bottom = 18))
 
-        root.addView(sectionHeader("04", "İşlem geçmişi", "Son 100 olay"))
+        root.addView(sectionHeader("04", "İşlem geçmişi", "Son 35 kayıt • Son olay en üstte"))
         val logCard = panel()
-        logCard.addView(text("Yeşil + algılandı → tıklama denendi → seçim işareti kontrol edildi.", 12, muted), pad(bottom = 13))
-        logs = text("", 12, white)
-        logs.setLineSpacing(4.dp().toFloat(), 1f)
-        logCard.addView(logs)
+        logCard.addView(text("Durumlar: TARAMA → DOKUNMA → SEÇİM GÖRÜLDÜ. Hata varsa kırmızı gösterilir.", 12, muted), pad(bottom = 12))
+        logItems = vertical()
+        logCard.addView(logItems)
         logCard.addView(action("↻  KAYITLARI YENİLE", cardLift, sky) { refreshStatus() }, pad(top = 12))
         root.addView(logCard, pad(bottom = 15))
-        root.addView(text("Güvenlik: Otomasyon yalnızca ikinci cihazda Trendyol GO görünürken çalışır. Ana telefonun kapalı olabilir; bu cihaz açık, şarjda ve kilitsiz kalmalıdır. Platform kurallarına uyulmalıdır.", 11, muted))
+        root.addView(text("Tek telefon: DraBornSlot arka planda, Trendyol GO önde olmalı. Android ekran kilidindeyken veya telefon kapalıyken erişilebilirlik işlemi yapılamaz. Platform kurallarını kontrol et.", 11, muted))
         updateCount()
         refreshStatus()
     }
@@ -250,7 +253,7 @@ class MainActivity : Activity() {
         if (selectedSlots.isEmpty()) { toast("Önce en az bir saat seç"); return }
         val config = SettingsStore.Config(activeSwitch.isChecked, !live, selectedDate.toString(), selectedSlots.toList(), interval)
         SettingsStore.save(this, config)
-        EventLog.write(this, "v0.2 ayarlar kaydedildi: ${config.date}, ${config.slots.size} slot, ${if (live) "CANLI" else "İZLEME"}, yenileme ${interval} sn")
+        EventLog.write(this, "v0.3 ayarlar kaydedildi: ${config.date}, ${config.slots.size} slot, ${if (live) "CANLI" else "İZLEME"}; tarama 1 sn, yenileme ${interval} sn")
         toast(if (live) "Canlı mod kaydedildi. Trendyol GO saat ekranını aç." else "İzleme tercihleri kaydedildi")
         refreshStatus()
     }
@@ -280,12 +283,48 @@ class MainActivity : Activity() {
         val enabled = (Settings.Secure.getString(contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES) ?: "")
             .split(':').any { it.equals(ComponentName(this, SlotAccessibilityService::class.java).flattenToString(), true) }
         val saved = SettingsStore.read(this)
-        statusText.text = if (!enabled) "● Servis kapalı" else if (!saved.active) "● Ajan duraklatıldı" else if (saved.dryRun) "● İzleme aktif" else "● Canlı mod aktif"
-        statusText.setTextColor(if (enabled && saved.active) mint else yellow)
-        logs.text = EventLog.read(this)
+        val heartbeat = SettingsStore.lastHeartbeat(this)
+        val alive = enabled && heartbeat > 0L && System.currentTimeMillis() - heartbeat < 9_000L
+        statusText.text = when {
+            !enabled -> "● İzin kapalı"
+            !alive -> "● Servis yanıt vermiyor"
+            !saved.active -> "● Ajan duraklatıldı"
+            saved.dryRun -> "● İzleme aktif"
+            else -> "● Canlı mod aktif"
+        }
+        statusText.setTextColor(if (alive && saved.active) mint else yellow)
+        updateLogCards()
     }
 
-    private fun updateCount() { if (::countText.isInitialized) countText.text = "${selectedSlots.size} / 8 saat seçildi" }
+    private fun updateLogCards() {
+        if (!::logItems.isInitialized) return
+        logItems.removeAllViews()
+        val records = EventLog.entries(this)
+        if (records.isEmpty()) {
+            logItems.addView(text("Henüz işlem yok. Trendyol GO saat ekranını açtığında tarama başlayacak.", 12, muted))
+            return
+        }
+        for ((position, item) in records.withIndex()) {
+            val accent = when (item.level) {
+                3 -> rose
+                2 -> mint
+                1 -> sky
+                else -> muted
+            }
+            val itemPanel = vertical().apply {
+                setPadding(12.dp(), 10.dp(), 12.dp(), 10.dp())
+                background = shape(Color.rgb(23, 42, 61), 11, border)
+            }
+            val metaRow = horizontal().apply { gravity = Gravity.CENTER_VERTICAL }
+            metaRow.addView(pill(item.label, accent, Color.rgb(35, 55, 72), 10), LinearLayout.LayoutParams(0, -2, 1f).apply { rightMargin = 8.dp() })
+            metaRow.addView(text(item.timestamp, 10, muted))
+            itemPanel.addView(metaRow)
+            itemPanel.addView(text(item.message, 12, white), pad(top = 7))
+            logItems.addView(itemPanel, pad(bottom = if (position == records.lastIndex) 0 else 8))
+        }
+    }
+
+    private fun updateCount() { if (::countText.isInitialized) countText.text = "${selectedSlots.size} / 8 hedef saat" }
     private fun sectionHeader(number: String, title: String, detail: String): View {
         val row = horizontal().apply { gravity = Gravity.CENTER_VERTICAL }
         row.addView(pill(number, sky, Color.rgb(20, 48, 70), 11), inlinePad(9))

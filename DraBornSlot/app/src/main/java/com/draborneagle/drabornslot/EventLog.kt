@@ -20,5 +20,23 @@ object EventLog {
     }
 
     fun read(context: Context): String = context.getSharedPreferences(FILE, Context.MODE_PRIVATE)
-        .getString("entries", "Henüz kayıt yok.") ?: "Henüz kayıt yok."
+        .getString("entries", "") ?: ""
+
+    data class Entry(val timestamp: String, val label: String, val message: String, val level: Int)
+
+    fun entries(context: Context): List<Entry> = read(context).lines()
+        .filter { it.isNotBlank() }
+        .take(35)
+        .map { line ->
+            val timestamp = line.take(14).trim()
+            val content = line.drop(14).trim()
+            val (label, level) = when {
+                content.contains("HATA:", true) || content.contains("başarısız", true) || content.contains("hatası", true) -> "HATA" to 3
+                content.contains("ARAYÜZDE SEÇİLDİ", true) -> "SEÇİM GÖRÜLDÜ" to 2
+                content.contains("DOKUNMA:", true) || content.contains("dokunuldu", true) -> "DOKUNMA" to 1
+                content.contains("hazır", true) || content.contains("tarama", true) || content.contains("kaydır", true) -> "TARAMA" to 1
+                else -> "BİLGİ" to 0
+            }
+            Entry(timestamp, label, content, level)
+        }
 }
