@@ -18,7 +18,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 /**
- * v0.2: user-opt-in tap automation; only the foreground Trendyol GO UI is touched.
+ * v0.4: selected-row protection, explicit removals and fast on-screen refresh.
  * No private API, cookies, login automation, CAPTCHA/2FA bypass or hidden requests.
  * A red X is only UI-level evidence; not an independently verified booking.
  */
@@ -41,6 +41,8 @@ class SlotAccessibilityService : AccessibilityService() {
     private var scrollAttempts = 0
     private val lastMessages = mutableMapOf<String, Long>()
     private val lastAttempt = mutableMapOf<String, Long>()
+    private val stableGreen = mutableMapOf<String, Int>()
+    private var lastSlotMutation = 0L
 
     private data class FoundRow(val slot: String, val bounds: Rect)
     private data class Tap(val x: Int, val y: Int)
@@ -55,7 +57,6 @@ class SlotAccessibilityService : AccessibilityService() {
                 if (!targetVisible()) { verifiedDate = null; refreshSeeking = false }
                 if (config.active) {
                     safeInspect(config)
-                    maybeRefresh(config)
                 }
             } catch (error: Throwable) {
                 logError("Periyodik kontrol", error)
@@ -69,7 +70,7 @@ class SlotAccessibilityService : AccessibilityService() {
         super.onServiceConnected()
         stopped = false
         SettingsStore.heartbeat(this)
-        EventLog.write(this, "DraBornSlot v0.2 erişilebilirlik servisi bağlandı.")
+        EventLog.write(this, "DraBornSlot v0.4 erişilebilirlik servisi bağlandı.")
         handler.removeCallbacks(tick)
         handler.post(tick)
     }
@@ -116,7 +117,7 @@ class SlotAccessibilityService : AccessibilityService() {
             note("date-invalid", "Hedef tarih görünür 7 günün dışında; ajan durdu.", 300_000)
             return
         }
-        if (config.slots.isEmpty()) return
+        if (config.slots.isEmpty() && SettingsStore.pendingRemovals(this, config.date).isEmpty()) return
         if (verifiedDate != config.date) {
             verifiedDate = null
             scrollAttempts = 0
@@ -135,7 +136,8 @@ class SlotAccessibilityService : AccessibilityService() {
             val slot = SettingsStore.normalizeSlot(value) ?: return@mapNotNull null
             if (bounds.width() < 1 || bounds.height() < 1) null else FoundRow(slot, bounds)
         }.distinctBy { it.slot }
-        val targetRows = allRows.filter { it.slot in config.slots }
+        val requested = (config.slots + SettingsStore.pendingRemovals(this, config.date)).toSet()
+        val targetRows = allRows.filter { it.slot in requested }
         if (dateBounds.isEmpty() && verifiedDate != config.date) {
             note("screen-missing", "Hedef gün doğrulanamadı. Trendyol GO'da seçtiğin tarihi en üstten göster.", 30_000)
             return
@@ -170,7 +172,12 @@ class SlotAccessibilityService : AccessibilityService() {
                         evaluate(bitmap, dateBounds, allRows, targetRows, fresh)
                     } catch (error: Throwable) {
                         logError("Görüntü analizi", error)
-                    } finally { bitmap.recycle() }
+                    } finally {
+                        bitmap.recycle()
+                        // Evaluate first; calling refresh right after safeInspect in the
+                        // tick never worked reliably because screenshotBusy was true.
+                        if (!gestureBusy) maybeRefresh(SettingsStore.read(this@SlotAccessibilityService))
+                    }
                 }
                 override fun onFailure(errorCode: Int) {
                     screenshotBusy = false
@@ -211,44 +218,91 @@ class SlotAccessibilityService : AccessibilityService() {
             verifiedAt = now
         } else if (verifiedDate != config.date) return
 
-        // If the UI has a red remove-X, mark the row UI-confirmed even if another device selected it.
+        val date = config.date
+        val removalRequests = SettingsStore.pendingRemovals(this, date)
+            .filterNot { it in config.slots }
+
+        // CRITICAL: selected X takes precedence, regardless of neighboring green pixels.
+        // Never press a red X on a desired slot.
         for (row in targets) {
-            if (findRedRemoveButton(bitmap, row.bounds)) {
-                if (!SettingsStore.isUiConfirmed(this, config.date, row.slot)) {
-                    SettingsStore.markUiConfirmed(this, config.date, row.slot)
+            val red = findRedRemoveButton(bitmap, row.bounds)
+            if (row.slot in config.slots && red != null) {
+                stableGreen.remove("$date|${row.slot}")
+                if (!SettingsStore.isUiConfirmed(this, date, row.slot)) {
+                    SettingsStore.markUiConfirmed(this, date, row.slot)
                     EventLog.write(this, "ARAYÜZDE SEÇİLDİ: ${row.slot} (kırmızı X görüldü; kesin rezervasyon onayı değildir).")
                 }
+            } else if (row.slot in removalRequests && red == null &&
+                findGreenPlus(bitmap, row.bounds) != null) {
+                SettingsStore.completeRemoval(this, date, row.slot)
+                EventLog.write(this, "KALDIRMA GÖRÜLDÜ: ${row.slot} yeşil + durumunda. İstek tamamlandı.")
             }
         }
-        for (slot in config.slots) {
+
+        // Only a user's saved, same-day deselection is allowed to press X.
+        for (slot in removalRequests) {
             val row = targets.firstOrNull { it.slot == slot } ?: continue
-            val plus = findGreenPlus(bitmap, row.bounds) ?: continue
-            // If the user removed the slot, the old cached red-X state must not block it.
-            if (SettingsStore.isUiConfirmed(this, config.date, slot)) {
-                SettingsStore.unmarkUiConfirmed(this, config.date, slot)
-                EventLog.write(this, "BİLGİ: $slot yeniden müsait; önceki arayüz onayı kaldırıldı.")
-            }
-            val key = "${config.date}|$slot"
-            if (now - (lastAttempt[key] ?: 0L) < 15_000L) continue
+            val red = findRedRemoveButton(bitmap, row.bounds) ?: continue
+            val key = "remove-$date|$slot"
+            if (now - (lastAttempt[key] ?: 0L) < 7_000L) continue
             if (config.dryRun) {
-                note("test-$key", "İZLEME: $slot yeşil + hazır (${plus.x},${plus.y}).", 90_000)
+                note("remove-preview-$key", "İZLEME: $slot kaldırma isteği var; kırmızı X algılandı.", 35_000L)
                 continue
             }
             if (!targetVisible()) return
-            gestureBusy = true
             lastAttempt[key] = now
-            tap(plus.x, plus.y) { ok ->
+            lastSlotMutation = now
+            gestureBusy = true
+            tap(red.x, red.y) { ok ->
                 gestureBusy = false
                 if (ok) {
-                    SettingsStore.addAttempt(this, config.date, slot)
-                    EventLog.write(this, "DOKUNMA: $slot yeşil + butonuna dokunuldu. Kırmızı X kontrol edilecek.")
-                } else EventLog.write(this, "CANLI: $slot dokunuşu başarısız oldu.")
+                    EventLog.write(this, "KALDIRMA DOKUNUŞU: $slot kırmızı X butonuna dokunuldu; sonuç kontrol edilecek.")
+                } else {
+                    EventLog.write(this, "HATA: $slot kaldırma dokunuşu başarısız.")
+                }
                 handler.postDelayed({ safeInspect(SettingsStore.read(this)) }, 1_200L)
             }
             return
         }
 
-        val pending = config.slots.filter { !SettingsStore.isUiConfirmed(this, config.date, it) }
+        for (slot in config.slots) {
+            val row = targets.firstOrNull { it.slot == slot } ?: continue
+            val key = "$date|$slot"
+            // A red X is a selected state, never a button to tap for this slot.
+            if (findRedRemoveButton(bitmap, row.bounds) != null) {
+                stableGreen.remove(key)
+                continue
+            }
+            val plus = findGreenPlus(bitmap, row.bounds) ?: continue
+            if (SettingsStore.isUiConfirmed(this, date, slot)) {
+                val seen = (stableGreen[key] ?: 0) + 1
+                stableGreen[key] = seen
+                if (seen < 2) continue
+                SettingsStore.unmarkUiConfirmed(this, date, slot)
+                EventLog.write(this, "BİLGİ: $slot art arda iki taramada yeşil + durumunda; yeniden seçim mümkün.")
+            }
+            val attemptKey = "select-$key"
+            if (now - (lastAttempt[attemptKey] ?: 0L) < 8_000L) continue
+            if (config.dryRun) {
+                note("test-$key", "İZLEME: $slot yeşil + hazır (${plus.x},${plus.y}).", 90_000L)
+                continue
+            }
+            if (!targetVisible()) return
+            gestureBusy = true
+            lastAttempt[attemptKey] = now
+            lastSlotMutation = now
+            tap(plus.x, plus.y) { ok ->
+                gestureBusy = false
+                if (ok) {
+                    SettingsStore.addAttempt(this, date, slot)
+                    EventLog.write(this, "DOKUNMA: $slot yeşil + butonuna dokunuldu; kırmızı X kontrol edilecek.")
+                } else EventLog.write(this, "HATA: $slot seçim dokunuşu başarısız oldu.")
+                handler.postDelayed({ safeInspect(SettingsStore.read(this)) }, 1_200L)
+            }
+            return
+        }
+
+        val pending = (config.slots.filter { !SettingsStore.isUiConfirmed(this, config.date, it) } + SettingsStore.pendingRemovals(this, config.date)).distinct()
         if (pending.isEmpty() || config.dryRun || refreshSeeking) return
         val visibleSlots = allRows.map { it.slot }.distinct()
         if (visibleSlots.isEmpty()) return
@@ -318,8 +372,9 @@ class SlotAccessibilityService : AccessibilityService() {
         val right = (bitmap.width * 0.98f).toInt().coerceIn(left, bitmap.width - 1)
         // Restrict green detection to the SAME row. Previous v0.2 search area
         // overlapped the next row's + and could lead to a wrong/missed tap.
-        val top = max(0, row.top - (10 * d).toInt())
-        val bottom = min(bitmap.height - 1, row.bottom + (26 * d).toInt())
+        val halfHeight = max(22, (30 * d).toInt())
+        val top = max(0, row.centerY() - halfHeight)
+        val bottom = min(bitmap.height - 1, row.centerY() + halfHeight)
         if (top >= bottom) return null
         val xs = mutableListOf<Int>()
         val ys = mutableListOf<Int>()
@@ -345,19 +400,28 @@ class SlotAccessibilityService : AccessibilityService() {
         return if (horiz >= 3 && vert >= 3) Tap(x, y) else null
     }
 
-    private fun findRedRemoveButton(bitmap: Bitmap, row: Rect): Boolean {
+    private fun findRedRemoveButton(bitmap: Bitmap, row: Rect): Tap? {
         val d = resources.displayMetrics.density
         val left = (bitmap.width * 0.83f).toInt().coerceIn(0, bitmap.width - 1)
         val right = (bitmap.width * 0.98f).toInt().coerceIn(left, bitmap.width - 1)
-        val top = max(0, row.top - (10 * d).toInt())
-        val bottom = min(bitmap.height - 1, row.bottom + (26 * d).toInt())
-        if (top >= bottom) return false
-        var redPixels = 0
-        for (y in top..bottom step 3) for (x in left..right step 3) {
+        val halfHeight = max(22, (30 * d).toInt())
+        val top = max(0, row.centerY() - halfHeight)
+        val bottom = min(bitmap.height - 1, row.centerY() + halfHeight)
+        if (top >= bottom) return null
+        val xs = mutableListOf<Int>()
+        val ys = mutableListOf<Int>()
+        for (y in top..bottom step 2) for (x in left..right step 2) {
             val p = bitmap.getPixel(x, y)
-            if (Color.red(p) > 180 && Color.green(p) < 105 && Color.blue(p) < 145) redPixels++
+            if (Color.red(p) > 175 && Color.green(p) < 115 && Color.blue(p) < 150) {
+                xs.add(x); ys.add(y)
+            }
         }
-        return redPixels >= 35
+        if (xs.size < 28) return null
+        xs.sort(); ys.sort()
+        val x = xs[xs.size / 2]
+        val y = ys[ys.size / 2]
+        if (kotlin.math.abs(y - row.centerY()) > max(20, (27 * d).toInt())) return null
+        return Tap(x, y)
     }
 
     private fun green(p: Int) = Color.red(p) < 100 && Color.green(p) in 75..185 && Color.blue(p) < 160 && Color.green(p) > Color.red(p) * 1.4 && Color.green(p) > Color.blue(p) * 1.15
@@ -367,42 +431,26 @@ class SlotAccessibilityService : AccessibilityService() {
         if (config.dryRun || gestureBusy || screenshotBusy || !targetVisible()) return
         val now = System.currentTimeMillis()
         if (verifiedDate != config.date) return
-        if (now - lastRefresh < config.refreshSeconds * 1_000L) return
+        if (now - lastSlotMutation < 2_500L || now - lastScroll < 1_500L) return
+        if (now - lastRefresh < config.refreshSeconds.coerceIn(1, 60) * 1_000L) return
         val root = rootInActiveWindow ?: return
         val item = root.findAccessibilityNodeInfosByText("Sayfayı Yenile")
             .firstOrNull { it.isVisibleToUser && it.text?.toString()?.contains("Sayfayı Yenile", true) == true }
+        // Do not force scroll to top on every refresh: it hides lower target rows.
         if (item == null) {
-            if (now - lastScroll < 2_200L) return
-            if (refreshSeekAttempts >= 8) {
-                refreshSeeking = false
-                refreshSeekAttempts = 0
-                lastRefresh = now
-                note("refresh-missing", "Yenile düğmesi bulunamadı; görünür ekran takibi sürüyor.", 30_000L)
-                return
-            }
-            refreshSeeking = true
-            refreshSeekAttempts += 1
-            lastScroll = now
-            gestureBusy = true
-            swipe(false) { ok ->
-                gestureBusy = false
-                if (!ok) note("seek-refresh", "Yenile için liste yukarı kaydırılamadı.", 30_000L)
-            }
+            note("refresh-hidden", "Yenileme düğmesi görünmüyor; saniyelik ekran kontrolü sürüyor.", 90_000L)
             return
         }
-        refreshSeeking = false
-        refreshSeekAttempts = 0
         val bounds = Rect()
         item.getBoundsInScreen(bounds)
         if (bounds.width() < 1 || bounds.height() < 1) return
         lastRefresh = now
-        scrollAttempts = 0
-        lastSeenSignature = ""
         gestureBusy = true
         tap(bounds.centerX(), bounds.centerY()) { ok ->
             gestureBusy = false
-            if (!ok) note("refresh-fail", "Yenileme butonuna dokunulamadı.", 90_000)
-            handler.postDelayed({ safeInspect(SettingsStore.read(this)) }, 1_100L)
+            if (!ok) note("refresh-fail", "HATA: Sayfa yenileme dokunuşu başarısız.", 30_000L)
+            else note("refresh-done", "YENİLEME: Trendyol GO sayfası yenilendi.", 45_000L)
+            handler.postDelayed({ safeInspect(SettingsStore.read(this)) }, 350L)
         }
     }
 
