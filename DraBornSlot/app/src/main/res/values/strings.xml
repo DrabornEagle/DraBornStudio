@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DraBornSlot</string>
+    <string name="accessibility_desc">Yalnızca Trendyol GO saatler ekranında seçilen slotları algılamak ve açıkça etkinleştirildiğinde dokunma işlemi yapmak için kullanılır. Şifre ve oturum bilgileri kaydedilmez.</string>
+</resources>
