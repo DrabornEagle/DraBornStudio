@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'DraBornSlot/source.tar.xz.b64'
+      - 'DraBornSlot/source.part*'
 permissions:
   contents: write
 jobs:
@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Extract DraBornSlot source
         run: |
-          base64 --decode DraBornSlot/source.tar.xz.b64 > /tmp/drabornslot-source.tar.xz
+          cat DraBornSlot/source.part1 DraBornSlot/source.part2 DraBornSlot/source.part3 | base64 --decode > /tmp/drabornslot-source.tar.xz
           tar -xJf /tmp/drabornslot-source.tar.xz -C DraBornSlot
       - name: Publish extracted project files
         continue-on-error: true
