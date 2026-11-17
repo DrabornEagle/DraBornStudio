@@ -5,7 +5,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.Duration
 
-/** No account credentials or session tokens are stored. */
+/** No personal credentials or session cookies are stored. */
 object SettingsStore {
     private const val FILE = "drabornslot_preferences"
     private fun p(context: Context) = context.getSharedPreferences(FILE, Context.MODE_PRIVATE)
@@ -24,7 +24,8 @@ object SettingsStore {
         val end = match.groupValues[2]
         val valid = Regex("""(?:[01]\d|2[0-3]):[0-5]\d""")
         if (!valid.matches(start) || !valid.matches(end)) return null
-        if (Duration.between(LocalTime.parse(start), LocalTime.parse(end)).toMinutes() != 30L) return null
+        if (start == "23:30" && end == "23:59") return "23:30-23:59"
+        if (Duration.between(LocalTime.parse(start), LocalTime.parse(end)).toMinutes().let { if (it < 0) it + 1440L else it } != 30L) return null
         return "$start-$end"
     }
 
@@ -59,10 +60,18 @@ object SettingsStore {
         p(context).edit().putInt("attempt-$date-$slot", current + 1).apply()
     }
 
+    fun isUiConfirmed(context: Context, date: String, slot: String): Boolean =
+        p(context).getBoolean("ui-confirmed-$date-$slot", false)
+
+    fun markUiConfirmed(context: Context, date: String, slot: String) {
+        p(context).edit().putBoolean("ui-confirmed-$date-$slot", true).apply()
+    }
+
     fun clearAttempts(context: Context, date: String) {
         val prefs = p(context)
         val edit = prefs.edit()
-        prefs.all.keys.filter { it.startsWith("attempt-$date-") }.forEach { edit.remove(it) }
+        prefs.all.keys.filter { it.startsWith("attempt-$date-") || it.startsWith("ui-confirmed-$date-") }
+            .forEach { edit.remove(it) }
         edit.apply()
     }
 }

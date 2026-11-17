@@ -18,44 +18,45 @@ import kotlin.math.max
 import kotlin.math.min
 
 /**
- * DraBornSlot Agent v0.1
- *
- * Explicitly opt-in UI automation. It only operates in the visible com.orangemobile
- * slot screen. It never reads tokens, enters passwords, bypasses CAPTCHAs, or invokes
- * undocumented APIs. Confirmation of an actual booking is NOT available in v0.1.
+ * v0.2: user-opt-in tap automation; only the foreground Trendyol GO UI is touched.
+ * No private API, cookies, login automation, CAPTCHA/2FA bypass or hidden requests.
+ * A red X is only UI-level evidence; not an independently verified booking.
  */
 class SlotAccessibilityService : AccessibilityService() {
     private val handler = Handler(Looper.getMainLooper())
-    private val mainPeriodMs = 2_500L
-    private var lastInspectMs = 0L
-    private var lastRefreshMs = 0L
+    private val tickPeriod = 2_500L
+    private var lastInspect = 0L
+    private var lastRefresh = 0L
+    private var lastScroll = 0L
     private var screenshotBusy = false
     private var gestureBusy = false
     private var stopped = false
+    private var verifiedDate: String? = null
+    private var verifiedAt = 0L
+    private var lastSeenSignature = ""
+    private var scrollAttempts = 0
     private val lastMessages = mutableMapOf<String, Long>()
     private val lastAttempt = mutableMapOf<String, Long>()
 
     private data class FoundRow(val slot: String, val bounds: Rect)
     private data class Tap(val x: Int, val y: Int)
-
     private val eventInspect = Runnable { inspect(SettingsStore.read(this)) }
-
     private val tick = object : Runnable {
         override fun run() {
             if (stopped) return
             val config = SettingsStore.read(this@SlotAccessibilityService)
             if (config.active) {
-                maybeRefresh(config)
                 inspect(config)
+                maybeRefresh(config)
             }
-            handler.postDelayed(this, mainPeriodMs)
+            handler.postDelayed(this, tickPeriod)
         }
     }
 
     override fun onServiceConnected() {
         super.onServiceConnected()
         stopped = false
-        EventLog.write(this, "Erişilebilirlik servisi bağlandı.")
+        EventLog.write(this, "DraBornSlot v0.2 erişilebilirlik servisi bağlandı.")
         handler.removeCallbacks(tick)
         handler.post(tick)
     }
@@ -64,157 +65,196 @@ class SlotAccessibilityService : AccessibilityService() {
         if (event?.packageName?.toString() != TARGET_PACKAGE) return
         if (!SettingsStore.read(this).active) return
         if (event.eventType == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED ||
-            event.eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
-        ) {
-            // Debounced inspection; repeated React Native accessibility events are common.
+            event.eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
             handler.removeCallbacks(eventInspect)
-            handler.postDelayed(eventInspect, 900L)
+            handler.postDelayed(eventInspect, 950L)
         }
     }
 
-    override fun onInterrupt() {
-        note("interrupt", "Android erişilebilirlik servisini kesintiye uğrattı.", 30_000L)
-    }
-
+    override fun onInterrupt() { note("interrupt", "Erişilebilirlik servisi kesintiye uğradı.", 30_000) }
     override fun onDestroy() {
         stopped = true
         handler.removeCallbacksAndMessages(null)
         super.onDestroy()
     }
 
-    private fun isTargetVisible(): Boolean =
-        rootInActiveWindow?.packageName?.toString() == TARGET_PACKAGE
+    private fun targetVisible(): Boolean = rootInActiveWindow?.packageName?.toString() == TARGET_PACKAGE
 
     private fun inspect(config: SettingsStore.Config) {
-        if (!config.active || gestureBusy || screenshotBusy || !isTargetVisible()) return
+        if (!config.active || gestureBusy || screenshotBusy || !targetVisible()) return
         val now = System.currentTimeMillis()
-        if (now - lastInspectMs < 1_750L) return
-        lastInspectMs = now
-
-        val date = runCatching { LocalDate.parse(config.date) }.getOrNull() ?: return
-        if (ChronoUnit.DAYS.between(LocalDate.now(), date) !in 0..6) {
-            note("invalid-date", "Tarih görünür 7 günlük aralığın dışında; işlem durduruldu.", 300_000L)
+        if (now - lastInspect < 1_650) return
+        lastInspect = now
+        val chosenDate = runCatching { LocalDate.parse(config.date) }.getOrNull() ?: return
+        if (ChronoUnit.DAYS.between(LocalDate.now(), chosenDate) !in 0..6) {
+            note("date-invalid", "Hedef tarih görünür 7 günün dışında; ajan durdu.", 300_000)
             return
         }
         if (config.slots.isEmpty()) return
+        if (verifiedDate != config.date) { verifiedDate = null; scrollAttempts = 0 }
 
         val root = rootInActiveWindow ?: return
-        val items = mutableListOf<Pair<String, Rect>>()
-        collectVisibleTexts(root, items, 0)
-        val dateLabel = date.dayOfMonth.toString()
-        val dateCandidates = items.filter { (value, r) ->
+        val texts = mutableListOf<Pair<String, Rect>>()
+        collectVisibleTexts(root, texts, 0)
+        val dateLabel = chosenDate.dayOfMonth.toString()
+        val dateBounds = texts.filter { (value, bounds) ->
             (value.trim() == dateLabel || Regex("""^${Regex.escape(dateLabel)}\s+\S{2,5}$""").matches(value.trim())) &&
-                r.top >= 0 && r.top < resources.displayMetrics.heightPixels * 0.24f && r.width() > 0
-        }
-        val timeRows = items.mapNotNull { (value, bounds) ->
+                bounds.top in 0 until (resources.displayMetrics.heightPixels * 0.24f).toInt() && bounds.width() > 0
+        }.map { it.second }
+        val allRows = texts.mapNotNull { (value, bounds) ->
             val slot = SettingsStore.normalizeSlot(value) ?: return@mapNotNull null
-            if (slot !in config.slots || bounds.width() <= 0 || bounds.height() <= 0) null
-            else FoundRow(slot, bounds)
+            if (bounds.width() < 1 || bounds.height() < 1) null else FoundRow(slot, bounds)
         }.distinctBy { it.slot }
-
-        if (dateCandidates.isEmpty() || timeRows.isEmpty()) {
-            note("missing-screen", "Saat seçimi ekranı / hedef tarih görünmüyor. Oturum ve sayfayı kontrol et.", 90_000L)
+        val targetRows = allRows.filter { it.slot in config.slots }
+        if (dateBounds.isEmpty() && !(verifiedDate == config.date && now - verifiedAt < 180_000L)) {
+            if (!config.dryRun && allRows.isNotEmpty() && now - lastScroll > 3_000L) {
+                lastScroll = now
+                gestureBusy = true
+                swipe(false) { gestureBusy = false; handler.postDelayed({ inspect(SettingsStore.read(this)) }, 1_250L) }
+            } else note("screen-missing", "Tarih doğrulanamadı; saat ekranını ve oturumu kontrol et.", 90_000)
             return
         }
+        if (dateBounds.isEmpty() && allRows.isEmpty()) {
+            note("rows-missing", "Saat listesi görünmüyor; işlem yapılmadı.", 90_000)
+            return
+        }
+        if (allRows.isEmpty() && dateBounds.isEmpty()) return
 
         screenshotBusy = true
         try {
             takeScreenshot(Display.DEFAULT_DISPLAY, mainExecutor, object : TakeScreenshotCallback {
-            override fun onSuccess(screenshot: ScreenshotResult) {
-                screenshotBusy = false
-                val bitmap = try {
-                    // HardwareBuffer is closed after copying pixels to software memory.
-                    val buffer = screenshot.hardwareBuffer
-                    try {
-                        val cs = screenshot.colorSpace ?: ColorSpace.get(ColorSpace.Named.SRGB)
-                        Bitmap.wrapHardwareBuffer(buffer, cs)?.copy(Bitmap.Config.ARGB_8888, false)
-                    } finally {
-                        buffer.close()
+                override fun onSuccess(screenshot: ScreenshotResult) {
+                    screenshotBusy = false
+                    val bitmap = try {
+                        val buffer = screenshot.hardwareBuffer
+                        try {
+                            val cs = screenshot.colorSpace ?: ColorSpace.get(ColorSpace.Named.SRGB)
+                            Bitmap.wrapHardwareBuffer(buffer, cs)?.copy(Bitmap.Config.ARGB_8888, false)
+                        } finally { buffer.close() }
+                    } catch (_: Exception) { null }
+                    if (bitmap == null) {
+                        note("bitmap", "Ekran fotoğrafı alınamadı; güvenlik için dokunulmadı.", 90_000)
+                        return
                     }
-                } catch (_: Exception) {
-                    null
+                    try {
+                        if (!config.active || !targetVisible()) return
+                        evaluate(bitmap, dateBounds, allRows, targetRows, config)
+                    } finally { bitmap.recycle() }
                 }
-                if (bitmap == null) {
-                    note("bitmap-fail", "Ekran görüntüsü çözülemedi; güvenlik için tıklama yapılmadı.", 90_000L)
-                    return
+                override fun onFailure(errorCode: Int) {
+                    screenshotBusy = false
+                    note("screenshot", "Ekran okuma hatası $errorCode; dokunulmadı.", 90_000)
                 }
-                try {
-                    if (!config.active || !isTargetVisible()) return
-                    evaluate(bitmap, dateCandidates.map { it.second }, date, timeRows, config)
-                } finally {
-                    bitmap.recycle()
-                }
-            }
-
-            override fun onFailure(errorCode: Int) {
-                screenshotBusy = false
-                note("screenshot-fail", "Ekran doğrulanamadı (hata $errorCode); tıklama yapılmadı.", 90_000L)
-            }
             })
         } catch (_: Exception) {
             screenshotBusy = false
-            note("screenshot-exception", "Android ekran görüntüsüne izin vermedi; tıklama yapılmadı.", 90_000L)
+            note("screenshot-exception", "Ekran okumasına Android izin vermedi.", 90_000)
         }
     }
 
     private fun evaluate(
         bitmap: Bitmap,
         dateBounds: List<Rect>,
-        date: LocalDate,
-        rows: List<FoundRow>,
+        allRows: List<FoundRow>,
+        targets: List<FoundRow>,
         config: SettingsStore.Config
     ) {
-        val selected = dateBounds.any { isSelectedDateCell(bitmap, it) }
-        if (!selected) {
-            val rect = dateBounds.first()
-            if (config.dryRun) {
-                note("date-preview", "TEST: ${config.date} günü seçili görünmüyor; seçilmesi gerekecek.", 120_000L)
-            } else {
-                gestureBusy = true
-                tap(rect.centerX(), rect.centerY()) { ok ->
-                    gestureBusy = false
-                    if (ok) note("date-tap", "${config.date} tarih sekmesine dokunuldu.", 40_000L)
-                    handler.postDelayed({ inspect(SettingsStore.read(this)) }, 1_300L)
+        val now = System.currentTimeMillis()
+        if (dateBounds.isNotEmpty()) {
+            val selected = dateBounds.any { isSelectedDate(bitmap, it) }
+            if (!selected) {
+                verifiedDate = null
+                if (!config.dryRun) {
+                    val first = dateBounds.first()
+                    gestureBusy = true
+                    tap(first.centerX(), first.centerY()) { ok ->
+                        gestureBusy = false
+                        if (ok) note("date-click", "Hedef gün ${config.date} seçildi; yeniden kontrol ediliyor.", 35_000)
+                        handler.postDelayed({ inspect(SettingsStore.read(this)) }, 1_100)
+                    }
+                } else note("date-test", "İZLEME: ${config.date} günü henüz seçili görünmüyor.", 120_000)
+                return
+            }
+            verifiedDate = config.date
+            verifiedAt = now
+        } else if (verifiedDate != config.date || now - verifiedAt > 180_000) return
+
+        // If the UI has a red remove-X, mark the row UI-confirmed even if another device selected it.
+        for (row in targets) {
+            if (findRedRemoveButton(bitmap, row.bounds)) {
+                if (!SettingsStore.isUiConfirmed(this, config.date, row.slot)) {
+                    SettingsStore.markUiConfirmed(this, config.date, row.slot)
+                    EventLog.write(this, "ARAYÜZDE SEÇİLDİ: ${row.slot} (kırmızı X görüldü; kesin rezervasyon onayı değildir).")
                 }
+            }
+        }
+        for (slot in config.slots) {
+            val row = targets.firstOrNull { it.slot == slot } ?: continue
+            if (SettingsStore.isUiConfirmed(this, config.date, slot)) continue
+            if (SettingsStore.attemptCount(this, config.date, slot) >= 2) continue
+            val key = "${config.date}|$slot"
+            if (now - (lastAttempt[key] ?: 0L) < 45_000) continue
+            val plus = findGreenPlus(bitmap, row.bounds) ?: continue
+            if (config.dryRun) {
+                note("test-$key", "İZLEME: $slot yeşil + hazır (${plus.x},${plus.y}).", 90_000)
+                continue
+            }
+            if (!targetVisible()) return
+            gestureBusy = true
+            lastAttempt[key] = now
+            tap(plus.x, plus.y) { ok ->
+                gestureBusy = false
+                if (ok) {
+                    SettingsStore.addAttempt(this, config.date, slot)
+                    EventLog.write(this, "CANLI: $slot + butonuna dokunuldu; seçim göstergesi kontrol edilecek.")
+                } else EventLog.write(this, "CANLI: $slot dokunuşu başarısız oldu.")
+                handler.postDelayed({ inspect(SettingsStore.read(this)) }, 1_500)
             }
             return
         }
 
-        for (row in rows) {
-            if (SettingsStore.attemptCount(this, config.date, row.slot) >= 2) continue
-            val key = "${config.date}|${row.slot}"
-            val last = lastAttempt[key] ?: 0L
-            if (System.currentTimeMillis() - last < 90_000L) continue
-            val target = findVerifiedGreenPlus(bitmap, row.bounds) ?: continue
-            if (config.dryRun) {
-                note("test-$key", "TEST: ${row.slot} için yeşil + algılandı (x=${target.x},y=${target.y}).", 120_000L)
-                continue
-            }
-            // Re-check the original app remains foreground before each irreversible action.
-            if (!isTargetVisible()) return
-            gestureBusy = true
-            lastAttempt[key] = System.currentTimeMillis()
-            tap(target.x, target.y) { ok ->
-                gestureBusy = false
-                if (ok) {
-                    SettingsStore.addAttempt(this, config.date, row.slot)
-                    EventLog.write(this, "SEÇİM DENEMESİ: ${row.slot} (+ tıklandı). Rezervasyon henüz doğrulanmadı.")
-                } else {
-                    EventLog.write(this, "Tıklama başarısız: ${row.slot}")
-                }
-                handler.postDelayed({ inspect(SettingsStore.read(this)) }, 1_800L)
-            }
-            return // only one gesture per screenshot: rescan before doing another
+        val pending = config.slots.filter { !SettingsStore.isUiConfirmed(this, config.date, it) && SettingsStore.attemptCount(this, config.date, it) < 2 }
+        if (pending.isEmpty() || config.dryRun) return
+        val visibleSlots = allRows.map { it.slot }.distinct()
+        if (visibleSlots.isEmpty()) return
+        val invisiblePending = pending.filter { it !in visibleSlots }
+        if (invisiblePending.isEmpty()) return
+        if (now - lastScroll < 2_900 || scrollAttempts >= 20) return
+        val wanted = invisiblePending.minOf { slotMinute(it) }
+        val earliest = visibleSlots.minOf { slotMinute(it) }
+        val latest = visibleSlots.maxOf { slotMinute(it) }
+        val forward = if (wanted < earliest) false else wanted > latest || wanted >= earliest
+        val signature = visibleSlots.joinToString("|")
+        if (signature == lastSeenSignature && scrollAttempts > 2) {
+            scrollAttempts = 20
+            note("scroll-limit", "Saat listesinin sonuna gelindi; eksik saat için manuel kaydırma gerekebilir.", 120_000)
+            return
         }
+        lastSeenSignature = signature
+        scrollAttempts += 1
+        lastScroll = now
+        gestureBusy = true
+        swipe(forward) { ok ->
+            gestureBusy = false
+            if (ok) note("scroll", "Hedef saat ekran dışında; liste ${if (forward) "aşağı" else "yukarı"} kaydırıldı.", 40_000)
+            handler.postDelayed({ inspect(SettingsStore.read(this)) }, 1_200)
+        }
+    }
+
+    private fun slotMinute(slot: String): Int {
+        val start = slot.substringBefore('-')
+        val hour = start.substringBefore(':').toIntOrNull() ?: return 0
+        val minute = start.substringAfter(':').toIntOrNull() ?: 0
+        return (if (hour == 0) 24 else hour) * 60 + minute
     }
 
     private fun collectVisibleTexts(node: AccessibilityNodeInfo, out: MutableList<Pair<String, Rect>>, depth: Int) {
         if (depth > 35 || out.size > 1_500) return
-        val text = node.text?.toString()?.trim().orEmpty()
-        if (text.isNotEmpty() && node.isVisibleToUser) {
+        val t = node.text?.toString()?.trim().orEmpty()
+        if (node.isVisibleToUser && t.isNotEmpty()) {
             val rect = Rect()
             node.getBoundsInScreen(rect)
-            out.add(text to rect)
+            out.add(t to rect)
         }
         for (i in 0 until node.childCount) {
             val child = node.getChild(i) ?: continue
@@ -222,128 +262,119 @@ class SlotAccessibilityService : AccessibilityService() {
         }
     }
 
-    private fun isSelectedDateCell(bitmap: Bitmap, label: Rect): Boolean {
-        // The provided UI uses a solid black background for the selected date.
-        // Accept either tight text bounds or a merged entire-card text node.
-        val margin = max(6, (8 * resources.displayMetrics.density).toInt())
-        val points = listOf(
-            Pair(label.left - margin, label.centerY()),
-            Pair(label.right + margin, label.centerY()),
-            Pair(label.left + 6, label.top + 4),
-            Pair(label.right - 6, label.top + 4)
+    private fun isSelectedDate(bitmap: Bitmap, rect: Rect): Boolean {
+        val m = max(6, (8 * resources.displayMetrics.density).toInt())
+        val samples = listOf(
+            rect.left - m to rect.centerY(), rect.right + m to rect.centerY(),
+            rect.left + 6 to rect.top + 4, rect.right - 6 to rect.top + 4
         )
-        val dark = points.count { (px, py) ->
-            val x = px.coerceIn(0, bitmap.width - 1)
-            val y = py.coerceIn(0, bitmap.height - 1)
-            val pixel = bitmap.getPixel(x, y)
-            Color.red(pixel) < 75 && Color.green(pixel) < 75 && Color.blue(pixel) < 75
-        }
-        return dark >= 2
+        return samples.count { (x0, y0) ->
+            val x = x0.coerceIn(0, bitmap.width - 1)
+            val y = y0.coerceIn(0, bitmap.height - 1)
+            val p = bitmap.getPixel(x, y)
+            Color.red(p) < 75 && Color.green(p) < 75 && Color.blue(p) < 75
+        } >= 2
     }
 
-    private fun findVerifiedGreenPlus(bitmap: Bitmap, row: Rect): Tap? {
-        val density = resources.displayMetrics.density
-        val x0 = (bitmap.width * 0.83f).toInt().coerceIn(0, bitmap.width - 1)
-        val x1 = (bitmap.width * 0.98f).toInt().coerceIn(x0, bitmap.width - 1)
-        val y0 = max(0, row.centerY() - (32 * density).toInt())
-        val y1 = min(bitmap.height - 1, row.centerY() + (65 * density).toInt())
-        if (y0 >= y1) return null
-
+    private fun findGreenPlus(bitmap: Bitmap, row: Rect): Tap? {
+        val d = resources.displayMetrics.density
+        val left = (bitmap.width * 0.83f).toInt().coerceIn(0, bitmap.width - 1)
+        val right = (bitmap.width * 0.98f).toInt().coerceIn(left, bitmap.width - 1)
+        val top = max(0, row.centerY() - (32 * d).toInt())
+        val bottom = min(bitmap.height - 1, row.centerY() + (65 * d).toInt())
+        if (top >= bottom) return null
         val xs = mutableListOf<Int>()
         val ys = mutableListOf<Int>()
-        for (y in y0..y1 step 3) {
-            for (x in x0..x1 step 3) {
-                if (isDeepGreen(bitmap.getPixel(x, y))) {
-                    xs.add(x)
-                    ys.add(y)
-                }
-            }
+        for (y in top..bottom step 3) for (x in left..right step 3) {
+            if (green(bitmap.getPixel(x, y))) { xs.add(x); ys.add(y) }
         }
         if (xs.size < 40) return null
-        xs.sort()
-        ys.sort()
+        xs.sort(); ys.sort()
         val x = xs[xs.size / 2]
         val y = ys[ys.size / 2]
-
-        // The button in the supplied UI is a white plus on a green rounded square.
-        // Both horizontal and vertical arms must exist at the computed center.
-        val arm = max(6, (9 * density).toInt())
-        // The median of green pixels is not necessarily the exact center of the
-        // white plus. Probe a few neighboring scanlines to tolerate JPEG scaling,
-        // different DPIs, and the rounded corners of the button.
-        val shift = max(2, (3 * density).toInt())
-        val whiteHorizontal = (-shift..shift).maxOf { yShift ->
-            (-arm..arm step max(2, arm / 4)).count { delta ->
-                val px = (x + delta).coerceIn(0, bitmap.width - 1)
-                val py = (y + yShift).coerceIn(0, bitmap.height - 1)
-                isNearlyWhite(bitmap.getPixel(px, py))
+        val arm = max(6, (9 * d).toInt())
+        val shift = max(2, (3 * d).toInt())
+        val horiz = (-shift..shift).maxOf { dy ->
+            (-arm..arm step max(2, arm / 4)).count { dx ->
+                white(bitmap.getPixel((x + dx).coerceIn(0, bitmap.width - 1), (y + dy).coerceIn(0, bitmap.height - 1)))
             }
         }
-        val whiteVertical = (-shift..shift).maxOf { xShift ->
-            (-arm..arm step max(2, arm / 4)).count { delta ->
-                val px = (x + xShift).coerceIn(0, bitmap.width - 1)
-                val py = (y + delta).coerceIn(0, bitmap.height - 1)
-                isNearlyWhite(bitmap.getPixel(px, py))
+        val vert = (-shift..shift).maxOf { dx ->
+            (-arm..arm step max(2, arm / 4)).count { dy ->
+                white(bitmap.getPixel((x + dx).coerceIn(0, bitmap.width - 1), (y + dy).coerceIn(0, bitmap.height - 1)))
             }
         }
-        if (whiteHorizontal < 3 || whiteVertical < 3) return null
-        return Tap(x, y)
+        return if (horiz >= 3 && vert >= 3) Tap(x, y) else null
     }
 
-    private fun isDeepGreen(color: Int): Boolean {
-        val r = Color.red(color)
-        val g = Color.green(color)
-        val b = Color.blue(color)
-        return r < 100 && g in 75..185 && b < 160 && g > r * 1.4 && g > b * 1.15
+    private fun findRedRemoveButton(bitmap: Bitmap, row: Rect): Boolean {
+        val d = resources.displayMetrics.density
+        val left = (bitmap.width * 0.83f).toInt().coerceIn(0, bitmap.width - 1)
+        val right = (bitmap.width * 0.98f).toInt().coerceIn(left, bitmap.width - 1)
+        val top = max(0, row.centerY() - (30 * d).toInt())
+        val bottom = min(bitmap.height - 1, row.centerY() + (65 * d).toInt())
+        if (top >= bottom) return false
+        var redPixels = 0
+        for (y in top..bottom step 3) for (x in left..right step 3) {
+            val p = bitmap.getPixel(x, y)
+            if (Color.red(p) > 180 && Color.green(p) < 105 && Color.blue(p) < 145) redPixels++
+        }
+        return redPixels >= 35
     }
 
-    private fun isNearlyWhite(color: Int): Boolean =
-        Color.red(color) > 195 && Color.green(color) > 195 && Color.blue(color) > 185
+    private fun green(p: Int) = Color.red(p) < 100 && Color.green(p) in 75..185 && Color.blue(p) < 160 && Color.green(p) > Color.red(p) * 1.4 && Color.green(p) > Color.blue(p) * 1.15
+    private fun white(p: Int) = Color.red(p) > 195 && Color.green(p) > 195 && Color.blue(p) > 185
 
     private fun maybeRefresh(config: SettingsStore.Config) {
-        if (config.dryRun || gestureBusy || screenshotBusy || !isTargetVisible()) return
+        if (config.dryRun || gestureBusy || screenshotBusy || !targetVisible()) return
         val now = System.currentTimeMillis()
-        if (now - lastRefreshMs < config.refreshSeconds * 1_000L) return
+        if (now - lastRefresh < config.refreshSeconds * 1_000L) return
         val root = rootInActiveWindow ?: return
-        val refreshNodes = root.findAccessibilityNodeInfosByText("Sayfayı Yenile")
-        val match = refreshNodes.firstOrNull { it.isVisibleToUser && it.text?.toString()?.contains("Sayfayı Yenile", true) == true }
-            ?: return
-        val rect = Rect()
-        match.getBoundsInScreen(rect)
-        if (rect.width() <= 0 || rect.height() <= 0) return
-        lastRefreshMs = now
+        val item = root.findAccessibilityNodeInfosByText("Sayfayı Yenile")
+            .firstOrNull { it.isVisibleToUser && it.text?.toString()?.contains("Sayfayı Yenile", true) == true } ?: return
+        val bounds = Rect()
+        item.getBoundsInScreen(bounds)
+        if (bounds.width() < 1 || bounds.height() < 1) return
+        lastRefresh = now
         gestureBusy = true
-        tap(rect.centerX(), rect.centerY()) { ok ->
+        tap(bounds.centerX(), bounds.centerY()) { ok ->
             gestureBusy = false
-            if (!ok) note("refresh-fail", "Sayfayı Yenile tıklaması başarısız.", 60_000L)
-            handler.postDelayed({ inspect(SettingsStore.read(this)) }, 1_250L)
+            if (!ok) note("refresh-fail", "Yenileme butonuna dokunulamadı.", 90_000)
+            handler.postDelayed({ inspect(SettingsStore.read(this)) }, 1_200)
         }
     }
 
     private fun tap(x: Int, y: Int, callback: (Boolean) -> Unit) {
-        val path = Path().apply { moveTo(x.toFloat(), y.toFloat()) }
+        val p = Path().apply { moveTo(x.toFloat(), y.toFloat()) }
+        sendGesture(p, 100L, callback)
+    }
+
+    private fun swipe(forward: Boolean, callback: (Boolean) -> Unit) {
+        val w = resources.displayMetrics.widthPixels
+        val h = resources.displayMetrics.heightPixels
+        val x = (w * 0.5f)
+        val y0 = if (forward) h * 0.78f else h * 0.28f
+        val y1 = if (forward) h * 0.28f else h * 0.78f
+        val p = Path().apply { moveTo(x, y0); lineTo(x, y1) }
+        sendGesture(p, 460L, callback)
+    }
+
+    private fun sendGesture(path: Path, duration: Long, callback: (Boolean) -> Unit) {
         val gesture = GestureDescription.Builder()
-            .addStroke(GestureDescription.StrokeDescription(path, 0, 85L))
-            .build()
+            .addStroke(GestureDescription.StrokeDescription(path, 0L, duration)).build()
         val accepted = dispatchGesture(gesture, object : GestureResultCallback() {
-            override fun onCompleted(gestureDescription: GestureDescription?) {
-                callback(true)
-            }
-            override fun onCancelled(gestureDescription: GestureDescription?) {
-                callback(false)
-            }
+            override fun onCompleted(gestureDescription: GestureDescription?) { callback(true) }
+            override fun onCancelled(gestureDescription: GestureDescription?) { callback(false) }
         }, handler)
         if (!accepted) callback(false)
     }
 
-    private fun note(key: String, message: String, throttleMs: Long) {
+    private fun note(key: String, message: String, cooldown: Long) {
         val now = System.currentTimeMillis()
-        if (now - (lastMessages[key] ?: 0L) < throttleMs) return
+        if (now - (lastMessages[key] ?: 0L) < cooldown) return
         lastMessages[key] = now
         EventLog.write(this, message)
     }
 
-    companion object {
-        private const val TARGET_PACKAGE = "com.orangemobile"
-    }
+    companion object { private const val TARGET_PACKAGE = "com.orangemobile" }
 }
