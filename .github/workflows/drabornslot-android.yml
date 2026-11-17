@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'DraBornSlot/source.part*'
+      - '.github/workflows/drabornslot-android.yml'
 permissions:
   contents: write
 jobs:
@@ -32,14 +33,14 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - name: Install Android SDK
-        uses: android-actions/setup-android@v3
       - name: Set up Gradle 8.9
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
       - name: Install Android 35 SDK
-        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
       - name: Compile debug APK
         run: gradle --no-daemon -p DraBornSlot :app:assembleDebug
       - name: Upload APK
@@ -48,3 +49,14 @@ jobs:
           name: DraBornSlot-v0.1-debug-APK
           path: DraBornSlot/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+      - name: Publish APK to GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          APK='DraBornSlot/app/build/outputs/apk/debug/app-debug.apk'
+          TAG='drabornslot-v0.1'
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$APK#DraBornSlot-v0.1-debug.apk" --clobber
+          else
+            gh release create "$TAG" "$APK#DraBornSlot-v0.1-debug.apk" --title 'DraBornSlot v0.1 (test APK)' --notes 'Android debug APK. Erişilebilirlik tabanlı deneysel slot otomasyonu; rezervasyon doğrulama ve 7/24 kusursuz çalışma garantisi yoktur.'
+          fi
