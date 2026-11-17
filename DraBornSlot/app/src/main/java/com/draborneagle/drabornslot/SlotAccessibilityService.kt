@@ -28,6 +28,7 @@ class SlotAccessibilityService : AccessibilityService() {
     private var lastInspect = 0L
     private var lastRefresh = 0L
     private var lastScroll = 0L
+    private var lastTimeRowsSeenAt = 0L
     private var screenshotBusy = false
     private var gestureBusy = false
     private var stopped = false
@@ -46,8 +47,8 @@ class SlotAccessibilityService : AccessibilityService() {
             if (stopped) return
             val config = SettingsStore.read(this@SlotAccessibilityService)
             if (config.active) {
-                inspect(config)
                 maybeRefresh(config)
+                inspect(config)
             }
             handler.postDelayed(this, tickPeriod)
         }
@@ -106,6 +107,7 @@ class SlotAccessibilityService : AccessibilityService() {
             if (bounds.width() < 1 || bounds.height() < 1) null else FoundRow(slot, bounds)
         }.distinctBy { it.slot }
         val targetRows = allRows.filter { it.slot in config.slots }
+        if (allRows.isNotEmpty()) lastTimeRowsSeenAt = now
         if (dateBounds.isEmpty() && !(verifiedDate == config.date && now - verifiedAt < 180_000L)) {
             if (!config.dryRun && allRows.isNotEmpty() && now - lastScroll > 3_000L) {
                 lastScroll = now
@@ -331,11 +333,26 @@ class SlotAccessibilityService : AccessibilityService() {
         if (now - lastRefresh < config.refreshSeconds * 1_000L) return
         val root = rootInActiveWindow ?: return
         val item = root.findAccessibilityNodeInfosByText("Sayfayı Yenile")
-            .firstOrNull { it.isVisibleToUser && it.text?.toString()?.contains("Sayfayı Yenile", true) == true } ?: return
+            .firstOrNull { it.isVisibleToUser && it.text?.toString()?.contains("Sayfayı Yenile", true) == true }
+        if (item == null) {
+            // In a long list the refresh button may be off-screen; safely return to the header.
+            if (verifiedDate == config.date && now - lastTimeRowsSeenAt < 15_000L &&
+                now - lastScroll > 3_000L && scrollAttempts > 0) {
+                lastScroll = now
+                gestureBusy = true
+                swipe(false) { _ ->
+                    gestureBusy = false
+                    handler.postDelayed({ inspect(SettingsStore.read(this)) }, 1_150L)
+                }
+            }
+            return
+        }
         val bounds = Rect()
         item.getBoundsInScreen(bounds)
         if (bounds.width() < 1 || bounds.height() < 1) return
         lastRefresh = now
+        scrollAttempts = 0
+        lastSeenSignature = ""
         gestureBusy = true
         tap(bounds.centerX(), bounds.centerY()) { ok ->
             gestureBusy = false
