@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="slot_night">#050C20</color>
+    <color name="slot_mint">#62F3C7</color>
+    <style name="Theme.DraBornSlot" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/slot_night</item>
+        <item name="android:colorAccent">@color/slot_mint</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:statusBarColor">@color/slot_night</item>
+        <item name="android:navigationBarColor">@color/slot_night</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+    <style name="Theme.DraBornSlot.Launch" parent="Theme.DraBornSlot" />
+</resources>

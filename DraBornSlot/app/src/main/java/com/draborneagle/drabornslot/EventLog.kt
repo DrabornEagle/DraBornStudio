@@ -22,9 +22,13 @@ object EventLog {
     fun read(context: Context): String = context.getSharedPreferences(FILE, Context.MODE_PRIVATE)
         .getString("entries", "") ?: ""
 
+    @Synchronized
+    fun clear(context: Context) =
+        context.getSharedPreferences(FILE, Context.MODE_PRIVATE).edit().clear().commit()
+
     data class Entry(val timestamp: String, val label: String, val message: String, val level: Int)
 
-    fun entries(context: Context): List<Entry> = read(context).lines()
+    fun entries(history: String): List<Entry> = history.lines()
         .filter { it.isNotBlank() }
         .take(35)
         .map { line ->
@@ -32,10 +36,6 @@ object EventLog {
             val content = line.drop(14).trim()
             val (label, level) = when {
                 content.contains("HATA:", true) || content.contains("başarısız", true) || content.contains("hatası", true) -> "HATA" to 3
-                content.contains("KALDIRMA GÖRÜLDÜ", true) -> "KALDIRILDI" to 2
-                content.contains("SİLME TALİMATI", true) -> "KALDIRMA İSTEĞİ" to 1
-                content.contains("KALDIRMA DOKUNUŞU", true) -> "KALDIRMA" to 1
-                content.contains("YENİLEME:", true) -> "YENİLEME" to 0
                 content.contains("ARAYÜZDE SEÇİLDİ", true) -> "SEÇİM GÖRÜLDÜ" to 2
                 content.contains("DOKUNMA:", true) || content.contains("dokunuldu", true) -> "DOKUNMA" to 1
                 content.contains("hazır", true) || content.contains("tarama", true) || content.contains("kaydır", true) -> "TARAMA" to 1

@@ -2,104 +2,145 @@ package com.draborneagle.drabornslot
 
 import android.content.Context
 import java.time.LocalDate
-import java.time.LocalTime
-import java.time.Duration
 
-/** No personal credentials or session cookies are stored. */
 object SettingsStore {
     private const val FILE = "drabornslot_preferences"
-    private fun p(context: Context) = context.getSharedPreferences(FILE, Context.MODE_PRIVATE)
+    const val RUNTIME = "drabornslot_runtime"
+    const val MIN_REFRESH_SECONDS = 1
+    const val MAX_REFRESH_SECONDS = 60
+    const val DEFAULT_DRY_RUN = false
+
+    private val timeRange = Regex("""\b([01]\d|2[0-3]):([0-5]\d)\s*[-–—−]\s*([01]\d|2[0-3]):([0-5]\d)\b""")
 
     data class Config(
         val active: Boolean,
         val dryRun: Boolean,
         val date: String,
         val slots: List<String>,
-        val refreshSeconds: Int
-    )
-
-    fun normalizeSlot(value: String): String? {
-        val match = Regex("""\b(\d{2}:\d{2})\s*[-–—]\s*(\d{2}:\d{2})\b""").find(value) ?: return null
-        val start = match.groupValues[1]
-        val end = match.groupValues[2]
-        val valid = Regex("""(?:[01]\d|2[0-3]):[0-5]\d""")
-        if (!valid.matches(start) || !valid.matches(end)) return null
-        if (start == "23:30" && end == "23:59") return "23:30-23:59"
-        if (Duration.between(LocalTime.parse(start), LocalTime.parse(end)).toMinutes().let { if (it < 0) it + 1440L else it } != 30L) return null
-        return "$start-$end"
+        val refreshSeconds: Int,
+        val background: Boolean = false
+    ) {
+        fun isUpcoming(): Boolean {
+            val today = LocalDate.now()
+            return runCatching { LocalDate.parse(date) in today..today.plusDays(6) }.getOrDefault(false)
+        }
     }
 
-    fun slotLines(raw: String): List<String> = raw.lines().mapNotNull(::normalizeSlot).distinct().take(8)
+    data class SlotGroup(val title: String, val slots: List<String>)
+
+    val slotGroups = listOf(
+        SlotGroup("Sabah", slotsFrom(8, 12)),
+        SlotGroup("Öğle", slotsFrom(12, 17)),
+        SlotGroup("Akşam", slotsFrom(17, 23)),
+        SlotGroup("Gece", listOf("23:00-23:30", "23:30-23:59", "00:00-00:30", "00:30-01:00"))
+    )
+    val displayedSlots = slotGroups.flatMap { it.slots }
+
+    private fun prefs(context: Context) = context.getSharedPreferences(FILE, Context.MODE_PRIVATE)
+
+    private fun connectionPrefs(context: Context) =
+        context.getSharedPreferences("drabornslot_connection", Context.MODE_PRIVATE)
+
+    fun connectionProtectionEnabled(context: Context): Boolean =
+        connectionPrefs(context).getBoolean("protect_connection", false)
+
+    fun setConnectionProtection(context: Context, enabled: Boolean) {
+        connectionPrefs(context).edit().putBoolean("protect_connection", enabled).apply()
+    }
+
+    private fun slotsFrom(firstHour: Int, endHour: Int) = (firstHour until endHour).flatMap { hour ->
+        val start = hour.toString().padStart(2, '0')
+        val end = (hour + 1).toString().padStart(2, '0')
+        listOf("$start:00-$start:30", "$start:30-$end:00")
+    }
+
+    fun normalizeSlot(value: String): String? {
+        // Reject long ranges where a slot picker must match a single half-hour row.
+        val match = timeRange.find(value) ?: return null
+        val (startHour, startMinute, endHour, endMinute) = match.destructured
+        val start = 60 * startHour.toInt() + startMinute.toInt()
+        val end = 60 * endHour.toInt() + endMinute.toInt()
+        val duration = (end - start + 1440) % 1440
+        if (duration != 30 && !(start == 1410 && end == 1439)) return null
+        return "$startHour:$startMinute-$endHour:$endMinute"
+    }
+
+    fun slotLines(raw: String) = raw.lineSequence().mapNotNull(::normalizeSlot).distinct().toList()
+
+    fun slotMinute(slot: String): Int {
+        val hour = slot.substring(0, 2).toInt()
+        val minute = slot.substring(3, 5).toInt()
+        return (if (hour == 0) 24 else hour) * 60 + minute
+    }
+
+    fun defaults() = Config(
+        active = false,
+        dryRun = DEFAULT_DRY_RUN,
+        date = LocalDate.now().toString(),
+        slots = emptyList(),
+        refreshSeconds = MIN_REFRESH_SECONDS
+    )
 
     fun read(context: Context): Config {
-        val pref = p(context)
+        val prefs = prefs(context)
+        val refresh = if (prefs.getBoolean("refresh_v04_migrated", false)) {
+            prefs.getInt("refresh_seconds", MIN_REFRESH_SECONDS)
+        } else {
+            MIN_REFRESH_SECONDS
+        }
         return Config(
-            pref.getBoolean("active", false),
-            pref.getBoolean("dry_run", true),
-            pref.getString("date", LocalDate.now().toString()) ?: LocalDate.now().toString(),
-            slotLines(pref.getString("slots", "08:00-08:30\n08:30-09:00") ?: ""),
-            if (pref.getBoolean("refresh_v04_migrated", false)) pref.getInt("refresh_seconds", 1).coerceIn(1, 60) else 1
+            active = prefs.getBoolean("active", false),
+            dryRun = prefs.getBoolean("dry_run", DEFAULT_DRY_RUN),
+            date = prefs.getString("date", null) ?: LocalDate.now().toString(),
+            slots = slotLines(prefs.getString("slots", "").orEmpty()),
+            refreshSeconds = refresh.coerceIn(MIN_REFRESH_SECONDS, MAX_REFRESH_SECONDS),
+            background = prefs.getBoolean("background", false)
         )
     }
 
-    /** Explicit removal queue: only deselections saved for the same day. */
-    fun pendingRemovals(context: Context, date: String): List<String> =
-        slotLines(p(context).getString("pending-removals-$date", "") ?: "")
+    fun pendingRemovals(context: Context, date: String) =
+        slotLines(prefs(context).getString("pending-removals-$date", "").orEmpty())
 
-    fun completeRemoval(context: Context, date: String, slot: String) {
-        val remaining = pendingRemovals(context, date).filterNot { it == slot }
-        p(context).edit().putString("pending-removals-$date", remaining.joinToString("\n")).apply()
-        unmarkUiConfirmed(context, date, slot)
-    }
-
-    fun save(context: Context, config: Config) {
-        val previous = read(context)
-        val newlyRemoved = if (previous.date == config.date) {
-            previous.slots.filterNot { it in config.slots }
-        } else emptyList()
-        val queue = (pendingRemovals(context, config.date) + newlyRemoved)
-            .distinct().filterNot { it in config.slots }
-        p(context).edit()
+    fun save(context: Context, config: Config, removeFromGo: Collection<String> = emptyList()): Boolean {
+        val slots = config.slots.mapNotNull(::normalizeSlot).distinct()
+        val pending = (pendingRemovals(context, config.date) + removeFromGo)
+            .mapNotNull(::normalizeSlot).distinct() - slots.toSet()
+        return prefs(context).edit()
             .putBoolean("active", config.active)
+            .putBoolean("background", config.active && config.background)
             .putBoolean("dry_run", config.dryRun)
             .putString("date", config.date)
-            .putString("slots", config.slots.joinToString("\n"))
-            .putString("pending-removals-${config.date}", queue.joinToString("\n"))
-            .putInt("refresh_seconds", config.refreshSeconds.coerceIn(1, 60))
+            .putString("slots", slots.joinToString("\n"))
+            .putString("pending-removals-${config.date}", pending.joinToString("\n"))
+            .putInt("refresh_seconds", config.refreshSeconds.coerceIn(MIN_REFRESH_SECONDS, MAX_REFRESH_SECONDS))
             .putBoolean("refresh_v04_migrated", true)
-            .apply()
+            .commit()
     }
 
-    fun heartbeat(context: Context, at: Long = System.currentTimeMillis()) {
-        p(context).edit().putLong("agent_heartbeat", at).apply()
+    fun reset(context: Context): Boolean {
+        val planCleared = prefs(context).edit().clear().commit()
+        val runtimeCleared = context.getSharedPreferences(RUNTIME, Context.MODE_PRIVATE).edit().clear().commit()
+        return planCleared && runtimeCleared
     }
 
-    fun lastHeartbeat(context: Context): Long = p(context).getLong("agent_heartbeat", 0L)
-
-    fun unmarkUiConfirmed(context: Context, date: String, slot: String) {
-        p(context).edit().remove("ui-confirmed-$date-$slot").apply()
-    }
-
-    fun attemptCount(context: Context, date: String, slot: String): Int =
-        p(context).getInt("attempt-$date-$slot", 0)
-
-    fun addAttempt(context: Context, date: String, slot: String) {
-        val current = attemptCount(context, date, slot)
-        p(context).edit().putInt("attempt-$date-$slot", current + 1).apply()
-    }
-
-    fun isUiConfirmed(context: Context, date: String, slot: String): Boolean =
-        p(context).getBoolean("ui-confirmed-$date-$slot", false)
+    fun isUiConfirmed(context: Context, date: String, slot: String) =
+        prefs(context).getBoolean("ui-confirmed-$date-$slot", false)
 
     fun markUiConfirmed(context: Context, date: String, slot: String) {
-        p(context).edit().putBoolean("ui-confirmed-$date-$slot", true).apply()
+        prefs(context).edit().putBoolean("ui-confirmed-$date-$slot", true).apply()
     }
 
-    fun clearAttempts(context: Context, date: String) {
-        val prefs = p(context)
-        val edit = prefs.edit()
-        prefs.all.keys.filter { it.startsWith("attempt-$date-") || it.startsWith("ui-confirmed-$date-") }
-            .forEach { edit.remove(it) }
-        edit.apply()
+    fun addAttempt(context: Context, date: String, slot: String) {
+        val prefs = prefs(context)
+        val key = "attempt-$date-$slot"
+        prefs.edit().putInt(key, prefs.getInt(key, 0) + 1).apply()
+    }
+
+    fun completeRemoval(context: Context, date: String, slot: String) {
+        val remaining = pendingRemovals(context, date) - slot
+        prefs(context).edit()
+            .putString("pending-removals-$date", remaining.joinToString("\n"))
+            .remove("ui-confirmed-$date-$slot")
+            .apply()
     }
 }

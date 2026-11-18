@@ -1,0 +1,25 @@
+# Release kontrolü
+
+- [ ] Açılış animasyonu, tarih şeridi, renkli saat kutuları ve alt işlem düğmeleri Android 11+ cihazda görüntülenir.
+- [ ] 9. seçim ve **Tümünü seç** çalışır. Kaydedilmiş plandaki 34 saat **Planı düzenle** ile geri yüklenir.
+- [ ] Gece aralıkları, 23:30–23:59, 00:00–00:30 ve 00:30–01:00 dahil, listelenir ve doğru sırada kaydedilir.
+- [ ] Soğuk açılışta düzenleyici boş görünür ve kayıtlı planı yeniden yüklemek mümkündür.
+- [ ] Plan düzenleyici ilk açılışta ve kayıtlı plan düzenlenirken **Kaydedince takibi başlat** seçili gelir.
+- [ ] **Kaydet ve uygula** menüsünde Uber/Trendyol GO aç, Slotları arka planda yakala ve Yalnızca kaydet seçenekleri görünür.
+- [ ] **Uber/Trendyol GO aç** seçilince uygulama bir kez açılır. Servis ve canlı plan hazırsa **Saatler → Tüm Saatler** akışına geçilir.
+- [ ] **Slotları arka planda yakala** planı kaydeder. Bildirimden kurye uygulaması açılır ve takip durdurulabilir.
+- [ ] **Temizle** çalışırken durdurur, ayarları varsayılana döndürür ve kayıtlı slotları, kaldırma kuyruğunu ve kayıtları siler. Android erişilebilirlik izni aynı kalır.
+- [ ] Temizle’den sonra 0 saat, pasif plan, 1 saniyelik yenileme ve seçili Canlı seçim görünür. Uygulamayı kapatıp yeniden açınca bu durum korunur.
+- [ ] Etkin bir planı temizle, uygulamanın ana ekranını kapat ve tekrar aç. Servis bağlı kalır ve yeni plan kaydedildiğinde takip yeniden başlar.
+- [ ] Android servisi bağlı olmasa da uygulama yeniden açıldığında kayıtlı plan **Planı düzenle** ile okunabilir.
+- [ ] **Bağlantıyı yenile** boş planda bağlantı korumasını başlatır. Bildirimde bağlantı durumu ve **Korumayı durdur** bulunur.
+- [ ] Bağlantı koruması etkinken planı temizle. Takip durur ve bağlantı bildirimi devam eder.
+- [ ] **Erişilebilirlik bağlantısı**, **Servis tanısı** ve **Kayıtlı planı güncelle** pencereleri dar ekranda kaydırılabilir. Tanı kopyalanır ve plandan çıkarılan saatler iki kaydetme seçeneğinden önce görünür.
+- [ ] İzin açık ve servis kesik durumları ekranda doğru görünür. **Bağlantıyı yenile** önce bağlantıyı kontrol eder. Android servisi bağlarsa mevcut planla oturum yeniden başlar. Bağlantı gelmezse ayarlar seçeneği gösterilir.
+- [ ] Kaydedilen yenileme alt sınırı 1 saniyedir. Kullanıcı aralığı 60 saniyeye kadar değiştirebilir.
+- [ ] İzleme modu giriş hareketi göndermez. Canlı seçim seçili gün ve saatlerle sınırlıdır.
+- [ ] Ekran dışındaki saat yönünde kaydırılır. Ekrandaki uygun hedef saat, mümkünse düğme üzerinden seçilir.
+- [ ] Hem ekran dokunması hem görülen seçim durumuna ait kayıtlar oluşturulur.
+- [ ] Trendyol GO önden ayrıldığında veya telefon kilitlendiğinde takip bekler. Kilit açılıp Trendyol GO öne gelince plan kaldığı yerden devam eder.
+- [ ] Android servisi kapatıp açıldığında bağlantı durumu ve servis tanısı güncellenir.
+- [ ] APK Release olarak imzalıdır ve önceki Release sertifikasıyla eşleşir.

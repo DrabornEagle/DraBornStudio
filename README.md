@@ -1,12 +1,13 @@
 # DraBornStudio
 
-DrabornEagle ekosisteminin üretkenlik ve yaratıcı medya uygulamaları. Geliştirme, dokümantasyon ve sürüm bakımı bu depoda yapılır.
+DrabornEagle ekosisteminin Android, web ve masaüstü uygulamaları. Geliştirme, dokümantasyon ve sürüm bakımı bu depoda yapılır.
 
 | Klasör | Uygulama | Platform | Aç |
 | --- | --- | --- | --- |
 | [Coconut-app](Coconut-app/) | **Coconut-app** | Web, macOS, Windows | [Web](https://www.draborneagle.com/DraBornStudio/Coconut-app/) |
 | [Banana-edits](Banana-edits/) | **Banana-edits** | Web, macOS, Windows | [Web](https://www.draborneagle.com/DraBornStudio/Banana-edits/) |
 | [clipboard-app](clipboard-app/) | **clipboard-app** | macOS, Windows | [Tanıtım ve kaynaklar](https://www.draborneagle.com/DraBornStudio/clipboard-app/) |
+| [DraBornSlot](DraBornSlot/) | **DraBornSlot** | Android 11+ | [APK indir ve kur](DraBornSlot/#apk-indir) |
 
 ![Coconut-app dosya atölyesi](Coconut-app/docs/assets/coconut-web.jpg)
 
@@ -22,4 +23,4 @@ Her uygulamanın README dosyası kendi kurulumunu, yeteneklerini ve sınırları
 
 ## Lisans ve kaynak başlangıcı
 
-Bu uygulamalar MIT lisanslı açık kaynak projelerden geliştirilmiştir. DrabornEagle bu sürümlerin bakımını ve yeni geliştirmelerini yürütür. Özgün telif ve lisans bildirimleri her uygulamanın `LICENSE` dosyasında değiştirilmeden korunur; kaynak adresleri ve commit bilgileri `UPSTREAM.json` dosyalarındadır. DrabornEagle tarafından eklenen kod da MIT lisanslıdır. [Bildirimler](THIRD_PARTY_NOTICES.md).
+Coconut-app, Banana-edits ve clipboard-app MIT lisanslı açık kaynak projelerden geliştirilmiştir. DrabornEagle bu sürümlerin bakımını ve yeni geliştirmelerini yürütür. Bu projelerin özgün telif ve lisans bildirimleri kendi `LICENSE` dosyalarındadır. Kaynak adresleri ve commit bilgileri `UPSTREAM.json` dosyalarındadır. DrabornEagle tarafından eklenen kod da MIT lisanslıdır. [Bildirimler](THIRD_PARTY_NOTICES.md).

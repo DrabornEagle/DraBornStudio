@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.DraBornSlot.Launch" parent="Theme.DraBornSlot">
+        <item name="android:windowSplashScreenBackground">@color/slot_night</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ic_slot</item>
+    </style>
+</resources>

@@ -1,11 +1,10 @@
-# DraBornSlot v0.3 mimari
+# DraBornSlot mimarisi
 
-**Tek cihaz:** Ana arayüz (`MainActivity`) + Android `AccessibilityService`. Trendyol GO aynı cihazda **önde açık** kalır; servis onun erişilebilirlik ağacını ve izin verilen ekran görüntülerini inceler.
-
-**Tarama:** `Handler` döngüsü 1000 ms. `takeScreenshot` için 1100 ms sınır ve Android'in `ERROR_TAKE_SCREENSHOT_INTERVAL_TIME_SHORT` geri dönüşünde kibarca atlama. Sayfa yenileme ayrı 5–60 sn.
-
-**Güvenli seçim:** Doğrulanmış tarih, hedef satır, satırla sınırlı yeşil `+`, `dispatchGesture`, sonrasında kırmızı `X` görseli ile *arayüz durumu*. 15 sn en az tekrar dokunma beklemesi. Red X kesin rezervasyon değildir.
-
-**Hata dayanıklılığı:** Ana tarama ve ekran görüntüsü değerlendirmesi hata yakalar; `EventLog` yapılandırılmış kartlara çevrilir; `SettingsStore` kalp atışı ön yüzde gösterir. Bağlantı kesilirse Android yeniden servis bağlantısı gerektirebilir.
-
-**Sınırlama:** Aygıt kilitliyken / telefon kapalıyken ekran kontrolü yok; internette slotların ne zaman yayınlandığı bilinmez; anlık yakalama garanti edilmez.
+- **Ana ekran.** Kullanıcı tarih, saatler, takip modu ve yenileme aralığı belirler. Ana ekran, planı yerel tercihlerden ve servis durumunu bulunduğu uygulama sürecinden okur. **Kaydet ve uygula** ile kurye uygulamasını açma, planı arka planda hazır tutma ve yalnızca kaydetme seçenekleri sunulur.
+- **Erişilebilirlik servisi.** Android bağlantıyı yönetir. Plan değişiklikleri ve tarama aynı iş parçacığında sıralanır. Yenileme tarama oturumunu ve Android 13 ve üzerindeki erişilebilirlik önbelleğini sıfırlar. Temizle planı ve geçmişi siler, mevcut taramayı durdurur ve bekleyen ekran sonuçlarını geçersiz kılar.
+- **Arka plan servisi.** Bir foreground service etkin arka plan planını ve kullanıcı tarafından başlatılan erişilebilirlik bağlantı korumasını yürütür. Tarama ve bağlantı koruması kendi ayarlarından durdurulur. Bildirim, izin ya da bağlantı değiştiğinde güncellenir. Android, bağlantı yeniden kurulduğunda erişilebilirlik servisine kayıtlı planı yükleten olay gönderir.
+- **Tarama.** Ekran olayları ve periyodik kontrol taramayı uyandırır. Ekran kapandığında tarama bekler ve ekran açılıp telefon kilitsiz olduğunda devam eder. Canlı seçim için görünür **Saatler → Tüm Saatler** ekranı kullanılır. Alt menünün erişilebilir etiketi görünmüyorsa saat simgesi görüntüden kontrol edilir.
+- **Saat eşleştirme.** Seçili gün, satırın saat aralığı ve sağdaki kontrol eşleşmelidir. Erişilebilirlik kontrolüne öncelik verilir. Düğme etiketi bulunamazsa tek ekran görüntüsünde satıra özgü renk ve ikon kontrolü ayrı bir iş parçacığında çalışır.
+- **Kaydırma ve yenileme.** Hizmet görünmeyen hedeflerin konumuna doğru ilerler. Bir tarama turu tamamlanınca gerekirse yenileme düğmesine geri döner. Kaydırmalar, dokunuşlar ve ekran görüntüsü denemeleri sırayla yürütülür.
+- **Sonuç.** Dokunmanın gönderilmesi ve ekrandaki seçili durum ayrı kayıtlardır. Bir önceki plandan çıkarılan saat için Trendyol GO’da kaldırma talebini kullanıcı ayrıca seçebilir.
+- **İmza.** Dağıtılan APK, `com.draborneagle.drabornslot` paket adını ve özgün Release sertifikasını kullanır. Dosya ve sertifika doğrulaması [README’de](README.md#apk-indir) bulunur.
